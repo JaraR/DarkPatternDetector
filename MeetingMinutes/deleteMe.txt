@@ -1,1 +1,1 @@
-Delete after adding first minute meetings.
+Delete after adding first meeting minutes.
