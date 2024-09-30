@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Dark Pattern Detection on X",
+  "version": "1.0",
+  "description": "To detect dark patterns on X.",
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Open"
+  }
+}
