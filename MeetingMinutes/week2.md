@@ -14,8 +14,6 @@ For all members:
 •	Complete slides and submit.
 
 
----
-
 Meeting with Mentor (online and onsite)
 Date and Time: 12:00, 30 September (Monday)
 Participants: All group members, Mentor
@@ -33,6 +31,7 @@ For all members:
 • Further discuss on key features of the detection tool
 • Tidy up the GitHub
 
+
 For ASD members:
 • Submit the document to Mentor
 • Conduct research on similar systems and do a demo
@@ -43,7 +42,6 @@ For DS members:
 • Find datasets for training emotions
 • Research on the detection methods based on the features defined
 
----
 
 Group Meeting (online)
 Date and Time: 19:30; 1 October (Tuesday)
@@ -63,3 +61,4 @@ For ASD members:
 • Further develop the prototype of the system, including the use cases
 For all members:
 • Further discuss on key features of the detection tool and discuss the feasibility of implementing those features
+---
