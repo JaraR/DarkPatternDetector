@@ -1,38 +1,30 @@
-.App {
-  text-align: center;
+/* App.css */
+
+/* Style the navbar to be a flexbox container */
+.navbar ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex; /* Use flexbox to arrange items in a row */
+  justify-content: space-around; /* Evenly space items across the width */
+  background-color: #f8f9fa; /* Optional: Add a background color */
+  padding: 10px 0; /* Add some padding */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Style the list items */
+.navbar li {
+  margin: 0 15px; /* Optional: Add horizontal spacing between items */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Style the links */
+.navbar a {
+  text-decoration: none; /* Remove the underline */
+  color: #007bff; /* Link color */
+  font-weight: bold; /* Make the font bold */
+  font-size: 16px; /* Adjust font size */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Change link color when hovered */
+.navbar a:hover {
+  color: #0056b3; /* Darker shade on hover */
 }
