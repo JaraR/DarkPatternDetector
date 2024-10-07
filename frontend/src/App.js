@@ -1,60 +1,24 @@
-// import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import AboutUs from "./pages/AboutUs";
+import Results from "./pages/Results";
+import Settings from "./pages/Settings";
+import "./App.css";
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-export default function MyApp() {
+const App = () => {
   return (
-    <body className="body">
-      <header className="top layer">
-        <h1>X/Twitter Dark Pattern Detector</h1>
-        <label className="switch">
-          <input type="checkbox" />
-          <span className="slider round" />
-        </label>
-      </header>
-      <div className="tabs">
-        <h2 className="center-text">About Us</h2>
-      </div>
+    <Router>
       <div>
-        <h2>What does this detection tool do?</h2>
-        <p className="font-change">This tool detects dark patterns on X/Twitter.</p>
+        <Navbar />
+        <Routes>
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
       </div>
-      <div>
-        <h2>What are dark patterns?</h2>
-        <p className="font-change">"Dark patterns are tricks used in websites and apps that make you do things that you didn't mean to, like buying or signing up for something." - https://www.deceptive.design/</p>
-      </div>
-      <div>
-        <h2>What Dark patterns does this tool detect?</h2>
-        <p className="dark-pattern-types">Emotional Steering</p>
-        <p className="dark-pattern-types">Infinite Scrolling</p>
-        <p className="dark-pattern-types">Autoplay Videos</p>
-        <p className="dark-pattern-types">Privacy Zuckering</p>
-        <p className="dark-pattern-types">Engagement Notification</p>
-        <p className="dark-pattern-types">Obstructing</p>
-        <p className="dark-pattern-types">Promoted Tweets and Ads that Blend In</p>
-      </div>
-    </body>
+    </Router>
   );
-}
+};
+
+export default App;
