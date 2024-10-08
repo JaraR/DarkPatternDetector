@@ -62,3 +62,75 @@
   align-items: center;
   gap: 10px;
 }
+
+/* ************* Settings page ***************** */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding-right: 10px;
+}
+
+.filter-list li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.dark-pattern-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.filter-checkbox {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+}
+
+.pref-checkbox {
+  margin-left: 20px;
+}
+
+.preference-container {
+  margin: 0px;
+  padding: 0px;
+}
+
+.preference-list {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: space-around;
+  gap: 10px;
+}
+.pref-checkbox {
+  margin-left: 10px;
+}
+
+.preference-list li {
+  display: flex;
+  align-items: center;
+}
+
+.setting-page-title {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
