@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../icons/logo.png";
 import closeIcon from "../icons/close.png";
 import Switch from "react-switch";
 
 const Navbar = () => {
+  // state for toggling the toggle button
+  const [isToggled, setIsToggled] = useState(false);
+  const handleToggle = (checked) => {
+    setIsToggled(checked);
+  };
+  //state for Close button
+  const handleClose = () => {
+    window.close();
+  };
+  // State for Detect now /Cancel button
+  const [isDetecting, setIsDetecting] = useState(false);
+  const handleDetectionToggle = () => {
+    setIsDetecting(!isDetecting);
+  };
+
   return (
     <nav className="navbar">
       <div className="logo-toggle-container">
@@ -13,12 +28,16 @@ const Navbar = () => {
 
           <div className="title-container">
             <h1>Dark Pattern Detector</h1>
-            <button className="subtitle-button">Detect Now</button>{" "}
+            <button className="subtitle-button" onClick={handleDetectionToggle}>
+              {isDetecting ? "Cancel Detection" : "Detect Now"}
+            </button>
           </div>
         </div>
         <div className="toggle-close-container">
           <div>
             <Switch
+              checked={isToggled}
+              onChange={handleToggle}
               offColor="#ccc"
               onColor="#E6E0E9"
               uncheckedIcon={false}
@@ -27,7 +46,7 @@ const Navbar = () => {
               width={40}
             />
           </div>
-          <button className="close-button">
+          <button className="close-button" onClick={handleClose}>
             <img src={closeIcon} alt="close" className="close-icon" />
           </button>
         </div>
