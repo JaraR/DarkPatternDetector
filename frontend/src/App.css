@@ -1,38 +1,132 @@
-.App {
-  text-align: center;
+/* App.css */
+
+/* ****************Navbar**************** */
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: #f8f9fa;
+  padding: 10px 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar li {
+  margin: 0 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  font-size: 16px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar a:hover {
+  color: #0056b3;
+}
+
+.logo-toggle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.logo-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  width: 40px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+}
+.close-icon {
+  width: 20px;
+  height: auto;
+}
+
+.toggle-close-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ************* Settings page ***************** */
+.filter-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  margin: 0px;
+  padding: 0px;
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding-right: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.filter-list li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dark-pattern-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.filter-checkbox {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+}
+
+.pref-checkbox {
+  margin-left: 20px;
+}
+
+.preference-container {
+  margin: 0px;
+  padding: 0px;
+}
+
+.preference-list {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: space-around;
+  gap: 10px;
+}
+.pref-checkbox {
+  margin-left: 10px;
+}
+
+.preference-list li {
+  display: flex;
+  align-items: center;
+}
+
+.setting-page-title {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
 }
