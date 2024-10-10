@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../icons/logo.png";
 import closeIcon from "../icons/close.png";
-import Switch from "react-switch";
+// import Switch from "react-switch";
+import Switch from "@mui/material/Switch";
+
+const label = { inputProps: { "aria-label": "Switch demo" } };
 
 const Navbar = () => {
-  // state for toggling the toggle button
-  const [isToggled, setIsToggled] = useState(false);
-  const handleToggle = (checked) => {
-    setIsToggled(checked);
-  };
   //state for Close button
   const handleClose = () => {
     window.close();
@@ -35,16 +33,7 @@ const Navbar = () => {
         </div>
         <div className="toggle-close-container">
           <div>
-            <Switch
-              checked={isToggled}
-              onChange={handleToggle}
-              offColor="#ccc"
-              onColor="#E6E0E9"
-              uncheckedIcon={false}
-              checkedIcon={false}
-              height={20}
-              width={40}
-            />
+            <Switch {...label} defaultChecked />
           </div>
           <button className="close-button" onClick={handleClose}>
             <img src={closeIcon} alt="close" className="close-icon" />
