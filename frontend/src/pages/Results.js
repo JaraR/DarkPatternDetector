@@ -10,12 +10,7 @@ const Results = () => {
         <p>Dark Patterns Detected</p>
       </div>
       <div>
-        <p>Emotional Steering</p>
-        render(){
-          return(
-            <Button component={Link} to={'/EmoSteering.js'}>Emo Steering</Button>
-          );
-        };
+        <p>Emotional Steering<Button component={Link} to={'/EmoSteering.js'}>Emo Steering</Button></p>
         <p>Infinite Scrolling</p>
         <p>Autoplay Videos</p>
         <p>Privacy Zuckering</p>
