@@ -6,6 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import AccordionAboutUs from './AccordionAboutUs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,7 +69,18 @@ export default function FullWidthTabs() {
         Item One
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-        Item Two
+        <section>
+          <div>
+            <h2>What does this detection tool do?</h2>
+            <p>This tool detects dark patterns on X/Twitter.</p>
+          </div>
+          <div>
+            <h2>What are dark patterns?</h2>
+            <p className="font-change">"Dark patterns are tricks used in websites and apps that make you do things that you didn't mean to, 
+              like buying or signing up for something." - <a href="https://www.deceptive.design">https://www.deceptive.design</a></p>
+          </div>
+          <AccordionAboutUs />
+        </section>
       </TabPanel>
       <TabPanel value={value} index={2} dir={theme.direction}>
         Item Three
