@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 const Results = () => {
   return (
@@ -9,6 +11,11 @@ const Results = () => {
       </div>
       <div>
         <p>Emotional Steering</p>
+        render(){
+          return(
+            <Button component={Link} to={'/EmoSteering.js'}>Emo Steering</Button>
+          );
+        };
         <p>Infinite Scrolling</p>
         <p>Autoplay Videos</p>
         <p>Privacy Zuckering</p>
