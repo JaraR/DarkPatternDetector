@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 // import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function AccordionExpandIcon() {
   return (
@@ -12,7 +13,7 @@ export default function AccordionExpandIcon() {
         <h2>What Dark patterns does this tool detect?</h2>
         <Accordion>
             <AccordionSummary
-                // expandIcon={<ArrowDownwardIcon />}
+                // expandIcon={<ExpandMoreIcon />}
                 // aria-controls="panel1-content"
                 // id="panel1-header"
             >

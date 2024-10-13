@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -6,7 +8,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ButtonEmoSteering from './ButtonEmoSteering';
 import AccordionAboutUs from './AccordionAboutUs';
+import EmoSteering from './EmoSteering';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,7 +63,7 @@ export default function FullWidthTabs() {
           indicatorColor="secondary"
           textColor="inherit"
           variant="fullWidth"
-          aria-label="full width tabs example"
+          aria-label="navigation tabs"
         >
           <Tab label="Results" {...a11yProps(0)} />
           <Tab label="About Us" {...a11yProps(1)} />
@@ -66,7 +71,21 @@ export default function FullWidthTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        Item One
+        <div>
+          <div>
+            <p>Placeholder for Total # DP detected</p>
+            <p>Dark Patterns Detected</p>
+          </div>
+          <div>
+            <p>Emotional Steering</p>
+            <p>Infinite Scrolling</p>
+            <p>Autoplay Videos<Button href="./EmoSteering" variant="contained">Back to Home</Button></p>
+            <p>Privacy Zuckering</p>
+            <p>Engagement Notification</p>
+            <p>Obstructing</p>
+            <p>Promoted Tweets and Ads that Blend In</p>
+          </div>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <section>
@@ -83,7 +102,13 @@ export default function FullWidthTabs() {
         </section>
       </TabPanel>
       <TabPanel value={value} index={2} dir={theme.direction}>
-        Item Three
+        <Router>
+          <ButtonEmoSteering />
+          <Routes>
+            <Route path='./EmoSteering' element={<EmoSteering />}/>
+          </Routes>
+        </Router>
+        
       </TabPanel>
     </Box>
   );
