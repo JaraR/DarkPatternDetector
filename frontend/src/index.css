@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* default code */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -64,5 +69,12 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+/* default code */
+
+@layer base {
+  :root {
+    --radius: 0.5rem
   }
 }
