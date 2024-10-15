@@ -10,7 +10,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 
-
 function App() {
   const [count, setCount] = useState(0)
 
