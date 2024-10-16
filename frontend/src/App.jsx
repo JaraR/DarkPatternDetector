@@ -9,13 +9,45 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+// import { createBrowserRouter, createRoutesFromElements, Routes, Route, RouterProvider, BrowserRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Home } from './pages/home'
+
+// ESLint tests (note: have not gotten it to work, rolled back library installations)
+// eslint-config-react-app linting configuration requires ver 8.x, we are running ver 9.11.1-9.12,
+// need to either find another configuration or make our own.
+const title = 'React';
+const esLintTest='test123';
+
+// Frustrating attempts to create a router constant using new data API supporting routers; see:
+// https://reactrouter.com/en/main/routers/picking-a-router
+// https://reactrouter.com/en/main/routers/create-browser-router
+// Attempts would variably display a blank page or 404 error on run build for the extension or sometimes display properly on run dev for local host.
+
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//       </Routes>
+//     </BrowserRouter>
+//   )
+// )
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Button>Click me</Button>
+      <Router>
+        <Home />
+      </Router>
+
+      {/* <RouterProvider router={router} /> */}
+
+      {/* <Home /> */}
+
+      {/* <Button>Click me</Button>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>Is it accessible?</AccordionTrigger>
@@ -23,7 +55,10 @@ function App() {
             Yes. It adheres to the WAI-ARIA design pattern.
           </AccordionContent>
         </AccordionItem>
-      </Accordion>
+      </Accordion> */}
+
+
+
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
