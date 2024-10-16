@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Dark Pattern cra version",
+  "name": "dark pattern detector",
   "version": "1.0",
   "description": "To detect dark patterns on X.",
-  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "permissions": ["storage", "activeTab", "scripting"],
   "content_scripts": [
     {
       "matches": ["https://x.com/home?lang=en"],
