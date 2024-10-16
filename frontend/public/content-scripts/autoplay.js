@@ -7,16 +7,19 @@ function checkAutoplay() {
   videos.forEach((video) => {
     // If the video has already been alerted, skip it
     if (!alertedVideos.includes(video)) {
-      // Check if the video is autoplaying or not paused
       if (video.autoplay || !video.paused) {
-        alert("Autoplay detected!"); // Show alert if autoplaying
-        alertedVideos.push(video); // Mark this video as alerted, to avoid constant alerts from the same video
+        alert("Autoplay detected!"); // Check if the video is autoplaying or not paused, Show alert
+        alertedVideos.push(video); // Mark this video as alerted, to avoid constant alerts(bug fixed)
+        chrome.runtime.sendMessage({
+          type: "updateBadge",
+          count: alertedVideos.length,
+        }); // Send a message to the background script to update the badge count
       }
     }
   });
 }
 
-// MutationObserver to detect new video elements being added
+// MutationObserver to detect new video elements being added, it is for the videos that are loaded after the page is loaded
 const observer = new MutationObserver(() => {
   checkAutoplay(); // Check videos whenever the DOM changes
 });
