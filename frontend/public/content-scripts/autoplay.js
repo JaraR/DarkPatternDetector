@@ -1,11 +1,17 @@
+// Array to track the video elements that have already triggered the alert
+let alertedVideos = [];
+
 // Function to check autoplay status of video elements
 function checkAutoplay() {
   const videos = document.querySelectorAll("video");
   videos.forEach((video) => {
-    // video.autoplay = false;
-    // video.pause();
-    if (video.autoplay || !video.paused) {
-      alert("Autoplay detected!");
+    // If the video has already been alerted, skip it
+    if (!alertedVideos.includes(video)) {
+      // Check if the video is autoplaying or not paused
+      if (video.autoplay || !video.paused) {
+        alert("Autoplay detected!"); // Show alert if autoplaying
+        alertedVideos.push(video); // Mark this video as alerted, to avoid constant alerts from the same video
+      }
     }
   });
 }
