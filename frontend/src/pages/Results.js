@@ -15,8 +15,8 @@ const Results = () => {
   }, []);
   return (
     <div>
-      <div>
-        <p>Dark Patterns Detected</p>
+      <div style={{ margin: 10 }}>
+        <h2>Dark Patterns Detected</h2>
         <p>Autoplay detected: {autoplayCount} times</p>
         <PieActiveArc autoplayCount={autoplayCount} />
       </div>

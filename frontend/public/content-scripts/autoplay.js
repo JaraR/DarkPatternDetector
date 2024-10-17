@@ -1,16 +1,32 @@
+/* eslint-disable no-undef */
 // Array to track the video elements that have already triggered the alert
 let alertedVideos = [];
 
 // Function to check autoplay status of video elements
 function checkAutoplay() {
   const videos = document.querySelectorAll("video");
+
   videos.forEach((video) => {
-    // If the video has already been alerted, skip it
     if (!alertedVideos.includes(video)) {
-      // Check if the video is autoplaying or not paused
       if (video.autoplay || !video.paused) {
-        alert("Autoplay detected!"); // Show alert for the first autoplaying video
+        alert("Autoplay detected!");
+
         alertedVideos.push(video); // Mark this video as alerted
+
+        // ---Highlight the video---
+        // ---Create a red overlay---
+        const redOverlay = document.createElement("div");
+        redOverlay.style.position = "absolute";
+        redOverlay.style.top = "0";
+        redOverlay.style.left = "0";
+        redOverlay.style.width = "100%";
+        redOverlay.style.height = "100%";
+        redOverlay.style.backgroundColor = "rgba(255, 0, 0, 0.5)"; // Semi-transparent red
+        redOverlay.style.zIndex = "9999"; // Ensure it appears on top of the video
+
+        // Insert the overlay just before the video
+        video.parentNode.style.position = "relative"; // Ensure parent is positioned
+        video.parentNode.insertBefore(redOverlay, video);
 
         // ---badge count---
         chrome.storage.local.get(["badgeCount"], function (result) {
