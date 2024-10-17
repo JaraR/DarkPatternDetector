@@ -16,20 +16,9 @@ const Results = () => {
   return (
     <div>
       <div>
+        <p>Dark Patterns Detected</p>
         <p>Autoplay detected: {autoplayCount} times</p>
         <PieActiveArc autoplayCount={autoplayCount} />
-
-        <p>Placeholder for Total # DP detected</p>
-        <p>Dark Patterns Detected</p>
-      </div>
-      <div>
-        <p>Emotional Steering</p>
-        <p>Infinite Scrolling</p>
-        <p>Autoplay Videos</p>
-        <p>Privacy Zuckering</p>
-        <p>Engagement Notification</p>
-        <p>Obstructing</p>
-        <p>Promoted Tweets and Ads that Blend In</p>
       </div>
     </div>
   );

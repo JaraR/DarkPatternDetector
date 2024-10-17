@@ -1,10 +1,6 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
-const valueFormatter = (value) => {
-  return `${value}%`;
-};
-
 export default function PieActiveArc({ autoplayCount }) {
   const darkPattern = [
     { label: "Autoplay", value: autoplayCount },
@@ -14,24 +10,27 @@ export default function PieActiveArc({ autoplayCount }) {
     { label: "Promoted Ads", value: 20 },
     { label: "Privacy Zuckering", value: 5 },
   ];
+
+  // bugs here:
+  const valueFormatter = (value) => `${value} times`;
+
   return (
     <PieChart
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        margin: 10,
       }}
       series={[
         {
           data: darkPattern,
           highlightScope: { fade: "global", highlight: "item" },
           faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
-          valueFormatter,
+
           label: {
-            offset: 20,
-            fontSize: 10,
+            render: (datum) => valueFormatter(datum.value),
           },
-          markerSize: 8,
         },
       ]}
       height={200}
