@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PieActiveArc from "../components/Piechart";
 
 const Results = () => {
   const [autoplayCount, setAutoplayCount] = useState(0);
@@ -16,6 +17,8 @@ const Results = () => {
     <div>
       <div>
         <p>Autoplay detected: {autoplayCount} times</p>
+        <PieActiveArc />
+
         <p>Placeholder for Total # DP detected</p>
         <p>Dark Patterns Detected</p>
       </div>
