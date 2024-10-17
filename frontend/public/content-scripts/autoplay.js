@@ -12,19 +12,27 @@ function checkAutoplay() {
         alert("Autoplay detected!"); // Show alert for the first autoplaying video
         alertedVideos.push(video); // Mark this video as alerted
 
-        // Retrieve the current badge count from local storage
+        // ---badge count---
         chrome.storage.local.get(["badgeCount"], function (result) {
-          let currentCount = result.badgeCount || 0; // Ensure we retrieve the existing count
-          currentCount += 1; // Increase the count by 1 for each detected video
-
-          // Save the updated count to local storage
-          chrome.storage.local.set({ badgeCount: currentCount }, () => {
-            // Update the badge with the new count
-            chrome.runtime.sendMessage({
-              type: "updateBadge",
-              count: currentCount,
-            });
+          let currentCount = result.badgeCount || 0;
+          currentCount += 1;
+          chrome.runtime.sendMessage({
+            type: "updateBadge",
+            count: currentCount,
           });
+          chrome.storage.local.set({ badgeCount: currentCount });
+        });
+
+        //---send message to background then to results popup---
+        chrome.storage.local.get(["autoplayCount"], function (result) {
+          let currentCount = result.autoplayCount || 0;
+          currentCount += 1;
+
+          chrome.runtime.sendMessage({
+            type: "updateAutoplay",
+            count: currentCount,
+          });
+          chrome.storage.local.set({ autoplayCount: currentCount });
         });
       }
     }
