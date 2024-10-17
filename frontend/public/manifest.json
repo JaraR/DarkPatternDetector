@@ -1,12 +1,16 @@
 {
-  "manifest_version": 3,
-  "name": "Dark Pattern Detection on X",
-  "version": "1.0",
-  "description": "To detect dark patterns on X.",
-  "permissions": ["storage", "activeTab", "scripting", "tabs"],
-
-  "action": {
-    "default_popup": "popup.html",
-    "default_title": "Open"
-  }
+    "manifest_version": 3,
+    "name": "Dark Pattern Detection on X",
+    "version": "0.1.0",
+    "description": "To detect dark patterns on X.",
+    "permissions": ["activeTab", "scripting", "storage"],
+    "action": {
+        "default_popup": "index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["infiniteScrolling.js"]
+        }
+    ]
 }
