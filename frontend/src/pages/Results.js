@@ -17,7 +17,7 @@ const Results = () => {
     <div>
       <div>
         <p>Autoplay detected: {autoplayCount} times</p>
-        <PieActiveArc />
+        <PieActiveArc autoplayCount={autoplayCount} />
 
         <p>Placeholder for Total # DP detected</p>
         <p>Dark Patterns Detected</p>

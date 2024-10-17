@@ -1,27 +1,25 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
-const darkPattern = [
-  { label: "Autoplay", value: 70 },
-  { label: "Engagement Notification", value: 20 },
-  { label: "Emotional Steering", value: 10 },
-  { label: "Ads", value: 0 },
-  { label: "Privacy", value: 0 },
-  { label: "Obstruction", value: 0 },
-];
-
 const valueFormatter = (value) => {
   return `${value}%`;
 };
 
-export default function PieActiveArc() {
+export default function PieActiveArc({ autoplayCount }) {
+  const darkPattern = [
+    { label: "Autoplay", value: autoplayCount },
+    { label: "Engagement Notification", value: 20 },
+    { label: "Infinite Scrolling", value: 10 },
+    { label: "Emotional Steering", value: 10 },
+    { label: "Promoted Ads", value: 20 },
+    { label: "Privacy Zuckering", value: 5 },
+  ];
   return (
     <PieChart
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: 20,
       }}
       series={[
         {
