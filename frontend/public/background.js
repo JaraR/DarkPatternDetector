@@ -1,29 +1,47 @@
-// ---function to display the badge count---
+let autoplayCount = 0;
+
+// Function to update the badge with the given count
 function updateBadge(count) {
   chrome.action.setBadgeText({ text: count.toString() });
   chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
 }
 
-function updateResults(count) {
-  autoplayCount = count; // Update stored count
-  console.log("Autoplay count updated in background:", autoplayCount);
-  chrome.storage.local.set({ autoplayCount });
+// Function to update results in storage and send a response
+function updateResults(count, sendResponse) {
+  autoplayCount = count;
+
+  // Ensure storage is set before sending the response
+  chrome.storage.local.set({ autoplayCount }, () => {
+    sendResponse({ count: autoplayCount });
+  });
 }
-let autoplayCount = 0;
 
+// Handle different types of messages
+function handleMessage(message, sendResponse) {
+  switch (message.type) {
+    case "updateBadge":
+      updateBadge(message.count);
+      break;
+
+    case "updateAutoplay":
+      updateResults(message.count, sendResponse);
+      break;
+
+    case "getResults":
+      chrome.storage.local.get(["autoplayCount"], (result) => {
+        const storedAutoplayCount = result.autoplayCount || 0;
+        sendResponse({ count: storedAutoplayCount });
+      });
+      break;
+
+    default:
+      console.warn("Unknown message type:", message.type);
+      break;
+  }
+}
+
+// Listener for runtime messages
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  //--- badge count---
-  if (message.type === "updateBadge") {
-    updateBadge(message.count);
-  }
-
-  // ---Results.js---
-  if (message.type === "updateAutoplay") {
-    updateResults(message.count);
-    sendResponse({ count: autoplayCount });
-  }
-
-  if (message.type === "getResults") {
-    sendResponse({ count: autoplayCount });
-  }
+  handleMessage(message, sendResponse);
+  return true; // To keep the message channel open for async responses
 });

@@ -27,12 +27,12 @@ function checkAutoplay() {
         chrome.storage.local.get(["autoplayCount"], function (result) {
           let currentCount = result.autoplayCount || 0;
           currentCount += 1;
+          chrome.storage.local.set({ autoplayCount: currentCount });
 
           chrome.runtime.sendMessage({
             type: "updateAutoplay",
             count: currentCount,
           });
-          chrome.storage.local.set({ autoplayCount: currentCount });
         });
       }
     }
