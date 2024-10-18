@@ -76,13 +76,13 @@ const Navbar = () => {
       </Box>
 
       <nav className="navbar">
-        <div className="logo-toggle-container">
-          <div className="logo-title-container">
-            {/* <img src={logo} alt="Logo" className="logo-icon" /> */}
+        {/* <div className="logo-toggle-container"> */}
+        {/* <div className="logo-title-container"> */}
+        {/* <img src={logo} alt="Logo" className="logo-icon" /> */}
 
-            <div className="title-container">
-              {/* <h1>X Factors</h1> */}
-              {/* <div>
+        {/* <div className="title-container"> */}
+        {/* <h1>X Factors</h1> */}
+        {/* <div>
                 <Switch
                   {...label}
                   checked={isDetectionOn}
@@ -90,17 +90,17 @@ const Navbar = () => {
                 />
                 <p>{isDetectionOn ? "Detection On" : "Detection Off"}</p>
               </div> */}
-              {/* <button className="subtitle-button" onClick={handleDetectionToggle}>
+        {/* <button className="subtitle-button" onClick={handleDetectionToggle}>
               {isDetecting ? "Cancel Detection" : "Detect Now"}
             </button> */}
-            </div>
-          </div>
-          {/* <div className="toggle-close-container">
+        {/* </div> */}
+        {/* </div> */}
+        {/* <div className="toggle-close-container">
             <button className="close-button" onClick={handleClose}>
               <img src={closeIcon} alt="close" className="close-icon" />
             </button>
           </div> */}
-        </div>
+        {/* </div> */}
 
         <ul>
           <li>

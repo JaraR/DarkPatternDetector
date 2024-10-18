@@ -1,11 +1,13 @@
 import React from "react";
-import privacyIcon from "../icons/privacy.png";
-import emotions from "../icons/emotions.png";
-import engagement from "../icons/engagement.png";
-import scroll from "../icons/scroll.png";
-import autoplay from "../icons/autoplay.png";
+import pri from "../icons/pri.png";
+
+import emo from "../icons/emo.png";
+import not from "../icons/not.png";
+import auto from "../icons/auto.png";
+import inf from "../icons/inf.png";
+
 import ads from "../icons/ads.png";
-import contentBuried from "../icons/content-buried.png";
+import obs from "../icons/obs.png";
 import filter from "../icons/filter.png";
 import preference from "../icons/preference.png";
 
@@ -20,7 +22,7 @@ const Settings = () => {
         <ul className="filter-list">
           <li>
             <img
-              src={privacyIcon}
+              src={pri}
               alt="Privacy Zuckering"
               className="dark-pattern-icon"
             />
@@ -29,7 +31,7 @@ const Settings = () => {
           </li>
           <li>
             <img
-              src={engagement}
+              src={not}
               alt="Engagement Notifications"
               className="dark-pattern-icon"
             />
@@ -38,7 +40,7 @@ const Settings = () => {
           </li>
           <li>
             <img
-              src={emotions}
+              src={emo}
               alt="Emotional Steering"
               className="dark-pattern-icon"
             />
@@ -46,22 +48,18 @@ const Settings = () => {
             <input type="checkbox" className="filter-checkbox" />
           </li>
           <li>
-            <img
-              src={contentBuried}
-              alt="Content Buried"
-              className="dark-pattern-icon"
-            />
+            <img src={obs} alt="Content Buried" className="dark-pattern-icon" />
             Content Buried
             <input type="checkbox" className="filter-checkbox" />
           </li>
           <li>
-            <img src={autoplay} alt="Autoplay" className="dark-pattern-icon" />
+            <img src={auto} alt="Autoplay" className="dark-pattern-icon" />
             Autoplay
             <input type="checkbox" className="filter-checkbox" />
           </li>
           <li>
             <img
-              src={scroll}
+              src={inf}
               alt="Infinite Scrolling"
               className="dark-pattern-icon"
             />

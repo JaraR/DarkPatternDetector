@@ -14,8 +14,16 @@ const Results = () => {
     });
   }, []);
   return (
-    <div>
-      <div style={{ margin: 10 }}>
+    <div
+      style={{
+        margin: "50px 10px",
+        textAlign: "center",
+        border: "1px solid lightgrey",
+        borderRadius: "10px",
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <div>
         <h2>Dark Patterns Detected</h2>
         <p>Autoplay detected: {autoplayCount} times</p>
         <PieActiveArc autoplayCount={autoplayCount} />

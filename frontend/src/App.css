@@ -1,13 +1,16 @@
 /* App.css */
 
 /* ****************Navbar**************** */
+.navbar {
+  margin: 20px 10px;
+}
 .navbar ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 10px;
   display: flex;
   justify-content: space-around;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 .navbar li {
@@ -23,6 +26,12 @@
 
 .navbar a:hover {
   color: #aaaaaa;
+}
+
+.navbar a.active {
+  color: #ffffff; /* Change text color to white when active */
+  background-color: #007bff; /* Blue background on click */
+  transition: background-color 0.3s ease; /* Smooth transition */
 }
 
 /* .logo-toggle-container {
@@ -87,8 +96,8 @@
 }
 
 .dark-pattern-icon {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   margin-right: 10px;
 }
 
