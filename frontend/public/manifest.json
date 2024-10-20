@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "dark pattern detector",
+  "name": "X Factors",
   "version": "1.0",
   "description": "To detect dark patterns on X.",
   "permissions": ["storage", "activeTab", "scripting"],

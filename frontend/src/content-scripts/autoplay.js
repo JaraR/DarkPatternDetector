@@ -9,7 +9,7 @@ function checkAutoplay() {
   videos.forEach((video) => {
     if (!alertedVideos.includes(video)) {
       if (video.autoplay || !video.paused) {
-        alert("Autoplay detected!");
+        // alert("Autoplay detected!");
 
         alertedVideos.push(video); // Mark this video as alerted
 
