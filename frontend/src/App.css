@@ -1,14 +1,16 @@
 /* App.css */
 
 /* ****************Navbar**************** */
+.navbar {
+  margin: 20px 10px;
+}
 .navbar ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 10px;
   display: flex;
   justify-content: space-around;
-  background-color: #f8f9fa;
-  padding: 10px 0;
+  background-color: #ffffff;
 }
 
 .navbar li {
@@ -17,47 +19,53 @@
 
 .navbar a {
   text-decoration: none;
-  color: #007bff;
+  color: #404040;
   font-weight: bold;
   font-size: 16px;
 }
 
 .navbar a:hover {
-  color: #0056b3;
+  color: #aaaaaa;
 }
 
-.logo-toggle-container {
+.navbar a.active {
+  color: #ffffff; /* Change text color to white when active */
+  background-color: #007bff; /* Blue background on click */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* .logo-toggle-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-}
+} */
 
-.logo-title-container {
+/* .logo-title-container {
   display: flex;
   align-items: center;
-}
+} */
 
-.logo-icon {
+/* .logo-icon {
   width: 40px;
   height: auto;
   margin-right: 20px;
-}
+} */
 
-.close-button {
+/* .close-button {
   background-color: transparent;
   border: none;
 }
 .close-icon {
   width: 20px;
   height: auto;
-}
+} */
 
-.toggle-close-container {
+/* .toggle-close-container {
   display: flex;
   align-items: center;
   gap: 10px;
-}
+} */
 
 /* ************* Settings page ***************** */
 .filter-container {
@@ -88,8 +96,8 @@
 }
 
 .dark-pattern-icon {
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
   margin-right: 10px;
 }
 
