@@ -9,8 +9,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-// import { createBrowserRouter, createRoutesFromElements, Routes, Route, RouterProvider, BrowserRouter } from 'react-router-dom'
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Routes, Route, RouterProvider, BrowserRouter, createHashRouter } from 'react-router-dom'
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Home } from './pages/home'
 
 // ESLint tests (note: have not gotten it to work, rolled back library installations)
@@ -24,26 +24,22 @@ const esLintTest='test123';
 // https://reactrouter.com/en/main/routers/create-browser-router
 // Attempts would variably display a blank page or 404 error on run build for the extension or sometimes display properly on run dev for local host.
 
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//       </Routes>
-//     </BrowserRouter>
-//   )
-// )
+const router = createHashRouter(
+  createRoutesFromElements(
+        <Route path="/" element={<Home />} />
+  )
+)
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Router>
+      {/* <Router>
         <Home />
-      </Router>
+      </Router> */}
 
-      {/* <RouterProvider router={router} /> */}
+      <RouterProvider router={router} />
 
       {/* <Home /> */}
 
