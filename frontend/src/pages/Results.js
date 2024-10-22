@@ -18,7 +18,7 @@ const Results = () => {
     <div>
       <div
         style={{
-          margin: "50px 10px",
+          margin: "30px 10px",
           textAlign: "center",
           border: "1px solid lightgrey",
           borderRadius: "10px",

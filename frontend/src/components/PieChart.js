@@ -21,7 +21,6 @@ export default function PieActiveArc({ autoplayCount }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        margin: 10,
       }}
       series={[
         {
@@ -35,7 +34,7 @@ export default function PieActiveArc({ autoplayCount }) {
         },
       ]}
       height={250}
-      margin={{ top: 10, bottom: 20, left: 0, right: 250 }}
+      margin={{ top: 10, bottom: 5, left: 10, right: 250 }}
     />
   );
 }
