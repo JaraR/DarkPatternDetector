@@ -24,7 +24,7 @@ const Results = () => {
       }}
     >
       <div>
-        <h2>Dark Patterns Detected</h2>
+        <h2>Detected Dark Patterns </h2>
         <p>Autoplay detected: {autoplayCount} times</p>
         <PieActiveArc autoplayCount={autoplayCount} />
       </div>

@@ -9,6 +9,7 @@ export default function PieActiveArc({ autoplayCount }) {
     { label: "Emotional Steering", value: 10 },
     { label: "Promoted Ads", value: 20 },
     { label: "Privacy Zuckering", value: 5 },
+    { label: "Obstruction", value: 5, color: "gray" },
   ];
 
   // bugs here:
@@ -29,12 +30,12 @@ export default function PieActiveArc({ autoplayCount }) {
           faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
 
           label: {
-            render: (datum) => valueFormatter(datum.value),
+            render: (datum) => <span>{valueFormatter(datum.value)}</span>,
           },
         },
       ]}
-      height={200}
-      margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
+      height={250}
+      margin={{ top: 10, bottom: 20, left: 0, right: 250 }}
     />
   );
 }
