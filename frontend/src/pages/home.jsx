@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
+import { ButtonLink } from "@/components/ui/buttonlink"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Link } from "react-router-dom"
 
@@ -25,10 +26,7 @@ export function Home() {
                   <Link to="/infinitescrollingsettings">IFSettings</Link>
                 </Button>
               </p>
-              <p>Autoplay Videos
-                <Button aschild>
-                  <Link to="/autoplaysettings">APSettings</Link>
-                </Button>
+              <p>Autoplay Videos <ButtonLink to="/autoplaysettings">APSettings</ButtonLink>
               </p>
               <p>Privacy Zuckering</p>
               <p>Engagement Notification</p>

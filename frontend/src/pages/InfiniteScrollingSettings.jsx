@@ -1,14 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-
+import { ButtonLink } from "@/components/ui/buttonlink";
 
 export function InfiniteScrollingSettings() {
     return (
         <>
             <p>hello Infinite Scrolling!</p>
-            <Button asChild>
-                <Link to="/">Home</Link>
-            </Button>
+            <ButtonLink to="/">Home</ButtonLink>
         </>
     )
 
