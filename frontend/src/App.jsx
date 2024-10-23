@@ -21,6 +21,8 @@ const esLintTest='test123';
 // https://reactrouter.com/en/main/utils/create-routes-from-elements
 // https://reactrouter.com/en/main/components/link
 // https://reactrouter.com/en/main/router-components/hash-router
+// https://ui.shadcn.com/docs/components/button#as-child
+// https://ui.shadcn.com/docs/components/button#link
 
 const router = createHashRouter(
   createRoutesFromElements(
