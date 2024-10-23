@@ -2,16 +2,10 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { Button } from './components/ui/button'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import { createBrowserRouter, createRoutesFromElements, Routes, Route, RouterProvider, BrowserRouter, createHashRouter } from 'react-router-dom'
-// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home } from './pages/home'
+import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import { Home } from './pages/Home'
+import { AutoplaySettings } from './pages/AutoplaySettings'
+import { InfiniteScrollingSettings } from './pages/InfiniteScrollingSettings'
 
 // ESLint tests (note: have not gotten it to work, rolled back library installations)
 // eslint-config-react-app linting configuration requires ver 8.x, we are running ver 9.11.1-9.12,
@@ -19,14 +13,22 @@ import { Home } from './pages/home'
 const title = 'React';
 const esLintTest='test123';
 
-// Frustrating attempts to create a router constant using new data API supporting routers; see:
+// Working router constant using react-router's new data API supporting routers. Uses hashrouter
+// as URL handling is different for chrome extensions and  currently does not have access to a server.
+// Most interactions in the extension will be handled client-side; see:
 // https://reactrouter.com/en/main/routers/picking-a-router
-// https://reactrouter.com/en/main/routers/create-browser-router
-// Attempts would variably display a blank page or 404 error on run build for the extension or sometimes display properly on run dev for local host.
+// https://reactrouter.com/en/main/routers/create-hash-router
+// https://reactrouter.com/en/main/utils/create-routes-from-elements
+// https://reactrouter.com/en/main/components/link
+// https://reactrouter.com/en/main/router-components/hash-router
 
 const router = createHashRouter(
   createRoutesFromElements(
-        <Route path="/" element={<Home />} />
+    <>
+      <Route path="/" element={<Home />} />
+      <Route path="/infinitescrollingsettings" element={<InfiniteScrollingSettings />} />
+      <Route path="/autoplaysettings" element={<AutoplaySettings />} />
+    </>
   )
 )
 
@@ -35,25 +37,7 @@ function App() {
 
   return (
     <>
-      {/* <Router>
-        <Home />
-      </Router> */}
-
       <RouterProvider router={router} />
-
-      {/* <Home /> */}
-
-      {/* <Button>Click me</Button>
-      <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion> */}
-
-
 
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">

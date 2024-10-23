@@ -1,5 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Link } from "react-router-dom"
 
 export function Home() {
   return (
@@ -18,8 +20,16 @@ export function Home() {
             </div>
             <div>
               <p>Emotional Steering</p>
-              <p>Infinite Scrolling</p>
-              <p>Autoplay Videos</p>
+              <p>Infinite Scrolling
+                <Button aschild>
+                  <Link to="/infinitescrollingsettings">IFSettings</Link>
+                </Button>
+              </p>
+              <p>Autoplay Videos
+                <Button aschild>
+                  <Link to="/autoplaysettings">APSettings</Link>
+                </Button>
+              </p>
               <p>Privacy Zuckering</p>
               <p>Engagement Notification</p>
               <p>Obstructing</p>
