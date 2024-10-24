@@ -1,6 +1,8 @@
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { loadEnv, build, extensions, rollupOptions } from './dotenv.config.js'
+import { crx } from '@crxjs/vite-plugin'
+import manifest from './manifest.json'
 
 export default function defineConfig({ mode }) {
     const { VITE_PORT, VITE_OPEN, VITE_BASE_PATH } = loadEnv(mode)
@@ -10,7 +12,7 @@ export default function defineConfig({ mode }) {
         assets: resolve(__dirname, "./src/assets"),
     }
     return {
-        plugins: [react()],
+        plugins: [react(), crx({ manifest })],
         root: process.cwd(),
         resolve: {
             alias,

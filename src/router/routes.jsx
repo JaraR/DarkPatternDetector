@@ -4,11 +4,11 @@ import Card from '@/views/card'
 
 export default [
     {
-        path: '/',
+        path: '/card',
         element: <Card />,
     },
     {
-        path: '/home',
+        path: '/',
         element: <Home />,
     },
     {

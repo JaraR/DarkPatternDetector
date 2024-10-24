@@ -1,22 +1,21 @@
 /**
  * 监听浏览器无限滚动事件
 */
-
 (function () {
     let previousScrollHeight = document.body.scrollHeight;
     let infiniteScrollDetected = false;
-    let scrollCheckEnabled = false;
+    let infiniteScrolling = false;
 
     // 监控用户是否启用了无限滚动检测
-    chrome.storage && chrome.storage.sync.get(['scrollCheckEnabled'], function (result) {
-        scrollCheckEnabled = result.scrollCheckEnabled || false;
+    chrome.storage && chrome.storage.sync.get(['infiniteScrolling'], function (result) {
+        infiniteScrolling = result.infiniteScrolling || false;
     });
 
     // 当存储的检测状态变化时更新
     chrome.storage.onChanged.addListener(function (changes) {
-        if (changes.scrollCheckEnabled) {
-            scrollCheckEnabled = changes.scrollCheckEnabled.newValue;
-            console.log("Scroll detection " + (scrollCheckEnabled ? "enabled" : "disabled"));
+        if (changes.infiniteScrolling) {
+            infiniteScrolling = changes.infiniteScrolling.newValue;
+            console.log("Scroll detection " + (infiniteScrolling ? "enabled" : "disabled"));
         }
     });
 
@@ -50,7 +49,7 @@
 
     // 监听滚动事件
     window.addEventListener('scroll', function () {
-        if (!scrollCheckEnabled) return;
+        if (!infiniteScrolling) return;
         console.log('scrollY: ', window.scrollY);
         const currentScrollHeight = document.body.scrollHeight;
         const scrollPosition = window.scrollY + window.innerHeight;
