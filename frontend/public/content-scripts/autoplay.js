@@ -1,21 +1,26 @@
+let alertedVideos = [];
+
 function checkAutoplay() {
   const videos = document.querySelectorAll("video");
   videos.forEach((video) => {
-    // video.autoplay = false;
     // video.pause();
-    if (video.autoplay || !video.paused) {
-      alert("Autoplay detected!");
+    if (!alertedVideos.includes(video)) {
+      if (video.autoplay || !video.paused) {
+        alert("Autoplay detected!");
+
+        alertedVideos.push(video);
+      }
     }
   });
 }
-// MutationObserver to detect new video elements being added
+
 const observer = new MutationObserver(() => {
-  checkAutoplay(); // Check videos whenever the DOM changes
+  checkAutoplay();
 });
-// Start observing the entire document for added nodes
+
 observer.observe(document.body, {
   childList: true,
   subtree: true,
 });
-// Run the check once initially
+
 checkAutoplay();
