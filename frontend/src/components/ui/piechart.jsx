@@ -16,6 +16,12 @@ export default function PieActiveArc() {
 
   return (
     <PieChart
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 10,
+      }}
       series={[
         {
           data: darkPattern,
@@ -28,6 +34,7 @@ export default function PieActiveArc() {
         },
       ]}
       height={200}
+      margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
     />
   );
 }
