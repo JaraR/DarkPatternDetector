@@ -1,32 +1,42 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
-import { ButtonLink } from "@/components/ui/buttonlink"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Link } from "react-router-dom"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/buttonlink";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Link } from "react-router-dom";
+import PieActiveArc from "@/components/ui/piechart";
 
 export function Home() {
   return (
     <>
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList>
-            <TabsTrigger value="results">Results</TabsTrigger>
-            <TabsTrigger value="about-us">About Us</TabsTrigger>
-            <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="results">Results</TabsTrigger>
+          <TabsTrigger value="about-us">About Us</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
         <TabsContent value="results">
           <div>
             <div>
               <p>Placeholder for Total # DP detected</p>
               <p>Dark Patterns Detected</p>
+              <PieActiveArc />
             </div>
             <div>
               <p>Emotional Steering</p>
-              <p>Infinite Scrolling
+              <p>
+                Infinite Scrolling
                 <Button aschild>
                   <Link to="/infinitescrollingsettings">IFSettings</Link>
                 </Button>
               </p>
-              <p>Autoplay Videos <ButtonLink to="/autoplaysettings">APSettings</ButtonLink>
+              <p>
+                Autoplay Videos{" "}
+                <ButtonLink to="/autoplaysettings">APSettings</ButtonLink>
               </p>
               <p>Privacy Zuckering</p>
               <p>Engagement Notification</p>
@@ -43,15 +53,22 @@ export function Home() {
             </div>
             <div>
               <h2>What are dark patterns?</h2>
-              <p className="font-change">"Dark patterns are tricks used in websites and apps that make you do things that you didn't mean to, 
-                like buying or signing up for something." - <a href="https://www.deceptive.design">https://www.deceptive.design</a></p>
+              <p className="font-change">
+                "Dark patterns are tricks used in websites and apps that make
+                you do things that you didn't mean to, like buying or signing up
+                for something." -{" "}
+                <a href="https://www.deceptive.design">
+                  https://www.deceptive.design
+                </a>
+              </p>
             </div>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger>Emotional Steering</AccordionTrigger>
                 <AccordionContent>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                  malesuada lacus ex, sit amet blandit leo lobortis eget.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
@@ -85,7 +102,9 @@ export function Home() {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-7">
-                <AccordionTrigger>Promoted Tweets and Ads that Blend In</AccordionTrigger>
+                <AccordionTrigger>
+                  Promoted Tweets and Ads that Blend In
+                </AccordionTrigger>
                 <AccordionContent>
                   Yes. It adheres to the WAI-ARIA design pattern.
                 </AccordionContent>
@@ -96,5 +115,5 @@ export function Home() {
         <TabsContent value="settings">hello world!</TabsContent>
       </Tabs>
     </>
-  )
+  );
 }
