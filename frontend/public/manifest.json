@@ -6,5 +6,15 @@
   "permissions": [],
   "action": {
     "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://x.com/*"],
+      "js": ["content-scripts/autoplay.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
   }
 }
