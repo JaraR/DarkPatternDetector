@@ -9,6 +9,16 @@ import { ButtonLink } from "@/components/ui/buttonlink";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import PieActiveArc from "@/components/ui/piechart";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export function Home() {
   return (
@@ -112,7 +122,29 @@ export function Home() {
             </Accordion>
           </section>
         </TabsContent>
-        <TabsContent value="settings">hello world!</TabsContent>
+        <TabsContent value="settings">
+          <Card>
+            <CardHeader>
+              <CardTitle>Filter Card</CardTitle>
+              <CardDescription>card description</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <Label htmlFor="terms">Autoplay</Label>
+              </div>
+            </CardContent>
+            <CardContent>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <Label htmlFor="terms">Infinite Scrolling</Label>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <p>Card Footer</p>
+            </CardFooter>
+          </Card>
+        </TabsContent>
       </Tabs>
     </>
   );
