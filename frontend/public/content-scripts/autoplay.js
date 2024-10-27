@@ -10,9 +10,16 @@ function checkAutoplay() {
 
         alertedVideos.push(video);
 
-        chrome.runtime.sendMessage({
-          type: "updateBadge",
-          count: alertedVideos.length,
+        chrome.storage.local.get(["badgeCount"], function (result) {
+          let currentCount = result.badgeCount || 0;
+          currentCount += 1;
+
+          chrome.storage.local.set({ badgeCount: currentCount }, () => {
+            chrome.runtime.sendMessage({
+              type: "updateBadge",
+              count: currentCount,
+            });
+          });
         });
       }
     }
