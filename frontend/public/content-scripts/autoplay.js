@@ -9,6 +9,11 @@ function checkAutoplay() {
         alert("Autoplay detected!");
 
         alertedVideos.push(video);
+
+        chrome.runtime.sendMessage({
+          type: "updateBadge",
+          count: alertedVideos.length,
+        });
       }
     }
   });
