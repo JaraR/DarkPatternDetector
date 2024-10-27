@@ -1,5 +1,18 @@
 let alertedVideos = [];
 
+const updateBadgeCount = () => {
+  chrome.storage.local.get(["badgeCount"], function (result) {
+    let currentCount = result.badgeCount || 0;
+    currentCount += 1;
+
+    chrome.storage.local.set({ badgeCount: currentCount }, () => {
+      chrome.runtime.sendMessage({
+        type: "updateBadge",
+        count: currentCount,
+      });
+    });
+  });
+};
 function checkAutoplay() {
   const videos = document.querySelectorAll("video");
   videos.forEach((video) => {
@@ -9,18 +22,7 @@ function checkAutoplay() {
         alert("Autoplay detected!");
 
         alertedVideos.push(video);
-
-        chrome.storage.local.get(["badgeCount"], function (result) {
-          let currentCount = result.badgeCount || 0;
-          currentCount += 1;
-
-          chrome.storage.local.set({ badgeCount: currentCount }, () => {
-            chrome.runtime.sendMessage({
-              type: "updateBadge",
-              count: currentCount,
-            });
-          });
-        });
+        updateBadgeCount();
       }
     }
   });
