@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -21,6 +22,15 @@ import {
 } from "@/components/ui/card";
 
 export function Home() {
+  const [autoplayCount, setAutoplayCount] = useState(0);
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
+      console.log("Message sent to background.js, response:", response);
+      if (response && response.count !== undefined) {
+        setAutoplayCount(response.count);
+      }
+    });
+  }, []);
   return (
     <>
       <Tabs defaultValue="results" className="w-[400px]">
@@ -34,6 +44,7 @@ export function Home() {
             <div>
               <p>Placeholder for Total # DP detected</p>
               <p>Dark Patterns Detected</p>
+              <p>autoplay: {autoplayCount}</p>
               <PieActiveArc />
             </div>
             <div>
