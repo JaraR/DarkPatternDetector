@@ -25,7 +25,6 @@ export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
-      console.log("Message sent to background.js, response:", response);
       if (response && response.count !== undefined) {
         setAutoplayCount(response.count);
       }
@@ -43,9 +42,9 @@ export function Home() {
           <div>
             <div>
               <p>Placeholder for Total # DP detected</p>
-              <p>Dark Patterns Detected</p>
-              <p>autoplay: {autoplayCount}</p>
-              <PieActiveArc />
+              <p>Detected Dark Patterns</p>
+
+              <PieActiveArc autoplayCount={autoplayCount} />
             </div>
             <div>
               <p>Emotional Steering</p>
@@ -56,12 +55,12 @@ export function Home() {
                 </Button>
               </p>
               <p>
-                Autoplay Videos{" "}
+                <p>Autoplay Videos:{autoplayCount}</p>
                 <ButtonLink to="/autoplaysettings">APSettings</ButtonLink>
               </p>
               <p>Privacy Zuckering</p>
               <p>Engagement Notification</p>
-              <p>Obstructing</p>
+              <p>Obstruction</p>
               <p>Promoted Tweets and Ads that Blend In</p>
             </div>
           </div>

@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
-export default function PieActiveArc() {
+export default function PieActiveArc({ autoplayCount }) {
   const darkPattern = [
-    { label: "Autoplay", value: 10 },
+    { label: `Autoplay ${autoplayCount}`, value: autoplayCount },
     { label: "Engagement Notification", value: 20 },
     { label: "Infinite Scrolling", value: 10 },
     { label: "Emotional Steering", value: 10 },
