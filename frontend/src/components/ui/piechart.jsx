@@ -4,7 +4,10 @@ import { PieChart } from "@mui/x-charts/PieChart";
 
 export default function PieActiveArc({ autoplayCount }) {
   const darkPattern = [
-    { label: `Autoplay ${autoplayCount}`, value: autoplayCount },
+    {
+      label: `Autoplay ${autoplayCount}`,
+      value: autoplayCount,
+    },
     { label: "Engagement Notification", value: 20 },
     { label: "Infinite Scrolling", value: 10 },
     { label: "Emotional Steering", value: 10 },

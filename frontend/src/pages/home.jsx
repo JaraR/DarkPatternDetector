@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
 import { Button } from "@/components/ui/button";
 import { ButtonLink } from "@/components/ui/buttonlink";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -21,8 +16,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import { Switch } from "@/components/ui/switch";
+import AboutUsTab from "@/components/ui/AboutUsTab";
+
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
+
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
       if (response && response.count !== undefined) {
@@ -32,6 +31,8 @@ export function Home() {
   }, []);
   return (
     <>
+      <Switch />
+
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList>
           <TabsTrigger value="results">Results</TabsTrigger>
@@ -66,90 +67,27 @@ export function Home() {
           </div>
         </TabsContent>
         <TabsContent value="about-us">
-          <section>
-            <div>
-              <h2>What does this detection tool do?</h2>
-              <p>This tool detects dark patterns on X/Twitter.</p>
-            </div>
-            <div>
-              <h2>What are dark patterns?</h2>
-              <p className="font-change">
-                "Dark patterns are tricks used in websites and apps that make
-                you do things that you didn't mean to, like buying or signing up
-                for something." -{" "}
-                <a href="https://www.deceptive.design">
-                  https://www.deceptive.design
-                </a>
-              </p>
-            </div>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Emotional Steering</AccordionTrigger>
-                <AccordionContent>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>Infinite Scrolling</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Autoplay Videos</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4">
-                <AccordionTrigger>Privacy Zuckering</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-5">
-                <AccordionTrigger>Engagement Notification</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-6">
-                <AccordionTrigger>Obstructing</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-7">
-                <AccordionTrigger>
-                  Promoted Tweets and Ads that Blend In
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </section>
+          <AboutUsTab />
         </TabsContent>
         <TabsContent value="settings">
           <Card>
             <CardHeader>
-              <CardTitle>Filter Card</CardTitle>
-              <CardDescription>card description</CardDescription>
+              <CardTitle>Filter By Dark Pattern Types</CardTitle>
+              <CardDescription>description</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
+                <Checkbox id="terms" defaultChecked={true} />
                 <Label htmlFor="terms">Autoplay</Label>
               </div>
             </CardContent>
             <CardContent>
               <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
+                <Checkbox id="terms" defaultChecked={true} />
                 <Label htmlFor="terms">Infinite Scrolling</Label>
               </div>
             </CardContent>
+
             <CardFooter>
               <p>Card Footer</p>
             </CardFooter>
