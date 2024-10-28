@@ -5,19 +5,10 @@ import { ButtonLink } from "@/components/ui/buttonlink";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import PieActiveArc from "@/components/ui/piechart";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 import { Switch } from "@/components/ui/switch";
 import AboutUsTab from "@/components/ui/AboutUsTab";
+import SettingsTab from "@/components/ui/SettingsTab";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
@@ -70,28 +61,7 @@ export function Home() {
           <AboutUsTab />
         </TabsContent>
         <TabsContent value="settings">
-          <Card>
-            <CardHeader>
-              <CardTitle>Filter By Dark Pattern Types</CardTitle>
-              <CardDescription>description</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" defaultChecked={true} />
-                <Label htmlFor="terms">Autoplay</Label>
-              </div>
-            </CardContent>
-            <CardContent>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" defaultChecked={true} />
-                <Label htmlFor="terms">Infinite Scrolling</Label>
-              </div>
-            </CardContent>
-
-            <CardFooter>
-              <p>Card Footer</p>
-            </CardFooter>
-          </Card>
+          <SettingsTab />
         </TabsContent>
       </Tabs>
     </>
