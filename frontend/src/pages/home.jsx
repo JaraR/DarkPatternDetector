@@ -12,6 +12,8 @@ import SettingsTab from "@/components/ui/SettingsTab";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isAutoplayChecked, setIsAutoplayChecked] = useState(false);
 
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
@@ -20,10 +22,27 @@ export function Home() {
       }
     });
   }, []);
+  useEffect(() => {
+    // Log the autoplay status whenever it changes
+    console.log(
+      "Autoplay status in Home is now:",
+      isAutoplayChecked ? "Checked" : "Unchecked"
+    );
+  }, [isAutoplayChecked]);
+  const handleSwitchToggle = () => {
+    setIsSwitchOn((prev) => !prev);
+  };
+  const updateAutoplayStatus = (checked) => {
+    setIsAutoplayChecked(checked);
+  };
+
   return (
     <>
-      <Switch />
-
+      <Switch
+        defaultChecked={isSwitchOn}
+        onCheckedChange={handleSwitchToggle}
+      />
+      <p>Switch is {isSwitchOn ? "On" : "Off"}</p>
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList>
           <TabsTrigger value="results">Results</TabsTrigger>
@@ -61,7 +80,7 @@ export function Home() {
           <AboutUsTab />
         </TabsContent>
         <TabsContent value="settings">
-          <SettingsTab />
+          <SettingsTab updateAutoplayStatus={updateAutoplayStatus} />
         </TabsContent>
       </Tabs>
     </>
