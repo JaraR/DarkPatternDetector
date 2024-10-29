@@ -60,7 +60,7 @@ function DemoPageContent({ pathname }) {
         mt: 2,
       }}
     >
-      <Typography>Dashboard content for {pathname}</Typography>
+      {/* <Typography>Dashboard content for {pathname}</Typography> */}
       {pathname === "/dark-patterns" && (
         <>
           <PatternCard />
