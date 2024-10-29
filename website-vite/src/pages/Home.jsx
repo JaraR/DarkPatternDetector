@@ -10,6 +10,7 @@ import { useDemoRouter } from "@toolpad/core/internal";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import PatternCard from "../components/PatternCard";
+import TeamList from "../components/TeamList";
 
 const NAVIGATION = [
   {
@@ -65,6 +66,7 @@ function DemoPageContent({ pathname }) {
           <PatternCard />
         </>
       )}
+      {pathname === "/team" && <TeamList />}
     </Box>
   );
 }
