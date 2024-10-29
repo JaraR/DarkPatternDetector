@@ -9,6 +9,7 @@ import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { useDemoRouter } from "@toolpad/core/internal";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
+import PatternCard from "../components/PatternCard";
 
 const NAVIGATION = [
   {
@@ -59,6 +60,7 @@ function DemoPageContent({ pathname }) {
       }}
     >
       <Typography>Dashboard content for {pathname}</Typography>
+      <PatternCard />
     </Box>
   );
 }
@@ -68,7 +70,7 @@ DemoPageContent.propTypes = {
   activeSegment: PropTypes.string.isRequired,
 };
 
-function DashboardLayoutBranding(props) {
+function Home(props) {
   const { window } = props;
 
   const router = useDemoRouter("/dark-patterns");
@@ -97,7 +99,7 @@ function DashboardLayoutBranding(props) {
   );
 }
 
-DashboardLayoutBranding.propTypes = {
+Home.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * Remove this when copying and pasting into your project.
@@ -105,4 +107,4 @@ DashboardLayoutBranding.propTypes = {
   window: PropTypes.func,
 };
 
-export default DashboardLayoutBranding;
+export default Home;

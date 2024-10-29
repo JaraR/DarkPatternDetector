@@ -1,10 +1,10 @@
 import "./App.css";
-import DashboardLayoutBranding from "./pages/DashboardLayoutBranding";
+import Home from "./pages/home.jsx";
 
 function App() {
   return (
     <>
-      <DashboardLayoutBranding />
+      <Home />
     </>
   );
 }
