@@ -1,4 +1,5 @@
 let alertedVideos = [];
+let isDetectionActive = false; // Initialize detection status
 
 const updateBadgeCount = () => {
   chrome.storage.local.get(["badgeCount"], function (result) {
@@ -13,7 +14,8 @@ const updateBadgeCount = () => {
     });
   });
 };
-//this could be simipfied later with a single function in update badge
+
+// Function to update autoplay count
 function updateAutoplayCount() {
   chrome.storage.local.get(["autoplayCount"], function (result) {
     let currentCount = result.autoplayCount || 0;
@@ -27,10 +29,13 @@ function updateAutoplayCount() {
     });
   });
 }
+
+// Function to check for autoplay videos and update counts
 function checkAutoplay() {
+  if (!isDetectionActive) return; // Only run if detection is active
+
   const videos = document.querySelectorAll("video");
   videos.forEach((video) => {
-    // video.pause();
     if (!alertedVideos.includes(video)) {
       if (video.autoplay || !video.paused) {
         alert("Autoplay detected!");
@@ -43,11 +48,29 @@ function checkAutoplay() {
   });
 }
 
-const observer = new MutationObserver(checkAutoplay);
+// MutationObserver to detect added or changed video elements
+const observer = new MutationObserver(() => {
+  if (isDetectionActive) checkAutoplay();
+});
 
 observer.observe(document.body, {
   childList: true,
   subtree: true,
 });
 
-checkAutoplay();
+// Initial autoplay check, but only if detection is active
+if (isDetectionActive) {
+  checkAutoplay();
+}
+
+// Listen for messages to start or stop autoplay detection
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "startAutoplayDetection") {
+    isDetectionActive = true; // Activate detection
+    console.log("Starting autoplay detection");
+    checkAutoplay(); // Initial check when detection starts
+  } else if (message.type === "stopAutoplayDetection") {
+    isDetectionActive = false; // Deactivate detection
+    console.log("Stopping autoplay detection");
+  }
+});

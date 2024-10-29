@@ -36,7 +36,7 @@ export default function SettingsTab({ updateAutoplayStatus }) {
       </CardContent>
       <CardContent>
         <div className="flex items-center space-x-2">
-          <Checkbox id="infinite-scrolling" defaultChecked={true} />
+          <Checkbox id="infinite-scrolling" />
           <Label htmlFor="infinite-scrolling">Infinite Scrolling</Label>
         </div>
       </CardContent>

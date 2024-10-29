@@ -22,6 +22,13 @@ export function Home() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (isSwitchOn && isAutoplayChecked) {
+      chrome.runtime.sendMessage({ type: "startAutoplayDetection" });
+    }
+  }, [isSwitchOn, isAutoplayChecked]);
+
   useEffect(() => {
     // Log the autoplay status whenever it changes
     console.log(
