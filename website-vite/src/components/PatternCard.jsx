@@ -18,6 +18,48 @@ export default function PatternCards() {
       // backgroundColor: "#4F3A4B",
       // color: "#FC9494",
     },
+    {
+      id: 2,
+      title: "Privacy Zuckering",
+      image: "/static/images/cards/contemplative-reptile.jpg",
+      description:
+        "Refers to a term coined by critics to describe the practice where users are misled or manipulated into sharing more personal information than they intend to, often without being fully aware of the consequences.",
+    },
+    {
+      id: 3,
+      title: "Infinite Scrolling",
+      image: "/static/images/cards/contemplative-reptile.jpg",
+      description:
+        "Where users are continuously presented with content without clear stopping points, leading to extended usage. Infinite scrolling could be categorized under patterns that exploit user habits by making it difficult for users to disengage from content consumption.",
+    },
+    {
+      id: 4,
+      title: "Promoted Ads",
+      image: "/static/images/cards/contemplative-reptile.jpg",
+      description:
+        "In X formerly known as twitter the posts that are promoted or sponsored have a very subtle AD written on the top right corner which when a user is skimming through might not register. According to recent reports almost every 3rd or 4th post in users timeline is an advert or a sponsored post that is unsoliceted information that is being force fed to the user.  Deliberate efforts have been made for the promoted content to look like organic content specially after the take over by musk. ",
+    },
+    {
+      id: 5,
+      title: "Engagement Notification",
+      image: "/static/images/cards/contemplative-reptile.jpg",
+      description:
+        "Engagement notifications are a type of dark pattern used on social media and websites to manipulate user behavior by creating urgency and prompting immediate interaction. They alert users to new likes, comments, or messages on their content, fostering feelings of social validation and fear of missing out ",
+    },
+    {
+      id: 6,
+      title: "Obstruction",
+      image: "/static/images/cards/contemplative-reptile.jpg",
+      description:
+        "Obstruction is a dark pattern that creates obstacles in users' path to make it difficult for them to complete the tasks that they desire. The more complicated and unclear the path it is, the more frustration it causes users, so that users are more likely to give up and choose the path that benefits the company rather than users themselves. The use case could be making it difficult to unsubscribe from membership.",
+    },
+    {
+      id: 7,
+      title: "Autoplay",
+      image: "/static/images/cards/contemplative-reptile.jpg",
+      description:
+        "Auto-play often falls under the category of manipulative patterns like Bait & Switch or Forced Continuity, which encourage further engagement without giving users an explicit choice to stop. This can extend user session times, making it difficult to disengage from the platform .",
+    },
   ];
 
   return (
