@@ -6,6 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function TeamList() {
   const asdMembers = [
@@ -63,8 +64,14 @@ export default function TeamList() {
   ];
 
   const renderGroup = (title, members) => (
-    <React.Fragment>
-      <Typography variant="h6" sx={{ padding: 1 }}>
+    <List
+      sx={{
+        flex: 1,
+        bgcolor: "background.paper",
+        margin: 1,
+      }}
+    >
+      <Typography variant="h6" sx={{ padding: 1, textAlign: "center" }}>
         {title}
       </Typography>
       {members.map((member, index) => (
@@ -91,16 +98,21 @@ export default function TeamList() {
           )}
         </React.Fragment>
       ))}
-    </React.Fragment>
+    </List>
   );
 
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-around",
+        padding: 2,
+        width: "100%",
+      }}
+    >
       {renderGroup("ASD Members", asdMembers)}
-      <Divider />
       {renderGroup("DS Members", dsMembers)}
-      <Divider />
       {renderGroup("Mentors", mentors)}
-    </List>
+    </Box>
   );
 }
