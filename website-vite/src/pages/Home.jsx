@@ -3,29 +3,30 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme } from "@mui/material/styles";
-import DashboardIcon from "@mui/icons-material/Dashboard";
+
 import { AppProvider } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { useDemoRouter } from "@toolpad/core/internal";
-import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import PatternCard from "../components/PatternCard";
 import TeamList from "../components/TeamList";
-
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import HomeIcon from "@mui/icons-material/Home";
+import Project from "../components/Project";
 const NAVIGATION = [
   {
     segment: "dark-patterns",
-    title: "Dark Patterns on Social Media",
-    icon: <DashboardIcon />,
+    title: "Dark Patterns On Social Media",
+    icon: <HomeIcon />,
   },
   {
-    segment: "reading-list",
-    title: "Reading List",
-    icon: <AutoStoriesIcon />,
+    segment: "project",
+    title: "Project and Report",
+    icon: <EditNoteIcon />,
   },
   {
     segment: "team",
-    title: "Meet the Team",
+    title: "Our Team",
     icon: <GroupWorkIcon />,
   },
 ];
@@ -61,12 +62,10 @@ function DemoPageContent({ pathname }) {
       }}
     >
       {/* <Typography>Dashboard content for {pathname}</Typography> */}
-      {pathname === "/dark-patterns" && (
-        <>
-          <PatternCard />
-        </>
-      )}
+      {/* {pathname === "/home" && <Header />} */}
+      {pathname === "/dark-patterns" && <PatternCard />}
       {pathname === "/team" && <TeamList />}
+      {pathname === "/project" && <Project />}
     </Box>
   );
 }
@@ -81,7 +80,6 @@ function Home(props) {
 
   const router = useDemoRouter("/dark-patterns");
 
-  // Remove this const when copying and pasting into your project.
   const demoWindow = window !== undefined ? window() : undefined;
 
   return (

@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import chromeLogo from "../assets/chrome-logo.png";
 
 export default function PatternCards() {
   const cardsData = [
@@ -60,6 +61,20 @@ export default function PatternCards() {
       description:
         "Auto-play often falls under the category of manipulative patterns like Bait & Switch or Forced Continuity, which encourage further engagement without giving users an explicit choice to stop. This can extend user session times, making it difficult to disengage from the platform .",
     },
+    {
+      id: 8,
+      title: "Confirshaming",
+      image: "/static/images/cards/contemplative-reptile.jpg",
+      description:
+        "Confirmshaming uses shame to drive users to act, such as when websites word an option to decline an email newsletter in a way that shames visitors into accepting",
+    },
+    {
+      id: 9,
+      title: "Dead End",
+      image: "/static/images/cards/contemplative-reptile.jpg",
+      description:
+        "Auto-play often falls under the category of manipulative patterns like Bait & Switch or Forced Continuity, which encourage further engagement without giving users an explicit choice to stop. This can extend user session times, making it difficult to disengage from the platform .",
+    },
   ];
 
   return (
@@ -71,6 +86,42 @@ export default function PatternCards() {
         gap: 2,
       }}
     >
+      <CardActions
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+
+          textAlign: "center",
+          width: "100%",
+          lineHeight: 1.2,
+        }}
+      >
+        <h1
+          style={{
+            background: "linear-gradient(to right, #4A90E2, #9013FE)", // Gradient colors
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontSize: "2.5rem", // Adjust font size as needed
+          }}
+        >
+          Dark patterns you can detect <br />
+          on social media
+        </h1>
+
+        <h8>
+          Protect your online privacy and rights by learning about dark patterns
+          and unethical designs.
+        </h8>
+        <Button variant="contained" size="large" sx={{ mt: 5 }}>
+          <img
+            src={chromeLogo}
+            alt="Chrome Logo"
+            style={{ width: 24, height: 24, marginRight: 8 }}
+          />
+          Get X-Factors for Chrome
+        </Button>
+      </CardActions>
       {cardsData.map((card) => (
         <Card
           key={card.id}
