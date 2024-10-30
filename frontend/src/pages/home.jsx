@@ -20,7 +20,7 @@ export function Home() {
               <p>Dark Patterns Detected</p>
             </div>
             <div>
-              <p>Emotional Steering</p>
+              <p>Emotional Steering <ButtonLink to="/EMLSettings">EML Settings</ButtonLink></p>
               <p>Infinite Scrolling
                 <Button aschild>
                   <Link to="/infinitescrollingsettings">IFSettings</Link>
