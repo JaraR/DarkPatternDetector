@@ -1,0 +1,240 @@
+{
+    // 代码编辑器选项，默认代码格式化工具为 Prettier
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.stylelint": "explicit"
+    },
+    // Prettier 格式化代码的相关规则
+    // 定义代码行的最大长度，超出该长度的代码将被自动换行。
+    "prettier.printWidth": 200,
+    // 定义箭头函数的参数是否要使用圆括号。avoid 表示只有一个参数时可以省略圆括号，其他情况下则会使用圆括号。
+    // "prettier.arrowParens": "avoid",
+    // 定义对象或数组最后一个元素后是否添加尾逗号。es5 表示在 ES5 中允许使用尾逗号。 all 表示所有情况都允许
+    "prettier.trailingComma": "all",
+    // 定义缩进的空格数量。使用 4 个空格作为一个缩进级别。
+    "prettier.tabWidth": 4,
+    // 定义是否在语句末尾使用分号。false 表示不使用分号。
+    "prettier.semi": true,
+    // 定义是否使用单引号作为字符串的引号类型。true 表示使用单引号。
+    "prettier.singleQuote": true,
+    // 定义是否在对象字面量和数组字面量中的括号之间添加空格。true 表示添加空格。
+    "prettier.bracketSpacing": true,
+    // 将多行HTML（HTML、JSX、react、Angular）元素的>放在最后一行的末尾，而不是单独放在下一行（不适用于自关闭元素）。
+    "prettier.bracketSameLine": true,
+    // 定义 HTML 文件中空白符（如空格、制表符、换行符）的敏感程度。ignore 表示忽略对空白符的处理。"strict" 可以保留标签之间的单个空格
+    "prettier.htmlWhitespaceSensitivity": "ignore",
+    // 是否强制使 HTML、react 和 JSX 中每行只包含一个属性
+    "prettier.singleAttributePerLine": false,
+    // 是否将react文件的 script、style 标签内的代码统一缩进 1个 tabWidth
+    "prettier.reactIndentScriptAndStyle": false,
+    // 定义文件的行尾换行符类型。auto 表示自动选择与当前环境一致的换行符类型。
+    "prettier.endOfLine": "auto",
+    // 定义 Markdown 文件中的文本换行方式。 preserve 表示保留原有的换行方式。
+    "prettier.proseWrap": "preserve",
+    // 禁用对嵌入模板语言的格式化
+    // "prettier.embeddedLanguageFormatting": "off",
+    // 禁用需要存在 .prettierrc 或 .editorconfig 文件的功能。
+    "prettier.requireConfig": false,
+    // ESLint 全局设置，包含哪些语言的格式化保存
+    "eslint.validate": ["javascript", "typescript", "react", "javascriptreact", "html", "css", "postcss", "scss", "sass"],
+    // eslint 配置项
+    "eslint.options": {
+        "rules": {
+            // HTML 缩进为4个空格，属性缩进为1个空格，关闭尾标签前不换行，属性垂直对齐
+            "react/html-indent": [
+                "error",
+                4,
+                {
+                    "attribute": 1, // 属性缩进为1个空格
+                    "closeBracket": 0, // 关闭尾标签前不换行
+                    "alignAttributesVertically": true, // 属性垂直对齐
+                    "ignores": [] // 忽略的标签列表
+                }
+            ],
+            "react/no-v-model-argument": "off",
+            "react/singleline-html-element-content-newline": "off",
+            // 自闭合标签和非自闭合标签的使用校验
+            "react/html-self-closing": [
+                "warn",
+                {
+                    "html": {
+                        "void": "always",
+                        "normal": "never",
+                        "component": "never"
+                    },
+                    "svg": "always",
+                    "math": "always"
+                }
+            ],
+            "react/multi-word-component-names": "off",
+            "no-useless-escape": "off",
+            // 单行标签不换行，多行标签不换行
+            "react/html-closing-bracket-newline": [
+                "error",
+                {
+                    "singleline": "never", // 单行标签不换行
+                    "multiline": "never" // 多行标签不换行
+                }
+            ],
+            // 单行最多有5个属性
+            "react/max-attributes-per-line": [
+                "error",
+                {
+                    "singleline": 5 // 单行最多的属性数量
+                }
+            ],
+            // 忽略换行符的规则限制
+            "linebreak-style": [0, "error", "windows"], // 换行符的风格，0: 禁用规则; "error": 报错; "windows": CRLF换行符; "unix": LF换行符
+            // 使用四个空格缩进
+            "indent": ["error", 4], // 缩进的空格数
+            // 允许使用 console
+            "no-console": "off", // "off": 关闭规则; "warn": 警告; "error": 报错
+            // 允许使用 debugger
+            "no-debugger": "off", // "off": 关闭规则; "warn": 警告; "error": 报错
+            // 允许混合运算符使用
+            "no-mixed-operators": "off", // "off": 关闭规则; "warn": 警告; "error": 报错
+            // 使用单引号
+            "quotes": ["error", "single"], // 引号类型，"single": 单引号; "double": 双引号; "backtick": 反引号
+            // 函数名可选
+            "func-names": ["warn", "as-needed"], // 函数名的要求，"always": 必须命名函数表达式; "as-needed": 非必要情况下可以省略函数名
+            // 首选解构赋值
+            "prefer-destructuring": [
+                "warn",
+                {
+                    "array": true, // 解构数组
+                    "object": true // 解构对象
+                }
+            ],
+            // 允许修改函数参数的属性值
+            "no-param-reassign": "off", // "off": 关闭规则; "warn": 警告; "error": 报错
+            // 一行最多150个字符
+            "max-len": ["warn", 200], // 行的最大长度
+            // 配置文件导入时禁止扩展名
+            "import/extensions": [
+                "warn",
+                "ignorePackages",
+                {
+                    "js": "never", // JS 文件禁止扩展名
+                    "react": "never", // react 文件禁止扩展名
+                    "jsx": "never", // JS 文件禁止扩展名
+                    "ts": "never", // JS 文件禁止扩展名
+                    "tsx": "never" // JS 文件禁止扩展名
+                }
+            ],
+            // 禁止导入项目外部的依赖
+            "import/no-extraneous-dependencies": [
+                "error",
+                {
+                    "devDependencies": true, // 是否允许导入开发依赖
+                    "optionalDependencies": false, // 是否允许导入可选依赖
+                    "peerDependencies": false // 是否允许导入对等依赖
+                }
+            ],
+            // 标签的开始标签和结束标签内必须有空格，自闭合标签内不允许空格
+            // "html-closing-bracket-spacing": [
+            //     "warn",
+            //     {
+            //         "startTag": "always", // 强制开始标签有空格
+            //         "endTag": "never", // 不允许结束标签有空格
+            //         "selfClosingTag": "always" // 强制自闭合标签有空格
+            //     }
+            // ],
+            // 禁止声明未使用的变量
+            "no-unused-vars": [
+                "error",
+                {
+                    "vars": "all", // 检查所有变量
+                    "args": "after-used", // 仅在使用后检查函数参数
+                    "ignoreRestSiblings": false // 不忽略其余项和兄弟项
+                }
+            ],
+            // 禁止使用未定义的变量
+            "no-undef": "error", // "error": 报错; "warn": 警告
+            // 鼓励使用 const 来声明常量以提高代码的可维护性和可读性。
+            "prefer-const": [
+                "error",
+                {
+                    "destructuring": "all", // 对于解构赋值也强制使用 const
+                    "ignoreReadBeforeAssign": false // 不忽略赋值之前的变量引用
+                }
+            ],
+            // 强制箭头函数的箭头前后必须有空格，增加代码的可读性。
+            "arrow-spacing": [
+                "error",
+                {
+                    "before": true, // 箭头前需要空格
+                    "after": true // 箭头后需要空格
+                }
+            ],
+            // 禁止在变量声明之前使用变量，以避免因变量提升而导致的错误。
+            "no-use-before-define": [
+                "error",
+                {
+                    "functions": false, // 函数允许在使用之前进行引用
+                    "classes": true, // 类不允许在使用之前进行引用
+                    "variables": true // 变量不允许在使用之前进行引用
+                }
+            ],
+            // 要求使用严格相等运算符（===）替代相等运算符（==），以减少类型转换带来的意外行为。
+            "eqeqeq": ["error", "always"],
+            // 禁止额外的分号
+            "no-extra-semi": "error", // "error": 报错; "warn": 警告
+            // 要求在对象和数组字面量的末尾使用尾逗号，以便更方便地添加、删除或移动元素。
+            "comma-dangle": ["error", "always-multiline"],
+            // 禁止行末出现多余的空格，以保持代码的整洁。
+            "no-trailing-spaces": "error"
+        }
+    },
+    // Stylelint 配置
+    "stylelint.enable": true, // 启用 Stylelint 样式表验证
+    "css.lint.float": "warning", // 浮动值验证警告级别
+    // 文件搜索和管理配置
+    "search.followSymlinks": false, // 搜索文件时不跟随符号链接
+    "files.exclude": {
+        "**/.git": false // 不排除.git文件夹
+    },
+    "explorer.confirmDragAndDrop": false, // 禁用拖放文件夹时的确认提示
+    "explorer.incrementalNaming": "smart", // 智能增量命名
+    "explorer.confirmDelete": false, // 删除文件时不进行确认提示
+    "explorer.copyRelativePathSeparator": "/", // 相对路径复制分隔符
+    "workbench.startupEditor": "none", // 启动时不打开任何编辑器
+    "workbench.iconTheme": "vscode-icons", // 图标主题为 vscode-icons
+    // Git 配置
+    "git.autofetch": true, // 自动获取远程 Git 更新
+    "git.confirmSync": false, // 同步 Git 时不进行确认提示
+    "git.enableSmartCommit": true, // 启用智能提交功能
+    "gitlens.views.commitDetails.files.layout": "tree", // GitLens 提交详情中的文件布局
+    // 安全性配置
+    "security.workspace.trust.untrustedFiles": "open", // 打开不受信任的文件
+    "security.workspace.trust.banner": "never", // 从不显示安全性质询横幅
+    // 文件关联配置
+    "files.associations": {
+        "*.cjson": "jsonc", // 将 .cjson 文件与 JSONC 格式关联
+        "*.wxss": "css", // 将 .wxss 文件与 CSS 格式关联
+        "*.wxs": "javascript" // 将 .wxs 文件与 JavaScript 格式关联
+    },
+    // 其他插件配置
+    "emmet.includeLanguages": {
+        "wxml": "html" // 将 wxml 文件视为 HTML 文件以支持 Emmet
+    },
+    "minapp-vscode.disableAutoConfig": true, // 禁用 Minapp 插件的自动配置
+    "varTranslation.baiduSecret": "20230404001628061,sLkNFiI7PULmNSXsmDJA", // 百度翻译服务密钥
+    "varTranslation.translationEngine": "baidu", // 使用百度翻译引擎
+    "settingsSync.ignoredExtensions": [],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "liveServer.settings.donotShowInfoMsg": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "Scss2css.indentWidth": 2
+}
