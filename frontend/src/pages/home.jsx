@@ -9,6 +9,7 @@ import PieActiveArc from "@/components/ui/piechart";
 import { Switch } from "@/components/ui/switch";
 import AboutUsTab from "@/components/ui/AboutUsTab";
 import SettingsTab from "@/components/ui/SettingsTab";
+import Navbar from "@/components/ui/navbar";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
@@ -45,11 +46,7 @@ export function Home() {
 
   return (
     <>
-      <Switch
-        defaultChecked={isSwitchOn}
-        onCheckedChange={handleSwitchToggle}
-      />
-      <p>Switch is {isSwitchOn ? "On" : "Off"}</p>
+      <Navbar />
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList>
           <TabsTrigger value="results">Results</TabsTrigger>

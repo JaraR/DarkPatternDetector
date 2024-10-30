@@ -40,6 +40,38 @@ export default function SettingsTab({ updateAutoplayStatus }) {
           <Label htmlFor="infinite-scrolling">Infinite Scrolling</Label>
         </div>
       </CardContent>
+      <CardContent>
+        <div className="flex items-center space-x-2">
+          <Checkbox id="engagement-notification" />
+          <Label htmlFor="engagement-notification">
+            Engagement Notification
+          </Label>
+        </div>
+      </CardContent>
+      <CardContent>
+        <div className="flex items-center space-x-2">
+          <Checkbox id="infinite-scrolling" />
+          <Label htmlFor="infinite-scrolling">Privacy Zuckering</Label>
+        </div>
+      </CardContent>
+      <CardContent>
+        <div className="flex items-center space-x-2">
+          <Checkbox id="infinite-scrolling" />
+          <Label htmlFor="infinite-scrolling">Obstruction</Label>
+        </div>
+      </CardContent>
+      <CardContent>
+        <div className="flex items-center space-x-2">
+          <Checkbox id="infinite-scrolling" />
+          <Label htmlFor="infinite-scrolling">Emotional Steering</Label>
+        </div>
+      </CardContent>
+      <CardContent>
+        <div className="flex items-center space-x-2">
+          <Checkbox id="infinite-scrolling" />
+          <Label htmlFor="infinite-scrolling">Promoted Ads</Label>
+        </div>
+      </CardContent>
       <CardFooter>
         <p>Card Footer</p>
       </CardFooter>
