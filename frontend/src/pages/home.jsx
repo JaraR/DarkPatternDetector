@@ -1,100 +1,95 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
-import { ButtonLink } from "@/components/ui/buttonlink"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+
+import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/buttonlink";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Link } from "react-router-dom";
+import PieActiveArc from "@/components/ui/piechart";
+
+import { Switch } from "@/components/ui/switch";
+import AboutUsTab from "@/components/ui/AboutUsTab";
+import SettingsTab from "@/components/ui/SettingsTab";
 
 export function Home() {
+  const [autoplayCount, setAutoplayCount] = useState(0);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isAutoplayChecked, setIsAutoplayChecked] = useState(false);
+
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
+      if (response && response.count !== undefined) {
+        setAutoplayCount(response.count);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (isSwitchOn && isAutoplayChecked) {
+      chrome.runtime.sendMessage({ type: "startAutoplayDetection" });
+    }
+  }, [isSwitchOn, isAutoplayChecked]);
+
+  useEffect(() => {
+    // Log the autoplay status whenever it changes
+    console.log(
+      "Autoplay status in Home is now:",
+      isAutoplayChecked ? "Checked" : "Unchecked"
+    );
+  }, [isAutoplayChecked]);
+  const handleSwitchToggle = () => {
+    setIsSwitchOn((prev) => !prev);
+  };
+  const updateAutoplayStatus = (checked) => {
+    setIsAutoplayChecked(checked);
+  };
+
   return (
     <>
+      <Switch
+        defaultChecked={isSwitchOn}
+        onCheckedChange={handleSwitchToggle}
+      />
+      <p>Switch is {isSwitchOn ? "On" : "Off"}</p>
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList>
-            <TabsTrigger value="results">Results</TabsTrigger>
-            <TabsTrigger value="about-us">About Us</TabsTrigger>
-            <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="results">Results</TabsTrigger>
+          <TabsTrigger value="about-us">About Us</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
         <TabsContent value="results">
           <div>
             <div>
               <p>Placeholder for Total # DP detected</p>
-              <p>Dark Patterns Detected</p>
+              <p>Detected Dark Patterns</p>
+
+              <PieActiveArc autoplayCount={autoplayCount} />
             </div>
             <div>
               <p>Emotional Steering</p>
-              <p>Infinite Scrolling
+              <p>
+                Infinite Scrolling
                 <Button aschild>
                   <Link to="/infinitescrollingsettings">IFSettings</Link>
                 </Button>
               </p>
-              <p>Autoplay Videos <ButtonLink to="/autoplaysettings">APSettings</ButtonLink>
+              <p>
+                <p>Autoplay Videos:{autoplayCount}</p>
+                <ButtonLink to="/autoplaysettings">APSettings</ButtonLink>
               </p>
               <p>Privacy Zuckering</p>
               <p>Engagement Notification</p>
-              <p>Obstructing</p>
+              <p>Obstruction</p>
               <p>Promoted Tweets and Ads that Blend In</p>
             </div>
           </div>
         </TabsContent>
         <TabsContent value="about-us">
-          <section>
-            <div>
-              <h2>What does this detection tool do?</h2>
-              <p>This tool detects dark patterns on X/Twitter.</p>
-            </div>
-            <div>
-              <h2>What are dark patterns?</h2>
-              <p className="font-change">"Dark patterns are tricks used in websites and apps that make you do things that you didn't mean to, 
-                like buying or signing up for something." - <a href="https://www.deceptive.design">https://www.deceptive.design</a></p>
-            </div>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Emotional Steering</AccordionTrigger>
-                <AccordionContent>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                  malesuada lacus ex, sit amet blandit leo lobortis eget.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>Infinite Scrolling</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Autoplay Videos</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4">
-                <AccordionTrigger>Privacy Zuckering</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-5">
-                <AccordionTrigger>Engagement Notification</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-6">
-                <AccordionTrigger>Obstructing</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-7">
-                <AccordionTrigger>Promoted Tweets and Ads that Blend In</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </section>
+          <AboutUsTab />
         </TabsContent>
-        <TabsContent value="settings">hello world!</TabsContent>
+        <TabsContent value="settings">
+          <SettingsTab updateAutoplayStatus={updateAutoplayStatus} />
+        </TabsContent>
       </Tabs>
     </>
-  )
+  );
 }
