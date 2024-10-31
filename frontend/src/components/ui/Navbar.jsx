@@ -23,12 +23,7 @@ export default function DenseAppBar() {
           <Typography variant="h6" color="inherit" component="div">
             X-Factors
           </Typography>
-          <Switch
-            sx={{ ml: "auto" }}
-            // defaultChecked={isSwitchOn}
-            // onCheckedChange={handleSwitchToggle}
-          />
-          {/* <p>Switch is {isSwitchOn ? "On" : "Off"}</p> */}
+          <Switch sx={{ ml: "auto" }} />
         </Toolbar>
       </AppBar>
     </Box>

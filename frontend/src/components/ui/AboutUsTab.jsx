@@ -8,7 +8,7 @@ import {
 
 export default function AboutUsTab() {
   return (
-    <section>
+    <section className="m-5">
       <div>
         <h2>What does this detection tool do?</h2>
         <p>This tool detects dark patterns on X/Twitter.</p>

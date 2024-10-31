@@ -6,15 +6,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import PieActiveArc from "@/components/ui/piechart";
 
-import { Switch } from "@/components/ui/switch";
 import AboutUsTab from "@/components/ui/AboutUsTab";
 import SettingsTab from "@/components/ui/SettingsTab";
 import Navbar from "@/components/ui/navbar";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const [isAutoplayChecked, setIsAutoplayChecked] = useState(false);
 
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
@@ -24,41 +21,20 @@ export function Home() {
     });
   }, []);
 
-  useEffect(() => {
-    if (isSwitchOn && isAutoplayChecked) {
-      chrome.runtime.sendMessage({ type: "startAutoplayDetection" });
-    }
-  }, [isSwitchOn, isAutoplayChecked]);
-
-  useEffect(() => {
-    // Log the autoplay status whenever it changes
-    console.log(
-      "Autoplay status in Home is now:",
-      isAutoplayChecked ? "Checked" : "Unchecked"
-    );
-  }, [isAutoplayChecked]);
-  const handleSwitchToggle = () => {
-    setIsSwitchOn((prev) => !prev);
-  };
-  const updateAutoplayStatus = (checked) => {
-    setIsAutoplayChecked(checked);
-  };
-
   return (
     <>
       <Navbar />
       <Tabs defaultValue="results" className="w-[400px]">
-        <TabsList>
+        <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-us">About Us</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
         <TabsContent value="results">
-          <div>
+          <div className="m-3">
             <div>
               <p>Placeholder for Total # DP detected</p>
               <p>Detected Dark Patterns</p>
-
               <PieActiveArc autoplayCount={autoplayCount} />
             </div>
             <div>
@@ -84,7 +60,7 @@ export function Home() {
           <AboutUsTab />
         </TabsContent>
         <TabsContent value="settings">
-          <SettingsTab updateAutoplayStatus={updateAutoplayStatus} />
+          <SettingsTab />
         </TabsContent>
       </Tabs>
     </>

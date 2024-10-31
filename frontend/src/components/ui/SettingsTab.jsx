@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -11,26 +11,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
 // eslint-disable-next-line react/prop-types
-export default function SettingsTab({ updateAutoplayStatus }) {
-  const [isAutoplayChecked, setIsAutoplayChecked] = useState(true);
-  const handleAutoplayToggle = () => {
-    const newStatus = !isAutoplayChecked;
-    setIsAutoplayChecked(newStatus);
-    updateAutoplayStatus(newStatus);
-  };
+export default function SettingsTab() {
   return (
-    <Card>
+    <Card className="m-5">
       <CardHeader>
         <CardTitle>Filter By Dark Pattern Types</CardTitle>
         <CardDescription>description</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="flex items-center space-x-2">
-          <Checkbox
-            id="autoplay"
-            checked={isAutoplayChecked}
-            onCheckedChange={handleAutoplayToggle}
-          />
+          <Checkbox id="autoplay" />
           <Label htmlFor="autoplay">Autoplay</Label>
         </div>
       </CardContent>
