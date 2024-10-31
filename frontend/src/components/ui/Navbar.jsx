@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Switch from "@mui/material/Switch";
+import logo from "../../assets/logo2.png";
 
 export default function DenseAppBar() {
   return (
@@ -19,10 +20,22 @@ export default function DenseAppBar() {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ width: 40, height: 40, marginLeft: 0 }}
+            />
+            <Typography
+              variant="h6"
+              color="inherit"
+              component="div"
+              fontWeight="bold"
+              style={{ color: "#424242" }}
+            >
+              X-Factors
+            </Typography>
           </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
-            X-Factors
-          </Typography>
+
           <Switch sx={{ ml: "auto" }} />
         </Toolbar>
       </AppBar>

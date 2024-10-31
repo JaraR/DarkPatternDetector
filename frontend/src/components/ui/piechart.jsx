@@ -7,12 +7,14 @@ export default function PieActiveArc({ autoplayCount }) {
     {
       label: `Autoplay ${autoplayCount}`,
       value: autoplayCount,
+      color: "#94deff",
     },
-    { label: "Engagement Notification", value: 20 },
-    { label: "Infinite Scrolling", value: 10 },
-    { label: "Emotional Steering", value: 10 },
-    { label: "Promoted Ads", value: 20 },
-    { label: "Privacy Zuckering", value: 5 },
+    { label: "Engagement Notification", value: 10, color: "#9fa7b8" },
+    { label: "Infinite Scrolling", value: 10, color: "#b9bd76" },
+    { label: "Emotional Steering", value: 30, color: "#ed681d" },
+    { label: "Promoted Ads", value: 20, color: "#adb2ff" },
+    { label: "Privacy Zuckering", value: 5, color: "#b27b09" },
+    { label: "Obstruction", value: 10, color: "#31356e" },
   ];
 
   // bugs here:
@@ -35,9 +37,10 @@ export default function PieActiveArc({ autoplayCount }) {
           label: {
             render: (datum) => valueFormatter(datum.value),
           },
+          color: darkPattern.map((item) => item.color),
         },
       ]}
-      height={200}
+      height={240}
       margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
     />
   );
