@@ -13,6 +13,8 @@ import TeamList from "../components/TeamList";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import HomeIcon from "@mui/icons-material/Home";
 import Project from "../components/Project";
+import logo from "../assets/logo1.png";
+
 const NAVIGATION = [
   {
     segment: "dark-patterns",
@@ -35,7 +37,7 @@ const demoTheme = createTheme({
   cssVariables: {
     colorSchemeSelector: "data-toolpad-color-scheme",
   },
-  colorSchemes: { light: true, dark: true },
+  colorSchemes: { dark: true, light: true },
   breakpoints: {
     values: {
       xs: 0,
@@ -77,7 +79,7 @@ DemoPageContent.propTypes = {
 
 function Home(props) {
   const { window } = props;
-
+  //this is default router
   const router = useDemoRouter("/dark-patterns");
 
   const demoWindow = window !== undefined ? window() : undefined;
@@ -90,6 +92,7 @@ function Home(props) {
       }))}
       branding={{
         title: "X-Factors",
+        logo: <img src={logo} alt="X-Factors Logo" style={{ height: 40 }} />,
       }}
       router={router}
       theme={demoTheme}

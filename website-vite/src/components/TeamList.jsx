@@ -11,55 +11,55 @@ import Box from "@mui/material/Box";
 export default function TeamList() {
   const asdMembers = [
     {
-      name: "Michael Brown",
-      role: "Team Lead",
+      name: "Luke Skywalker",
+      role: "Jedi Knight",
       avatar: "/static/images/avatar/1.jpg",
     },
     {
-      name: "Travis Howard",
-      role: "Developer",
+      name: "Han Solo",
+      role: "Pilot",
       avatar: "/static/images/avatar/2.jpg",
     },
     {
-      name: "Sarah Smith",
-      role: "Designer",
+      name: "Leia Organa",
+      role: "Rebel Leader",
       avatar: "/static/images/avatar/3.jpg",
     },
   ];
 
   const dsMembers = [
     {
-      name: "Michael Brown",
-      role: "Data Analyst",
-      avatar: "/static/images/avatar/4.jpg",
+      name: "Ahsoka Tano",
+      role: "Jedi Knight",
+      avatar: "/static/images/avatar/4.jpg", // Use the appropriate avatar for Ahsoka
     },
     {
-      name: "Emily Davis",
-      role: "Tester",
+      name: "Padmé Amidala",
+      role: "Senator",
       avatar: "/static/images/avatar/5.jpg",
     },
     {
-      name: "Daniel Lee",
-      role: "DevOps Engineer",
+      name: "Obi-Wan Kenobi",
+      role: "Jedi Master",
       avatar: "/static/images/avatar/6.jpg",
     },
   ];
 
   const mentors = [
     {
-      name: "Sophia Wilson",
-      role: "Project Manager",
-      avatar: "/static/images/avatar/7.jpg",
+      name: "Yoda",
+      role: "Jedi Master",
+      avatar: "/static/images/avatar/4.jpg", // Use the same or different avatar as per your preference
     },
     {
-      name: "James Taylor",
-      role: "Frontend Developer",
-      avatar: "/static/images/avatar/8.jpg",
+      name: "Obi-Wan Kenobi",
+      role: "Jedi Master",
+      avatar: "/static/images/avatar/6.jpg", // Use the same or different avatar as per your preference
     },
     {
-      name: "Isabella Martinez",
-      role: "Backend Developer",
-      avatar: "/static/images/avatar/9.jpg",
+      name: "Mace Windu",
+      role: "Jedi Master",
+      avatar: "/static/images/avatar/10.jpg", // Add an appropriate avatar for Mace Windu
     },
   ];
 
