@@ -37,7 +37,8 @@ const demoTheme = createTheme({
   cssVariables: {
     colorSchemeSelector: "data-toolpad-color-scheme",
   },
-  colorSchemes: { dark: true, light: true },
+  colorSchemes: { dark: true },
+  // light: true, an option
   breakpoints: {
     values: {
       xs: 0,
@@ -63,8 +64,6 @@ function DemoPageContent({ pathname }) {
         mt: 2,
       }}
     >
-      {/* <Typography>Dashboard content for {pathname}</Typography> */}
-      {/* {pathname === "/home" && <Header />} */}
       {pathname === "/dark-patterns" && <PatternCard />}
       {pathname === "/team" && <TeamList />}
       {pathname === "/project" && <Project />}
@@ -102,15 +101,10 @@ function Home(props) {
         <DemoPageContent pathname={router.pathname} />
       </DashboardLayout>
     </AppProvider>
-    // preview-end
   );
 }
 
 Home.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * Remove this when copying and pasting into your project.
-   */
   window: PropTypes.func,
 };
 
