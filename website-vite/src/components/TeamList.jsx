@@ -11,17 +11,17 @@ import Box from "@mui/material/Box";
 export default function TeamList() {
   const asdMembers = [
     {
-      name: "Luke Skywalker",
+      name: "Jara Rodriguez",
       role: "Jedi Knight",
       avatar: "/static/images/avatar/1.jpg",
     },
     {
-      name: "Han Solo",
+      name: "Ling Jiang",
       role: "Pilot",
       avatar: "/static/images/avatar/2.jpg",
     },
     {
-      name: "Leia Organa",
+      name: "Jiaxin Liu",
       role: "Rebel Leader",
       avatar: "/static/images/avatar/3.jpg",
     },
@@ -29,12 +29,12 @@ export default function TeamList() {
 
   const dsMembers = [
     {
-      name: "Ahsoka Tano",
+      name: "Ashus Zahid",
       role: "Jedi Knight",
       avatar: "/static/images/avatar/4.jpg", // Use the appropriate avatar for Ahsoka
     },
     {
-      name: "Padmé Amidala",
+      name: "Habib Abdulhamid",
       role: "Senator",
       avatar: "/static/images/avatar/5.jpg",
     },
@@ -47,17 +47,17 @@ export default function TeamList() {
 
   const mentors = [
     {
-      name: "Yoda",
+      name: "Andrea Curley ",
       role: "Jedi Master",
       avatar: "/static/images/avatar/4.jpg", // Use the same or different avatar as per your preference
     },
     {
-      name: "Obi-Wan Kenobi",
+      name: "Brendan Tierney",
       role: "Jedi Master",
       avatar: "/static/images/avatar/6.jpg", // Use the same or different avatar as per your preference
     },
     {
-      name: "Mace Windu",
+      name: "Damian Gordon",
       role: "Jedi Master",
       avatar: "/static/images/avatar/10.jpg", // Add an appropriate avatar for Mace Windu
     },
