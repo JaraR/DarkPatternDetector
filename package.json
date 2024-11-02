@@ -1,0 +1,11 @@
+{
+  "name": "dpd",
+  "version": "1.0.0",
+  "description": "Tool to detect dark patterns on social media sites. Capstone group project for 2023-24 MSc in Computer Science at TU Dublin.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
