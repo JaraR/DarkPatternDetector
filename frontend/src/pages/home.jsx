@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-
-import { Button } from "@/components/ui/button";
-import { ButtonLink } from "@/components/ui/buttonlink";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Link } from "react-router-dom";
+import Navbar from "@/components/ui/navbar";
 import PieActiveArc from "@/components/ui/piechart";
-
 import AboutUsTab from "@/components/ui/AboutUsTab";
 import SettingsTab from "@/components/ui/SettingsTab";
-import Navbar from "@/components/ui/navbar";
+import BottomNavigation from "@/components/ui/BottomNavigation";
+import Typography from "@mui/material/Typography";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
 
   useEffect(() => {
+    // Fetching results from the Chrome extension background script
     chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
       if (response && response.count !== undefined) {
         setAutoplayCount(response.count);
@@ -30,35 +28,24 @@ export function Home() {
           <TabsTrigger value="about-us">About Us</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
+
         <TabsContent value="results">
-          <div className="m-3">
-            <div>
-              <p>Placeholder for Total # DP detected</p>
-              <p>Detected Dark Patterns</p>
-              <PieActiveArc autoplayCount={autoplayCount} />
-            </div>
-            <div>
-              <p>Emotional Steering</p>
-              <p>
-                Infinite Scrolling
-                <Button aschild>
-                  <Link to="/infinitescrollingsettings">IFSettings</Link>
-                </Button>
-              </p>
-              <p>
-                <p>Autoplay Videos:{autoplayCount}</p>
-                <ButtonLink to="/autoplaysettings">APSettings</ButtonLink>
-              </p>
-              <p>Privacy Zuckering</p>
-              <p>Engagement Notification</p>
-              <p>Obstruction</p>
-              <p>Promoted Tweets and Ads that Blend In</p>
-            </div>
+          <div className="mt-8 mx-3 flex flex-col items-center text-center">
+            <Typography variant="h6" component="div" gutterBottom>
+              Total Dark Patterns Detected: {autoplayCount}
+            </Typography>
+            <Typography variant="subtitle1" component="div" gutterBottom>
+              Detected Dark Patterns
+            </Typography>
+            <PieActiveArc autoplayCount={autoplayCount} />
+            <BottomNavigation />
           </div>
         </TabsContent>
+
         <TabsContent value="about-us">
           <AboutUsTab />
         </TabsContent>
+
         <TabsContent value="settings">
           <SettingsTab />
         </TabsContent>

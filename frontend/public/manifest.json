@@ -9,7 +9,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://x.com/*"],
+      "matches": ["*://x.com/*", "*://bsky.app/*"],
       "js": ["content-scripts/autoplay.js"],
       "run_at": "document_end"
     }
