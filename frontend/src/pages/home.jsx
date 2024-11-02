@@ -9,19 +9,44 @@ import Typography from "@mui/material/Typography";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isAutoplayChecked, setIsAutoplayChecked] = useState(false);
+
+  const handleSwitchChange = (checked) => {
+    setIsSwitchOn(checked);
+    console.log(`Switch is ${checked ? "on" : "off"}`);
+  };
+
+  const handleCheckboxChange = (name, isChecked) => {
+    if (name === "autoplay") {
+      setIsAutoplayChecked(isChecked); // Update the state for autoplay checkbox
+    }
+    console.log(`${name} is at homepage`, isChecked ? "checked" : "unchecked");
+  };
+
+  // useEffect(() => {
+  //   // Fetching results from the Chrome extension background script
+  //   chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
+  //     if (response && response.count !== undefined) {
+  //       setAutoplayCount(response.count);
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     // Fetching results from the Chrome extension background script
-    chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
-      if (response && response.count !== undefined) {
-        setAutoplayCount(response.count);
-      }
-    });
-  }, []);
+    if (isSwitchOn && isAutoplayChecked) {
+      chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
+        if (response && response.count !== undefined) {
+          setAutoplayCount(response.count);
+        }
+      });
+    }
+  }, [isSwitchOn, isAutoplayChecked]);
 
   return (
     <>
-      <Navbar />
+      <Navbar isSwitchOn={isSwitchOn} onSwitchChange={handleSwitchChange} />
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
@@ -47,7 +72,7 @@ export function Home() {
         </TabsContent>
 
         <TabsContent value="settings">
-          <SettingsTab />
+          <SettingsTab onCheckboxChange={handleCheckboxChange} />
         </TabsContent>
       </Tabs>
     </>

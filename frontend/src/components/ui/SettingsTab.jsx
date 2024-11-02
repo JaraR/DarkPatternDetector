@@ -1,70 +1,53 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+import React, { useState } from "react";
 
-// eslint-disable-next-line react/prop-types
-export default function SettingsTab() {
+export default function DarkPatternCheckboxes({ onCheckboxChange }) {
+  const [checkboxStates, setCheckboxStates] = useState({
+    autoplay: false,
+    infiniteScrolling: false,
+    engagementNotification: false,
+    privacyZuckering: false,
+    obstruction: false,
+    emotionalSteering: false,
+  });
+
+  // Handle checkbox change
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckboxStates((prevStates) => ({
+      ...prevStates,
+      [name]: checked,
+    }));
+
+    // Call the passed function for any checkbox change
+    onCheckboxChange(name, checked);
+
+    console.log(
+      `${name} is at setting page`,
+      checked ? "checked" : "unchecked"
+    );
+  };
+
   return (
-    <Card className="m-5">
-      <CardHeader>
-        <CardTitle>Filter By Dark Pattern Types</CardTitle>
-        <CardDescription>description</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="autoplay" />
-          <Label htmlFor="autoplay">Autoplay</Label>
-        </div>
-      </CardContent>
-      <CardContent>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="infinite-scrolling" />
-          <Label htmlFor="infinite-scrolling">Infinite Scrolling</Label>
-        </div>
-      </CardContent>
-      <CardContent>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="engagement-notification" />
-          <Label htmlFor="engagement-notification">
-            Engagement Notification
-          </Label>
-        </div>
-      </CardContent>
-      <CardContent>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="infinite-scrolling" />
-          <Label htmlFor="infinite-scrolling">Privacy Zuckering</Label>
-        </div>
-      </CardContent>
-      <CardContent>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="infinite-scrolling" />
-          <Label htmlFor="infinite-scrolling">Obstruction</Label>
-        </div>
-      </CardContent>
-      <CardContent>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="infinite-scrolling" />
-          <Label htmlFor="infinite-scrolling">Emotional Steering</Label>
-        </div>
-      </CardContent>
-      <CardContent>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="infinite-scrolling" />
-          <Label htmlFor="infinite-scrolling">Promoted Ads</Label>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </Card>
+    <div>
+      <h2>Filter By Dark Pattern Types</h2>
+      <div className="flex flex-col space-y-2">
+        {Object.keys(checkboxStates).map((key) => (
+          <div key={key} className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id={key}
+              name={key}
+              checked={checkboxStates[key]}
+              onChange={handleCheckboxChange}
+              className="form-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded"
+            />
+            <label htmlFor={key} className="text-sm font-medium capitalize">
+              {key.replace(/([A-Z])/g, " $1")}{" "}
+              {/* Convert camelCase to readable format */}
+            </label>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

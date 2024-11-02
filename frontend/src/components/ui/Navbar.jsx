@@ -8,7 +8,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Switch from "@mui/material/Switch";
 import logo from "../../assets/logo2.png";
 
-export default function DenseAppBar() {
+export default function NavBar() {
+  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+
+  const handleSwitchChange = (event) => {
+    setIsSwitchOn(event.target.checked);
+    console.log(event.target.checked ? "Switch is on" : "Switch is off");
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "white", color: "black" }}>
@@ -36,7 +42,11 @@ export default function DenseAppBar() {
             </Typography>
           </IconButton>
 
-          <Switch sx={{ ml: "auto" }} />
+          <Switch
+            sx={{ ml: "auto" }}
+            checked={isSwitchOn}
+            onChange={handleSwitchChange}
+          />
         </Toolbar>
       </AppBar>
     </Box>
