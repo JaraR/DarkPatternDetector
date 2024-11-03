@@ -1,10 +1,21 @@
+import React, { useState, useEffect } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { ButtonLink } from "@/components/ui/buttonlink"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Link } from "react-router-dom"
+import PieActiveArc from "@/components/ui/piechart"
 
 export function Home() {
+  const [autoplayCount, setAutoplayCount] = useState(0);
+
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
+      if (response && response.count != undefined) {
+        setAutoplayCount(response.count);
+      }
+    });
+  }, []);
   return (
     <>
       <Tabs defaultValue="results" className="w-[400px]">
@@ -18,6 +29,7 @@ export function Home() {
             <div>
               <p>Placeholder for Total # DP detected</p>
               <p>Dark Patterns Detected</p>
+              <PieActiveArc autoplayCount={autoplayCount} />
             </div>
             <div>
               <p>Emotional Steering</p>
