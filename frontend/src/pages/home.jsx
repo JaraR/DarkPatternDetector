@@ -17,7 +17,7 @@ export function Home() {
   };
 
   useEffect(() => {
-    chrome.runtime.sendMessage({ type: "startAutoplay" }, (response) => {
+    chrome.runtime.sendMessage({ type: "updateAutoplay" }, (response) => {
       if (response && response.count !== undefined) {
         setAutoplayCount(response.count);
       }

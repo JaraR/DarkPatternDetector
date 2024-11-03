@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 
 let alertedVideos = [];
+let isAutoplayDetectionActive = false;
 
 // //functioning code
 
@@ -35,6 +36,8 @@ function updateAutoplayCount() {
 
 // // Function to check for autoplay videos and update counts
 function checkAutoplay() {
+  if (!isAutoplayDetectionActive) return; // Exit if detection is not active
+
   const videos = document.querySelectorAll("video");
   videos.forEach((video) => {
     if (!alertedVideos.includes(video)) {
@@ -51,10 +54,26 @@ function checkAutoplay() {
 
 // // MutationObserver to detect added or changed video elements
 const observer = new MutationObserver(() => {
-  checkAutoplay();
+  if (isAutoplayDetectionActive) {
+    checkAutoplay();
+  }
 });
 
 observer.observe(document.body, {
   childList: true,
   subtree: true,
+});
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "startAutoplay") {
+    console.log("Starting autoplay detection in content script");
+    isAutoplayDetectionActive = true;
+
+    checkAutoplay();
+  } else if (message.type === "stopAutoplay") {
+    console.log("Stopping autoplay detection in content script");
+    isAutoplayDetectionActive = false;
+
+    return;
+  }
 });
