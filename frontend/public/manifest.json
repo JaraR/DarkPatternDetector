@@ -3,7 +3,7 @@
   "name": "Dark Pattern Detection on X",
   "version": "0.1.0",
   "description": "To detect dark patterns on X.",
-  "permissions": ["storage"],
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "action": {
     "default_popup": "index.html"
   },

@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
+
 let alertedVideos = [];
+
+// //functioning code
 
 const updateBadgeCount = () => {
   chrome.storage.local.get(["badgeCount"], function (result) {
@@ -15,7 +18,7 @@ const updateBadgeCount = () => {
   });
 };
 
-// Function to update autoplay count
+// // Function to update autoplay count
 function updateAutoplayCount() {
   chrome.storage.local.get(["autoplayCount"], function (result) {
     let currentCount = result.autoplayCount || 0;
@@ -30,7 +33,7 @@ function updateAutoplayCount() {
   });
 }
 
-// Function to check for autoplay videos and update counts
+// // Function to check for autoplay videos and update counts
 function checkAutoplay() {
   const videos = document.querySelectorAll("video");
   videos.forEach((video) => {
@@ -46,7 +49,7 @@ function checkAutoplay() {
   });
 }
 
-// MutationObserver to detect added or changed video elements
+// // MutationObserver to detect added or changed video elements
 const observer = new MutationObserver(() => {
   checkAutoplay();
 });

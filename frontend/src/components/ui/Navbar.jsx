@@ -11,10 +11,24 @@ import logo from "../../assets/logo2.png";
 export default function NavBar() {
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
 
+  React.useEffect(() => {
+    // Load the switch state from storage when the component mounts
+    chrome.storage.local.get(["isSwitchOn"], (result) => {
+      const switchState =
+        result.isSwitchOn !== undefined ? result.isSwitchOn : false;
+      setIsSwitchOn(switchState);
+      console.log("Loaded switch state from storage:", switchState);
+    });
+  }, []);
+
+  // Handle switch change
   const handleSwitchChange = (event) => {
-    setIsSwitchOn(event.target.checked);
-    console.log(event.target.checked ? "Switch is on" : "Switch is off");
+    const checked = event.target.checked;
+    setIsSwitchOn(checked);
+    chrome.storage.local.set({ isSwitchOn: checked }); // Save the switch state
+    console.log(checked ? "Switch is on" : "Switch is off");
   };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "white", color: "black" }}>
@@ -42,6 +56,7 @@ export default function NavBar() {
             </Typography>
           </IconButton>
 
+          {/* Control the switch directly based on the state */}
           <Switch
             sx={{ ml: "auto" }}
             checked={isSwitchOn}

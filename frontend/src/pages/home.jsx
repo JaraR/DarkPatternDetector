@@ -10,39 +10,19 @@ import Typography from "@mui/material/Typography";
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const [isAutoplayChecked, setIsAutoplayChecked] = useState(false);
 
   const handleSwitchChange = (checked) => {
     setIsSwitchOn(checked);
     console.log(`Switch is ${checked ? "on" : "off"}`);
   };
 
-  const handleCheckboxChange = (name, isChecked) => {
-    if (name === "autoplay") {
-      setIsAutoplayChecked(isChecked); // Update the state for autoplay checkbox
-    }
-    console.log(`${name} is at homepage`, isChecked ? "checked" : "unchecked");
-  };
-
-  // useEffect(() => {
-  //   // Fetching results from the Chrome extension background script
-  //   chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
-  //     if (response && response.count !== undefined) {
-  //       setAutoplayCount(response.count);
-  //     }
-  //   });
-  // }, []);
-
   useEffect(() => {
-    // Fetching results from the Chrome extension background script
-    if (isSwitchOn && isAutoplayChecked) {
-      chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
-        if (response && response.count !== undefined) {
-          setAutoplayCount(response.count);
-        }
-      });
-    }
-  }, [isSwitchOn, isAutoplayChecked]);
+    chrome.runtime.sendMessage({ type: "startAutoplay" }, (response) => {
+      if (response && response.count !== undefined) {
+        setAutoplayCount(response.count);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -72,7 +52,7 @@ export function Home() {
         </TabsContent>
 
         <TabsContent value="settings">
-          <SettingsTab onCheckboxChange={handleCheckboxChange} />
+          <SettingsTab />
         </TabsContent>
       </Tabs>
     </>
