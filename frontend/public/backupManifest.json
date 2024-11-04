@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Dark Pattern Detection on X",
+    "version": "0.1.0",
+    "description": "To detect dark patterns on X.",
+    "permissions": ["activeTab", "scripting"],
+    "action": {
+      "default_popup": "index.html"
+    },
+    
+    "content_scripts": [
+      {
+        "matches": ["*://x.com/*"],
+        "js": ["content-scripts/emotional-steering.js"]
+  
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
+    }
+  }
+  
