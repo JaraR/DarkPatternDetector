@@ -22,7 +22,7 @@ export default function BottomNavigation() {
             Hi :) Do you enjoy our detection tool and want to learn more about
             Dark Patterns?
             <Link
-              href="#"
+              href="https://x-factors.netlify.app/"
               underline="hover"
               sx={{ display: "block", marginTop: 1 }}
             >

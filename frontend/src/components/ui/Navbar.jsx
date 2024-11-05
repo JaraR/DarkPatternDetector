@@ -34,11 +34,6 @@ export default function NavBar() {
     setIsSwitchOn(checked);
     chrome.storage.local.set({ isSwitchOn: checked }); // Save the switch state
     console.log(checked ? "Switch is on" : "Switch is off");
-
-    // Send message based on the new switch state
-    chrome.runtime.sendMessage({
-      type: checked ? "startAutoplay" : "stopAutoplay",
-    });
   };
   return (
     <Box sx={{ flexGrow: 1 }}>

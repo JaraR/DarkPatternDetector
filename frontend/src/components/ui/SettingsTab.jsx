@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function DarkPatternCheckboxes({ onCheckboxChange }) {
   const [checkboxStates, setCheckboxStates] = useState({
@@ -10,21 +10,33 @@ export default function DarkPatternCheckboxes({ onCheckboxChange }) {
     emotionalSteering: false,
   });
 
+  // Load checkbox states from Chrome storage
+  useEffect(() => {
+    chrome.storage.local.get("checkboxStates", (result) => {
+      if (result.checkboxStates) {
+        setCheckboxStates(result.checkboxStates);
+      }
+    });
+  }, []);
+
   // Handle checkbox change
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
-    setCheckboxStates((prevStates) => ({
-      ...prevStates,
+    const newStates = {
+      ...checkboxStates,
       [name]: checked,
-    }));
+    };
 
-    // Call the passed function for any checkbox change
-    onCheckboxChange(name, checked);
+    setCheckboxStates(newStates);
 
-    console.log(
-      `${name} is at setting page`,
-      checked ? "checked" : "unchecked"
-    );
+    if (onCheckboxChange) {
+      onCheckboxChange(name, checked); // Pass the name and checked state to the parent
+    }
+
+    // if (name === "autoplay") {
+    //   console.log(`Autoplay is ${checked ? "checked" : "unchecked"}`);
+    // }
+    chrome.storage.local.set({ checkboxStates: newStates });
   };
 
   return (

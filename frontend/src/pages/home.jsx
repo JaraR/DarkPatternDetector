@@ -10,10 +10,30 @@ import Typography from "@mui/material/Typography";
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isAutoplayChecked, setIsAutoplayChecked] = useState(false);
 
-  const handleSwitchChange = (checked) => {
+  const handleSwitchChange = (event) => {
+    const checked = event.target.checked;
     setIsSwitchOn(checked);
-    console.log(`Switch is ${checked ? "on" : "off"}`);
+    chrome.storage.local.set({ isSwitchOn: checked });
+
+    console.log(checked ? "Switch is on" : "Switch is off");
+
+    // Send message based on the current state of the switch
+    const messageType = checked ? "startAutoplay" : "stopAutoplay";
+    chrome.runtime.sendMessage({ type: messageType }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.error("Error sending message:", chrome.runtime.lastError);
+      } else {
+        console.log("Message sent successfully:", response);
+      }
+    });
+  };
+
+  const handleCheckboxChange = (name, checked) => {
+    setIsAutoplayChecked(checked);
+    chrome.storage.local.set({ isAutoplayChecked: checked });
+    console.log(`${name} is ${checked ? "checked" : "unchecked"}`);
   };
 
   useEffect(() => {
@@ -52,7 +72,7 @@ export function Home() {
         </TabsContent>
 
         <TabsContent value="settings">
-          <SettingsTab />
+          <SettingsTab onCheckboxChange={handleCheckboxChange} />
         </TabsContent>
       </Tabs>
     </>

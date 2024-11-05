@@ -27,6 +27,9 @@ export default function PieActiveArc({ autoplayCount }) {
         justifyContent: "center",
         alignItems: "center",
         margin: 10,
+        border: "1px solid lightgrey",
+        borderRadius: 10,
+        padding: 5,
       }}
       series={[
         {
