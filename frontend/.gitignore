@@ -7,8 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-website-vite/node_modules 
+node_modules/
+website-vite/node_modules/
 build/
 dist
 dist-ssr

@@ -1,2 +1,7 @@
 # Local Netlify folder
 .netlify
+
+# Node modules
+node_modules
+website-vite/node_modules/
+
