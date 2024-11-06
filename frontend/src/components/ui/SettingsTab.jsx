@@ -9,6 +9,8 @@ import promotedAds from "/icons/ads.png";
 import filter from "/icons/filter.png";
 import highlight from "/icons/highlight.png";
 import customization from "/icons/customization.png";
+import pause from "/icons/pause.png";
+import adBlocking from "/icons/adblocking.png";
 
 export default function DarkPatternCheckboxes({ onCheckboxChange }) {
   const [checkboxStates, setCheckboxStates] = useState({
@@ -59,8 +61,8 @@ export default function DarkPatternCheckboxes({ onCheckboxChange }) {
   };
 
   const settingIcons = {
-    "Video-pausing": autoplay,
-    "Ad-blocking": promotedAds,
+    "Video-pausing": pause,
+    "Ad-blocking": adBlocking,
     "Text/video-highlight": highlight,
   };
 
@@ -123,7 +125,7 @@ export default function DarkPatternCheckboxes({ onCheckboxChange }) {
               <img
                 src={settingIcons[option]}
                 alt={`${option} icon`}
-                className="h-6 w-6"
+                className="h-4 w-4"
               />
               <label htmlFor={option} className="text-sm flex-grow">
                 {option

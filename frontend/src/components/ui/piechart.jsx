@@ -4,17 +4,17 @@ import { PieChart } from "@mui/x-charts/PieChart";
 
 export default function PieActiveArc({ autoplayCount }) {
   const darkPattern = [
+    { label: "Engagement Notification", value: 10, color: "#ffa600" },
     {
       label: `Autoplay ${autoplayCount}`,
       value: autoplayCount,
       color: "#ff8453",
     },
-    { label: "Engagement Notification", value: 10, color: "#ffa600" },
-    { label: "Infinite Scrolling", value: 10, color: "#0095e1" },
     { label: "Emotional Steering", value: 10, color: "#ef5675" },
     { label: "Promoted Ads", value: 20, color: "#c38ee8" },
-    { label: "Privacy Zuckering", value: 5, color: "#7aa1ff" },
-    { label: "Obstruction", value: 10, color: "#a1a1a8" },
+    { label: "Infinite Scrolling", value: 10, color: "#7a5195" },
+    { label: "Privacy Zuckering", value: 5, color: "#374c80" },
+    { label: "Obstruction", value: 10, color: "#afb4b4" },
   ];
 
   // bugs here:
