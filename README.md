@@ -1,6 +1,22 @@
-# DarkPatternDetector
-Tool to detect dark patterns on social media sites. Capstone group project for 2023-24 MSc in Computer Science at TU Dublin.
+# React + Vite
 
-"Deceptive patterns (also known as “dark patterns”) are tricks used in websites and apps that make you do things that you didn't mean to, like buying or signing up for something." (Brignull et al., 2023)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Brignull, H., Leiser, M., Santos, C., & Doshi, K. (2023, April 25). Deceptive patterns – user interfaces designed to trick you. deceptive.design. Retrieved April 25, 2023, from https://www.deceptive.design/
+Currently, two official plugins are available:
+
+-   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+-   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Execute (node >=18)
+[readingTimer.css](src%2FreadingTimer-scripts%2FreadingTimer.css)
+```
+pnpm install
+[readingTimer.css](src%2FreadingTimer-scripts%2FreadingTimer.css)
+pnpm dev
+```
+
+## build
+
+```
+pnpm build:dev
+```
