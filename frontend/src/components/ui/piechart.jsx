@@ -7,14 +7,14 @@ export default function PieActiveArc({ autoplayCount }) {
     {
       label: `Autoplay ${autoplayCount}`,
       value: autoplayCount,
-      color: "#94deff",
+      color: "#ff8453",
     },
-    { label: "Engagement Notification", value: 10, color: "#9fa7b8" },
-    { label: "Infinite Scrolling", value: 10, color: "#b9bd76" },
-    { label: "Emotional Steering", value: 30, color: "#ed681d" },
-    { label: "Promoted Ads", value: 20, color: "#adb2ff" },
-    { label: "Privacy Zuckering", value: 5, color: "#b27b09" },
-    { label: "Obstruction", value: 10, color: "#31356e" },
+    { label: "Engagement Notification", value: 10, color: "#ffa600" },
+    { label: "Infinite Scrolling", value: 10, color: "#0095e1" },
+    { label: "Emotional Steering", value: 10, color: "#ef5675" },
+    { label: "Promoted Ads", value: 20, color: "#c38ee8" },
+    { label: "Privacy Zuckering", value: 5, color: "#7aa1ff" },
+    { label: "Obstruction", value: 10, color: "#a1a1a8" },
   ];
 
   // bugs here:

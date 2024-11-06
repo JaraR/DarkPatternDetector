@@ -8,11 +8,17 @@ import Typography from "@mui/material/Typography";
 
 export default function BottomNavigation() {
   return (
-    <Card sx={{ maxWidth: 400 }}>
+    <Card
+      sx={{
+        maxWidth: 400,
+        boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.3)",
+        marginTop: 2,
+      }}
+    >
       <CardHeader
         avatar={
           <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+            <FavoriteIcon sx={{ color: "#0177CC" }} />
           </IconButton>
         }
         title={

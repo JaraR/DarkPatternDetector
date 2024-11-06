@@ -10,11 +10,11 @@ export default function AboutUsTab() {
   return (
     <section className="m-5">
       <div>
-        <h2>What does this detection tool do?</h2>
+        <p style={{ fontWeight: "bold" }}>What does this detection tool do?</p>
         <p>This tool detects dark patterns on X/Twitter.</p>
       </div>
       <div>
-        <h2>What are dark patterns?</h2>
+        <p style={{ fontWeight: "bold" }}>What are dark patterns?</p>
         <p className="font-change">
           "Dark patterns are tricks used in websites and apps that make you do
           things that you didn't mean to, like buying or signing up for
@@ -22,6 +22,9 @@ export default function AboutUsTab() {
           <a href="https://www.deceptive.design">
             https://www.deceptive.design
           </a>
+        </p>
+        <p style={{ fontWeight: "bold" }}>
+          7 dark patterns X-factors can detect
         </p>
       </div>
       <Accordion type="single" collapsible>
