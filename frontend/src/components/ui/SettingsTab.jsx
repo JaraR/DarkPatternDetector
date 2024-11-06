@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import autoplay from "/icons/autoplay.png";
 import infiniteScrolling from "/icons/infinite.png";
-import notification from "/icons/notification.png";
+import engagementNotification from "/icons/notification.png";
 import privacyZuckering from "/icons/privacy.png";
 import obstruction from "/icons/obstruction.png";
-import emotion from "/icons/emotion.png";
-import ads from "/icons/ads.png";
+import emotionalSteering from "/icons/emotion.png";
+import promotedAds from "/icons/ads.png";
 import filter from "/icons/filter.png";
+import highlight from "/icons/highlight.png";
+import customization from "/icons/customization.png";
 
 export default function DarkPatternCheckboxes({ onCheckboxChange }) {
   const [checkboxStates, setCheckboxStates] = useState({
@@ -16,6 +18,13 @@ export default function DarkPatternCheckboxes({ onCheckboxChange }) {
     privacyZuckering: false,
     obstruction: false,
     emotionalSteering: false,
+    promotedAds: false,
+  });
+
+  const [toggleStates, setToggleStates] = useState({
+    "Video-pausing": "disabled",
+    "Ad-blocking": "disabled",
+    "Text/video-highlight": "disabled",
   });
 
   useEffect(() => {
@@ -34,18 +43,30 @@ export default function DarkPatternCheckboxes({ onCheckboxChange }) {
     if (onCheckboxChange) onCheckboxChange(name, checked);
   };
 
-  const icons = {
+  const handleRadioChange = (event) => {
+    const { name, value } = event.target;
+    setToggleStates((prevStates) => ({ ...prevStates, [name]: value }));
+  };
+
+  const iconMapping = {
     autoplay,
     infiniteScrolling,
-    engagementNotification: notification,
+    engagementNotification,
     privacyZuckering,
     obstruction,
-    emotionalSteering: emotion,
-    ads,
+    emotionalSteering,
+    promotedAds,
+  };
+
+  const settingIcons = {
+    "Video-pausing": autoplay,
+    "Ad-blocking": promotedAds,
+    "Text/video-highlight": highlight,
   };
 
   return (
     <div>
+      {/* Filter Section */}
       <div className="ml-5 mt-5 flex items-center space-x-3">
         <img src={filter} alt="Filter icon" className="h-6 w-6" />
         <div>
@@ -56,10 +77,15 @@ export default function DarkPatternCheckboxes({ onCheckboxChange }) {
         </div>
       </div>
 
+      {/* Checkbox List */}
       <div className="flex flex-col space-y-4 border border-gray-200 rounded-lg p-4 m-5">
         {Object.entries(checkboxStates).map(([key, value]) => (
           <div key={key} className="flex items-center space-x-4">
-            <img src={icons[key]} alt={`${key} icon`} className="h-6 w-6" />
+            <img
+              src={iconMapping[key]}
+              alt={`${key} icon`}
+              className="h-6 w-6"
+            />
             <label htmlFor={key} className="text-sm flex-grow">
               {key
                 .replace(/([A-Z])/g, " $1")
@@ -75,6 +101,64 @@ export default function DarkPatternCheckboxes({ onCheckboxChange }) {
             />
           </div>
         ))}
+      </div>
+
+      {/* Toggle Section with Radio Buttons */}
+      <div className="flex flex-col space-y-4 border border-gray-200 rounded-lg p-4 m-5">
+        <div className="flex items-center">
+          <img
+            src={customization}
+            alt="customization icon"
+            className="h-6 w-6"
+          />
+          <h2 className="text-base font-bold ml-2">Customization</h2>
+          {/* <p className="text-sm text-gray-600">
+          Enable/Disable additional features
+        </p> */}
+        </div>
+
+        {["Video-pausing", "Ad-blocking", "Text/video-highlight"].map(
+          (option) => (
+            <div key={option} className="flex items-center space-x-4">
+              <img
+                src={settingIcons[option]}
+                alt={`${option} icon`}
+                className="h-6 w-6"
+              />
+              <label htmlFor={option} className="text-sm flex-grow">
+                {option
+                  .replace(/([A-Z])/g, " $1")
+                  .replace(/^./, (str) => str.toUpperCase())}
+              </label>
+
+              {/* Radio buttons for Enable/Disable */}
+              <div className="flex space-x-4">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name={option}
+                    value="enabled"
+                    checked={toggleStates[option] === "enabled"}
+                    onChange={handleRadioChange}
+                    className="form-radio h-3 w-3 text-blue-600"
+                  />
+                  <span className="ml-2">Enable</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name={option}
+                    value="disabled"
+                    checked={toggleStates[option] === "disabled"}
+                    onChange={handleRadioChange}
+                    className="form-radio h-3 w-3 text-red-600"
+                  />
+                  <span className="ml-2">Disable</span>
+                </label>
+              </div>
+            </div>
+          )
+        )}
       </div>
     </div>
   );
