@@ -1,18 +1,29 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === "updateBadge") {
-    updateBadge(message.count);
+let autoplayTabId = null;
+
+let isAutoplayDetectionActive = false;
+
+// Listen for tab updates to detect the "x.com","bsky.app","reddit.com" URL
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  console.log(tab.url);
+  if (changeInfo.status === "complete" && tab.url.includes("x.com")) {
+    autoplayTabId = tabId; // Store tabId for the autoplay content script
+    console.log("Autoplay tab detected:", autoplayTabId);
   }
 });
 
+// Update badge count and color
 function updateBadge(count) {
   chrome.action.setBadgeText({ text: count.toString() });
   chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
 }
+
+// Update the autoplay count in storage and log it
 function updateResults(count) {
-  autoplayCount = count;
-  console.log("Autoplay count updated in background:", autoplayCount);
-  chrome.storage.local.set({ autoplayCount });
+  console.log("Autoplay count updated in background:", count);
+  chrome.storage.local.set({ autoplayCount: count });
 }
+
+// Handle incoming messages based on type
 function handleMessage(message, sendResponse) {
   switch (message.type) {
     case "updateBadge":
@@ -20,34 +31,30 @@ function handleMessage(message, sendResponse) {
       break;
 
     case "updateAutoplay":
-      updateResults(message.count, sendResponse);
-      break;
-
-    case "getResults":
+      updateResults(message.count);
       chrome.storage.local.get(["autoplayCount"], (result) => {
         const storedAutoplayCount = result.autoplayCount || 0;
         sendResponse({ count: storedAutoplayCount });
       });
       break;
 
-    case "startAutoplayDetection":
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0]?.id) {
-          chrome.tabs.sendMessage(tabs[0].id, {
-            type: "startAutoplayDetection",
-          });
-        }
-      });
+    case "startAutoplay":
+      console.log("Starting autoplay detection");
+      isAutoplayDetectionActive = true;
+      sendResponse({ status: "Autoplay detection started" });
+      if (autoplayTabId !== null) {
+        chrome.tabs.sendMessage(autoplayTabId, { type: "startAutoplay" });
+      }
+
       break;
 
-    case "stopAutoplayDetection":
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0]?.id) {
-          chrome.tabs.sendMessage(tabs[0].id, {
-            type: "stopAutoplayDetection",
-          });
-        }
-      });
+    case "stopAutoplay":
+      console.log("Stopping autoplay detection");
+      isAutoplayDetectionActive = false;
+      sendResponse({ status: "Autoplay detection stopped" });
+      if (autoplayTabId !== null) {
+        chrome.tabs.sendMessage(autoplayTabId, { type: "stopAutoplay" });
+      }
       break;
 
     default:
@@ -56,7 +63,8 @@ function handleMessage(message, sendResponse) {
   }
 }
 
+// Unified message listener
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   handleMessage(message, sendResponse);
-  return true;
+  return true; // Keeps the message channel open for async responses if needed
 });
