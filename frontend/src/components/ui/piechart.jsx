@@ -12,9 +12,9 @@ export default function PieActiveArc({ autoplayCount }) {
     },
     { label: "Emotional Steering", value: 10, color: "#ef5675" },
     { label: "Promoted Ads", value: 20, color: "#c38ee8" },
-    { label: "Infinite Scrolling", value: 10, color: "#7a5195" },
+    { label: "Infinite Scrolling", value: 10, color: "#0095e1" },
+    { label: "Obstruction", value: 10, color: "#a1a1a8" },
     { label: "Privacy Zuckering", value: 5, color: "#374c80" },
-    { label: "Obstruction", value: 10, color: "#afb4b4" },
   ];
 
   // bugs here:

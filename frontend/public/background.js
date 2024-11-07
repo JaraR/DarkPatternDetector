@@ -1,8 +1,10 @@
 let autoplayTabId = null;
+
 let isAutoplayDetectionActive = false;
 
-// Listen for tab updates to detect the "x.com" URL
+// Listen for tab updates to detect the "x.com","bsky.app","reddit.com" URL
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  console.log(tab.url);
   if (changeInfo.status === "complete" && tab.url.includes("x.com")) {
     autoplayTabId = tabId; // Store tabId for the autoplay content script
     console.log("Autoplay tab detected:", autoplayTabId);

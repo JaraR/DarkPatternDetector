@@ -47,6 +47,7 @@ export function Home() {
   return (
     <>
       <Navbar isSwitchOn={isSwitchOn} onSwitchChange={handleSwitchChange} />
+
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
@@ -72,7 +73,7 @@ export function Home() {
         </TabsContent>
 
         <TabsContent value="settings">
-          <SettingsTab onCheckboxChange={handleCheckboxChange} />
+          <SettingsTab />
         </TabsContent>
       </Tabs>
     </>
