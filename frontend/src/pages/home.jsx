@@ -3,50 +3,28 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/ui/navbar";
 import PieActiveArc from "@/components/ui/piechart";
 import AboutUsTab from "@/components/ui/AboutUsTab";
-import SettingsTab from "@/components/ui/SettingsTab";
+
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
+import SettingTab from "@/components/ui/SettingTab";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const [isAutoplayChecked, setIsAutoplayChecked] = useState(false);
-
-  const handleSwitchChange = (event) => {
-    const checked = event.target.checked;
-    setIsSwitchOn(checked);
-    chrome.storage.local.set({ isSwitchOn: checked });
-
-    console.log(checked ? "Switch is on" : "Switch is off");
-
-    // Send message based on the current state of the switch
-    const messageType = checked ? "startAutoplay" : "stopAutoplay";
-    chrome.runtime.sendMessage({ type: messageType }, (response) => {
-      if (chrome.runtime.lastError) {
-        console.error("Error sending message:", chrome.runtime.lastError);
-      } else {
-        console.log("Message sent successfully:", response);
-      }
-    });
-  };
-
-  const handleCheckboxChange = (name, checked) => {
-    setIsAutoplayChecked(checked);
-    chrome.storage.local.set({ isAutoplayChecked: checked });
-    console.log(`${name} is ${checked ? "checked" : "unchecked"}`);
-  };
 
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "updateAutoplay" }, (response) => {
+      console.log("Response received from background:", response);
       if (response && response.count !== undefined) {
         setAutoplayCount(response.count);
+      } else {
+        console.error("Error: Autoplay count not received or is undefined.");
       }
     });
   }, []);
 
   return (
     <>
-      <Navbar isSwitchOn={isSwitchOn} onSwitchChange={handleSwitchChange} />
+      <Navbar />
 
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList className="flex justify-around">
@@ -73,7 +51,7 @@ export function Home() {
         </TabsContent>
 
         <TabsContent value="settings">
-          <SettingsTab />
+          <SettingTab />
         </TabsContent>
       </Tabs>
     </>
