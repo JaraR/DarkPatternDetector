@@ -30,6 +30,7 @@ export default function AboutUsTab() {
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>Emotional Steering</AccordionTrigger>
+
           <AccordionContent>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.

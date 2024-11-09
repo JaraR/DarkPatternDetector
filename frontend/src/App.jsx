@@ -1,6 +1,3 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import {
   createHashRouter,
@@ -15,8 +12,8 @@ import { InfiniteScrollingSettings } from "./pages/InfiniteScrollingSettings";
 // ESLint tests (note: have not gotten it to work, rolled back library installations)
 // eslint-config-react-app linting configuration requires ver 8.x, we are running ver 9.11.1-9.12,
 // need to either find another configuration or make our own.
-const title = "React";
-const esLintTest = "test123";
+// const title = "React";
+// const esLintTest = "test123";
 
 // Working router constant using react-router's new data API supporting routers. Uses hashrouter
 // as URL handling is different for chrome extensions and  currently does not have access to a server.

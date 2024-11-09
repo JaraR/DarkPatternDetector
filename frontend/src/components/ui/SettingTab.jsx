@@ -16,10 +16,8 @@ import notification from "/public/icons/notification.png";
 import obstruction from "/public/icons/obstruction.png";
 import ads from "/public/icons/ads.png";
 import privacy from "/public/icons/privacy.png";
-import adblocking from "/public/icons/adblocking.png";
-import pause from "/public/icons/pause.png";
-import customization from "/public/icons/customization.png";
-import highlight from "/public/icons/highlight.png";
+
+import CustomizationCard from "@/components/ui/CustomizationCard";
 
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
@@ -44,7 +42,7 @@ export default function SettingTest() {
   return (
     <>
       <Card className="border border-gray-300 m-3">
-        <CardHeader>
+        <CardHeader className="pt-2 pb-1">
           <CardTitle className="flex items-center">
             <img src={FilterIcon} alt="Filter Icon" className="h-6 w-6 mr-3" />
             <span className="text-xl">Filter By Types</span>
@@ -165,123 +163,7 @@ export default function SettingTest() {
           </div>
         </CardContent>
       </Card>
-      <Card className="border border-gray-300 m-3">
-        <CardHeader>
-          <CardTitle className="flex items-center">
-            <img
-              src={customization}
-              alt="Filter Icon"
-              className="h-4 w-4 mr-3"
-            />
-            <span className="text-xl">Customization</span>
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent className="space-y-3 pt-2">
-          {/* Video-Pausing */}
-          <div className="flex items-center justify-between space-x-3">
-            <Label
-              htmlFor="video-pausing"
-              className="flex items-center space-x-2"
-            >
-              <img
-                src={pause}
-                alt="Video-Pausing Icon"
-                className="h-4 w-4 mr-2"
-              />
-              <span className="text-sm font-light">Video-Pausing</span>
-            </Label>
-            <div className="flex items-center space-x-2">
-              <label className="flex items-center space-x-1">
-                <input
-                  type="radio"
-                  name="video-pausing"
-                  value="enable"
-                  className="form-radio h-4 w-4 text-blue-600"
-                />
-                <span className="text-xs">Enable</span>
-              </label>
-              <label className="flex items-center space-x-1">
-                <input
-                  type="radio"
-                  name="video-pausing"
-                  value="disable"
-                  className="form-radio h-4 w-4 text-blue-600"
-                />
-                <span className="text-xs">Disable</span>
-              </label>
-            </div>
-          </div>
-          {/* Ads-Pausing */}
-          <div className="flex items-center justify-between space-x-3">
-            <Label
-              htmlFor="video-pausing"
-              className="flex items-center space-x-2"
-            >
-              <img
-                src={adblocking}
-                alt="Video-Pausing Icon"
-                className="h-4 w-4 mr-2"
-              />
-              <span className="text-sm font-light">Ad-Blocking</span>
-            </Label>
-            <div className="flex items-center space-x-2">
-              <label className="flex items-center space-x-1">
-                <input
-                  type="radio"
-                  name="video-pausing"
-                  value="enable"
-                  className="form-radio h-4 w-4 text-blue-600"
-                />
-                <span className="text-xs">Enable</span>
-              </label>
-              <label className="flex items-center space-x-1">
-                <input
-                  type="radio"
-                  name="video-pausing"
-                  value="disable"
-                  className="form-radio h-4 w-4 text-blue-600"
-                />
-                <span className="text-xs">Disable</span>
-              </label>
-            </div>
-          </div>
-          {/* Ads-Pausing */}
-          <div className="flex items-center justify-between space-x-3">
-            <Label
-              htmlFor="video-pausing"
-              className="flex items-center space-x-2"
-            >
-              <img
-                src={highlight}
-                alt="Video-Pausing Icon"
-                className="h-4 w-4 mr-2"
-              />
-              <span className="text-sm font-light">Tex/Video Highlight</span>
-            </Label>
-            <div className="flex items-center space-x-2">
-              <label className="flex items-center space-x-1">
-                <input
-                  type="radio"
-                  name="video-pausing"
-                  value="enable"
-                  className="form-radio h-4 w-4 text-blue-600"
-                />
-                <span className="text-xs">Enable</span>
-              </label>
-              <label className="flex items-center space-x-1">
-                <input
-                  type="radio"
-                  name="video-pausing"
-                  value="disable"
-                  className="form-radio h-4 w-4 text-blue-600"
-                />
-                <span className="text-xs">Disable</span>
-              </label>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <CustomizationCard />
     </>
   );
 }
