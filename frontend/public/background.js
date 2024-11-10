@@ -41,6 +41,8 @@ function handleMessage(message, sender, sendResponse) {
 const MESSAGE_TYPE = {
   START_AUTOPLAY: "startAutoplay",
   STOP_AUTOPLAY: "stopAutoplay",
+  START_PROMOTED_ADS: "startPromotedAds",
+  STOP_PROMOTED_ADS: "stopPromotedAds",
 };
 
 // Function to send a message to the content script in the active tab
@@ -58,32 +60,74 @@ function sendMessageToContent(tabId, message) {
 
 // Listener for changes in chrome.storage
 chrome.storage.onChanged.addListener(async (changes, namespace) => {
-  if (namespace === "sync" && changes.autoplay) {
-    const newAutoplayValue = changes.autoplay.newValue;
-    console.log("Autoplay setting changed:", newAutoplayValue);
+  if (namespace === "sync") {
+    // Check if autoplay setting changed
+    if (changes.autoplay) {
+      const newAutoplayValue = changes.autoplay.newValue;
+      console.log("Autoplay setting changed:", newAutoplayValue);
 
-    const messageType = newAutoplayValue
-      ? MESSAGE_TYPE.START_AUTOPLAY
-      : MESSAGE_TYPE.STOP_AUTOPLAY;
+      const autoplayMessageType = newAutoplayValue
+        ? MESSAGE_TYPE.START_AUTOPLAY
+        : MESSAGE_TYPE.STOP_AUTOPLAY;
 
-    try {
-      // Query relevant tabs (e.g., X, Bluesky, Reddit)
-      const tabs = await chrome.tabs.query({
-        active: true,
-        currentWindow: true,
-        url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
-      });
-
-      if (tabs.length > 0 && tabs[0].id !== undefined) {
-        const response = await sendMessageToContent(tabs[0].id, {
-          type: messageType,
+      try {
+        // Query relevant tabs (e.g., X, Bluesky, Reddit)
+        const tabs = await chrome.tabs.query({
+          active: true,
+          currentWindow: true,
+          url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
         });
-        console.log("Response from content script:", response);
-      } else {
-        console.warn("No relevant tab found or tab ID is undefined.");
+
+        if (tabs.length > 0 && tabs[0].id !== undefined) {
+          const response = await sendMessageToContent(tabs[0].id, {
+            type: autoplayMessageType,
+          });
+          console.log("Response from content script for autoplay:", response);
+        } else {
+          console.warn("No relevant tab found or tab ID is undefined.");
+        }
+      } catch (error) {
+        console.error(
+          "Failed to send autoplay message to content script:",
+          error
+        );
       }
-    } catch (error) {
-      console.error("Failed to send message to content script:", error);
+    }
+
+    // Check if promotedAds setting changed
+    if (changes.promotedAds) {
+      const newPromotedAdsValue = changes.promotedAds.newValue;
+      console.log("Promoted Ads setting changed:", newPromotedAdsValue);
+
+      const promotedAdsMessageType = newPromotedAdsValue
+        ? MESSAGE_TYPE.START_PROMOTED_ADS
+        : MESSAGE_TYPE.STOP_PROMOTED_ADS;
+
+      try {
+        // Query relevant tabs (e.g., X, Bluesky, Reddit)
+        const tabs = await chrome.tabs.query({
+          active: true,
+          currentWindow: true,
+          url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+        });
+
+        if (tabs.length > 0 && tabs[0].id !== undefined) {
+          const response = await sendMessageToContent(tabs[0].id, {
+            type: promotedAdsMessageType,
+          });
+          console.log(
+            "Response from content script for promoted ads:",
+            response
+          );
+        } else {
+          console.warn("No relevant tab found or tab ID is undefined.");
+        }
+      } catch (error) {
+        console.error(
+          "Failed to send promoted ads message to content script:",
+          error
+        );
+      }
     }
   }
 });

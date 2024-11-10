@@ -22,6 +22,7 @@ import CustomizationCard from "@/components/ui/CustomizationCard";
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
   const [isAutoplay, setIsAutoplay] = useState({});
+  const [isProtomotedAds, setIsProtomotedAds] = useState({});
 
   // autoplay detection
   const startAutoplayDetection = (e) => {
@@ -35,6 +36,22 @@ export default function SettingTest() {
     if (chrome.storage) {
       chrome.storage.sync.get(["autoplay"], (result) => {
         setIsAutoplay(result.autoplay);
+      });
+    }
+  });
+
+  //prmoted ads detection
+  const startPromotedAdsDetection = (e) => {
+    if (chrome.storage) {
+      chrome.storage.sync.set({ promotedAds: e });
+    }
+    setIsProtomotedAds(e);
+  };
+
+  useEffect(() => {
+    if (chrome.storage) {
+      chrome.storage.sync.get(["promotedAds"], (result) => {
+        setIsProtomotedAds(result.promotedAds);
       });
     }
   });
@@ -129,7 +146,11 @@ export default function SettingTest() {
               />
               <span className="text-lg font-light">Promoted Ads</span>
             </Label>
-            <Checkbox id="promoted-ads" />
+            <Checkbox
+              id="promoted-ads"
+              checked={isProtomotedAds}
+              onCheckedChange={startPromotedAdsDetection}
+            />
           </div>
 
           <div className="flex items-center justify-between space-x-3">
