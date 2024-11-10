@@ -21,7 +21,7 @@ function updateStorageAndNotify(type, storageKey, messageType) {
 }
 function highlightVideo(video) {
   video.parentElement.style.position = "relative";
-  // video.parentElement.style.height = `${video.offsetHeight}px`;
+
   video.style.borderLeft = "6px dashed #ff8453";
   video.style.outlineOffset = "6px";
 }
@@ -38,6 +38,13 @@ function startAutoplay() {
         alert("Autoplay detected!");
         console.log("Autoplay detected on video", video);
         highlightVideo(video);
+
+        // Use a delay before pausing to ensure the video can be paused
+        setTimeout(() => {
+          video.pause();
+          console.log("Video paused:", video);
+        }, 100); // 100 ms delay
+
         console.log("highlighted video", video);
 
         // Update badge and autoplay count
