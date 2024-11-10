@@ -19,9 +19,15 @@ function updateStorageAndNotify(type, storageKey, messageType) {
     });
   });
 }
+function highlightVideo(video) {
+  video.parentElement.style.position = "relative";
+  // video.parentElement.style.height = `${video.offsetHeight}px`;
+  video.style.borderLeft = "6px dashed #ff8453";
+  video.style.outlineOffset = "6px";
+}
 
 // Function to check for autoplayed videos
-function checkAutoplay() {
+function startAutoplay() {
   const videos = document.querySelectorAll("video");
   videos.forEach((video) => {
     console.log("Videos found:", videos);
@@ -31,6 +37,8 @@ function checkAutoplay() {
 
         alert("Autoplay detected!");
         console.log("Autoplay detected on video", video);
+        highlightVideo(video);
+        console.log("highlighted video", video);
 
         // Update badge and autoplay count
         updateStorageAndNotify("badgeCount", "badgeCount", "updateBadge");
@@ -47,7 +55,7 @@ function checkAutoplay() {
 // MutationObserver to detect newly added video elements
 function startAutoplayDetection() {
   observer = new MutationObserver(() => {
-    checkAutoplay();
+    startAutoplay();
   });
 
   observer.observe(document.body, {
