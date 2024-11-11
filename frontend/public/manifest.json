@@ -1,23 +1,18 @@
 {
-    "manifest_version": 3,
-    "name": "select-gpt",
-    "description": "A chrome extension that lets you select any text and run it through ChatGPT",
-    "version": "1.0.0",
-    "host_permissions": ["https://*.openai.com/"],
-    "permissions": ["storage", "tabs"],
-    "icons": {
-        "512": "assets/icons/hexagonal.png"
-    },
-    "action": {
-        "default_popup": "popup.html"
-    },
-    "background": {
-        "service_worker": "background.js"
-    },
-    "content_scripts": [
-        {
-            "matches": ["http://*/*", "https://*/*"],
-            "js": ["contentScript.js"]
-        }
-    ]
+  "manifest_version": 3,
+  "name": "Dark Pattern Detection on X",
+  "version": "0.1.0",
+  "description": "To detect dark patterns on X.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_title": "Click to show an alert",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://x.com/*"],
+      "js": ["content-scripts/emotional-steering.js"]
+
+    }
+  ]
 }
