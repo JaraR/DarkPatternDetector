@@ -32,10 +32,17 @@ export function TextareaForm() {
     resolver: zodResolver(FormSchema),
   })
 
+// outputs JSON for OpenAI API in console
   function onSubmit(data) {
     console.log(data)
+    console.log(data.tweet)
+    console.log(JSON.stringify({
+        role: "user",
+        content: `Analyze the sentiment of this text and identify if it contains any information that should be verified. Indicate if it invokes specific emotions in readers and whether it may be emotionally manipulative. '${data.tweet}'`
+    }))
   }
 
+// Form controls and visible form info
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
