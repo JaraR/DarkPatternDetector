@@ -22,7 +22,7 @@ import CustomizationCard from "@/components/ui/CustomizationCard";
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
   const [isAutoplay, setIsAutoplay] = useState({});
-  const [isProtomotedAds, setIsProtomotedAds] = useState({});
+  const [isPromotedAds, setIsProtomotedAds] = useState({});
 
   // autoplay detection
   const startAutoplayDetection = (e) => {
@@ -148,7 +148,7 @@ export default function SettingTest() {
             </Label>
             <Checkbox
               id="promoted-ads"
-              checked={isProtomotedAds}
+              checked={isPromotedAds}
               onCheckedChange={startPromotedAdsDetection}
             />
           </div>

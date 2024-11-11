@@ -53,8 +53,7 @@ export function Home() {
         <TabsContent value="results">
           <div className="mt-8 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
-              {/* {autoplayCount} (Autoplay) */}
-              {promotedAdsCount}
+              Total # detected dark pattern {promotedAdsCount + autoplayCount}
             </Typography>
             <Typography variant="subtitle1" component="div" gutterBottom>
               Detected Dark Patterns

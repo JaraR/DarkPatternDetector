@@ -66,7 +66,7 @@ function handleMessage(message, sender, sendResponse) {
 
     case "updatePromotedAds":
       updatePromotedAdsCount(message.count);
-      chrome.storage.local.get(["PromotedAdsCount"], (result) => {
+      chrome.storage.local.get(["promotedAdsCount"], (result) => {
         const storedPromotedAdsCount = result.promotedAdsCount || 0;
         console.log(
           "Retrieved promoted ads count in background:",

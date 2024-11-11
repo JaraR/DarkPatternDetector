@@ -33,8 +33,6 @@ function checkForAds() {
       console.log("Promoted ad detected:", span);
 
       highlightAd(span);
-      // Update badge and autoplay count
-      //   updateStorageAndNotify("badgeCount", "badgeCount", "updateBadge");
 
       updateStorageAndNotify(
         "promotedAdsCount",
