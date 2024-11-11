@@ -1,24 +1,59 @@
+// // Function to update the badge text and background color
+// function updateBadge(count) {
+//   chrome.action.setBadgeText({ text: count.toString() });
+//   chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
+// }
+// //autoplay
+// function updateAutoplayCount(count) {
+//   console.log("Autoplay count updated in background:", count);
+//   chrome.storage.local.set({ autoplayCount: count });
+// }
+// //promoted ads
+// function updatePromotedAdsCount(count) {
+//   console.log("Promoted Ads count updated in background:", count);
+//   chrome.storage.local.set({ promotedAdsCount: count });
+// }
+
 // Function to update the badge text and background color
-function updateBadge(count) {
-  chrome.action.setBadgeText({ text: count.toString() });
-  chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
+function updateBadge() {
+  // Fetch both counts from storage and update the badge with the sum
+  chrome.storage.local.get(["autoplayCount", "promotedAdsCount"], (data) => {
+    const totalCount = (data.autoplayCount || 0) + (data.promotedAdsCount || 0);
+    chrome.action.setBadgeText({ text: totalCount.toString() });
+    chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
+  });
 }
 
-function updateResults(count) {
+// Autoplay update function
+function updateAutoplayCount(count) {
   console.log("Autoplay count updated in background:", count);
-  chrome.storage.local.set({ autoplayCount: count });
+  // Store the updated autoplay count in local storage
+  chrome.storage.local.set({ autoplayCount: count }, () => {
+    // After updating the autoplay count, update the badge
+    updateBadge();
+  });
+}
+
+// Promoted ads update function
+function updatePromotedAdsCount(count) {
+  console.log("Promoted Ads count updated in background:", count);
+  // Store the updated promoted ads count in local storage
+  chrome.storage.local.set({ promotedAdsCount: count }, () => {
+    // After updating the promoted ads count, update the badge
+    updateBadge();
+  });
 }
 
 // Function to handle messages from content scripts or other parts of the extension
 function handleMessage(message, sender, sendResponse) {
   switch (message.type) {
     case "updateBadge":
-      updateBadge(message.count); // Update badge with new count
+      updateBadge(message.count);
       sendResponse({ status: "Badge updated successfully" });
       break;
 
     case "updateAutoplay":
-      updateResults(message.count);
+      updateAutoplayCount(message.count);
       chrome.storage.local.get(["autoplayCount"], (result) => {
         const storedAutoplayCount = result.autoplayCount || 0;
         console.log(
@@ -26,6 +61,18 @@ function handleMessage(message, sender, sendResponse) {
           storedAutoplayCount
         );
         sendResponse({ count: storedAutoplayCount });
+      });
+      break;
+
+    case "updatePromotedAds":
+      updatePromotedAdsCount(message.count);
+      chrome.storage.local.get(["PromotedAdsCount"], (result) => {
+        const storedPromotedAdsCount = result.promotedAdsCount || 0;
+        console.log(
+          "Retrieved promoted ads count in background:",
+          storedPromotedAdsCount
+        );
+        sendResponse({ count: storedPromotedAdsCount });
       });
       break;
 

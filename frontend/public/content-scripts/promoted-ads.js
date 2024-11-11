@@ -1,6 +1,21 @@
 const adText = "Ad";
 let alertedAds = [];
 
+function updateStorageAndNotify(type, storageKey, messageType) {
+  chrome.storage.local.get([storageKey], function (result) {
+    let currentCount = result[storageKey] || 0;
+    currentCount += 1;
+
+    chrome.storage.local.set({ [storageKey]: currentCount });
+
+    // Notify the background script to update the count
+    chrome.runtime.sendMessage({
+      type: messageType,
+      count: currentCount,
+    });
+  });
+}
+
 // Function to highlight the ad feed
 function highlightAd(adSpan) {
   adSpan.style.borderLeft = "6px dashed #c38ee8";
@@ -18,6 +33,14 @@ function checkForAds() {
       console.log("Promoted ad detected:", span);
 
       highlightAd(span);
+      // Update badge and autoplay count
+      //   updateStorageAndNotify("badgeCount", "badgeCount", "updateBadge");
+
+      updateStorageAndNotify(
+        "promotedAdsCount",
+        "promotedAdsCount",
+        "updatePromotedAds"
+      );
     }
   });
 }
