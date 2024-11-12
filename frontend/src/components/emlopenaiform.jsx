@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
+import { OpenAIapi } from "@/lib/openAIapi.mjs"
 
 const FormSchema = z.object({
   tweet: z
@@ -40,6 +41,10 @@ export function TextareaForm() {
         role: "user",
         content: `Analyze the sentiment of this text and identify if it contains any information that should be verified. Indicate if it invokes specific emotions in readers and whether it may be emotionally manipulative. '${data.tweet}'`
     }))
+
+    return(
+        OpenAIapi(data.tweet)
+    )
   }
 
 // Form controls and visible form info
