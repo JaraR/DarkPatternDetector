@@ -1,132 +1,108 @@
-/* App.css */
-
-/* ****************Navbar**************** */
-.navbar ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-around;
-  background-color: #f8f9fa;
-  padding: 10px 0;
+/* previous create-react-app code */
+.App {
+    text-align: center;
 }
 
-.navbar li {
-  margin: 0 15px;
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
 }
 
-.navbar a {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
-  font-size: 16px;
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
-.navbar a:hover {
-  color: #0056b3;
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
-.logo-toggle-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
+.App-link {
+    color: #61dafb;
 }
 
-.logo-title-container {
-  display: flex;
-  align-items: center;
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* previous create-react-app code */
+
+/* default Vite code */
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-.logo-icon {
-  width: 40px;
-  height: auto;
-  margin-right: 20px;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.close-button {
-  background-color: transparent;
-  border: none;
-}
-.close-icon {
-  width: 20px;
-  height: auto;
-}
-
-.toggle-close-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* ************* Settings page ***************** */
-.filter-container {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  margin: 0px;
-  padding: 0px;
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
 }
 
-.filter-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 5px 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding-right: 10px;
+.card {
+  padding: 2em;
 }
 
-.filter-list li {
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 5px 0;
-  width: 100%;
-}
+.read-the-docs {
+  color: #888;
+} */
+/* default Vite code */
 
-.dark-pattern-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+.home-tabs {
+    margin: 0 auto;
 }
+.results-tabs-list {
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between !important;
+    border-radius: 0 !important;
+    background-image: linear-gradient(330deg, #8e4ec6 0, #3e63dd 100%);
 
-.filter-checkbox {
-  margin-left: auto;
-  width: 20px;
-  height: 20px;
+    button {
+        color: white;
+    }
 }
-
-.pref-checkbox {
-  margin-left: 20px;
-}
-
-.preference-container {
-  margin: 0px;
-  padding: 0px;
-}
-
-.preference-list {
-  list-style-type: none;
-  display: flex;
-  padding: 0;
-  margin: 0;
-  justify-content: space-around;
-  gap: 10px;
-}
-.pref-checkbox {
-  margin-left: 10px;
-}
-
-.preference-list li {
-  display: flex;
-  align-items: center;
-}
-
-.setting-page-title {
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
+.results-tabs-content {
+    width: 100%;
+    padding: 20px;
+    line-height: 35px;
+    font-size: 16px;
+    color: white;
+    background-image: linear-gradient(330deg, #8e4ec6 0, #3e63dd 100%);
 }

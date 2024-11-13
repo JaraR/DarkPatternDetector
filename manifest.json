@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "X Factor",
+    "version": "0.1",
+    "description": "Detect Dark Patterns on Social Media",
+    "permissions": [
+        "tabs",
+        "scripting",
+        "activeTab",
+        "storage"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/content-scripts/autoplay.js",
+                "src/InfiniteScrolling-scripts/infiniteScrolling.jsx",
+                "src/readingTimer-scripts/readingTimer.jsx"
+            ]
+        }
+    ]
+}
