@@ -26,6 +26,7 @@ function highlightAd(adSpan) {
 // Function to check for ads
 function checkForAds() {
   const spans = document.querySelectorAll("span");
+
   spans.forEach((span) => {
     if (span.textContent.trim() === adText && !alertedAds.includes(span)) {
       alertedAds.push(span);
@@ -33,11 +34,21 @@ function checkForAds() {
       console.log("Promoted ad detected:", span);
 
       highlightAd(span);
-      const parentArticle = span.closest("article");
-      if (parentArticle) {
-        parentArticle.style.filter = "blur(4px)";
+
+      const article = span.closest("article");
+      if (article) {
+        const articleLinks = article.querySelectorAll("a");
+
+        // Add click event listener to each <a> tag inside the <article>
+        articleLinks.forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            alert("This will redirect you to an thrird-party website");
+          });
+        });
       }
 
+      // Call the updateStorageAndNotify function
       updateStorageAndNotify(
         "promotedAdsCount",
         "promotedAdsCount",
