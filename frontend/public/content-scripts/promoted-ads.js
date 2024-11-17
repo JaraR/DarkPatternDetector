@@ -33,6 +33,10 @@ function checkForAds() {
       console.log("Promoted ad detected:", span);
 
       highlightAd(span);
+      const parentArticle = span.closest("article");
+      if (parentArticle) {
+        parentArticle.style.filter = "blur(4px)";
+      }
 
       updateStorageAndNotify(
         "promotedAdsCount",
