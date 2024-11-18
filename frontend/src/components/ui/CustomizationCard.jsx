@@ -62,7 +62,7 @@ const CustomizationCard = () => {
               alt="Ad-Blocking Icon"
               className="h-4 w-4 mr-2"
             />
-            <span className="text-sm font-light">Ad-Blocking</span>
+            <span className="text-sm font-light">Ad-Bluring</span>
           </Label>
           <div className="flex items-center space-x-2">
             <label className="flex items-center space-x-1">

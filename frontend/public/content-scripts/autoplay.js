@@ -1,5 +1,3 @@
-//mutation observer
-
 /* eslint-disable no-undef */
 
 let alertedVideos = [];
@@ -21,7 +19,6 @@ function updateStorageAndNotify(type, storageKey, messageType) {
 }
 function highlightVideo(video) {
   video.parentElement.style.position = "relative";
-
   video.style.borderLeft = "6px dashed #ff8453";
   video.style.outlineOffset = "6px";
 }
@@ -35,7 +32,7 @@ function startAutoplay() {
       if (video.autoplay || !video.paused) {
         alertedVideos.push(video);
 
-        alert("Autoplay detected!");
+        // alert("Autoplay detected!");
         console.log("Autoplay detected on video", video);
         highlightVideo(video);
 
@@ -43,7 +40,7 @@ function startAutoplay() {
         setTimeout(() => {
           video.pause();
           console.log("Video paused:", video);
-        }, 100); // 100 ms delay
+        }, 100);
 
         console.log("highlighted video", video);
 

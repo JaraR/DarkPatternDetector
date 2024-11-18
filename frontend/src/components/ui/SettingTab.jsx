@@ -62,7 +62,7 @@ export default function SettingTest() {
         <CardHeader className="pt-2 pb-1">
           <CardTitle className="flex items-center">
             <img src={FilterIcon} alt="Filter Icon" className="h-6 w-6 mr-3" />
-            <span className="text-xl">Filter By Types</span>
+            <span className="text-xl">Enable/Disable Dark Pattern</span>
           </CardTitle>
 
           <CardDescription>

@@ -30,7 +30,7 @@ function checkForAds() {
   spans.forEach((span) => {
     if (span.textContent.trim() === adText && !alertedAds.includes(span)) {
       alertedAds.push(span);
-      alert("Promoted ads detected!");
+      // alert("Promoted ads detected!");
       console.log("Promoted ad detected:", span);
 
       highlightAd(span);
