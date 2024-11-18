@@ -43,7 +43,13 @@ function checkForAds() {
         articleLinks.forEach((link) => {
           link.addEventListener("click", (event) => {
             event.preventDefault();
-            alert("This will redirect you to an thrird-party website");
+
+            const userChoice = confirm(
+              "This will redirect you to a third-party website. Do you want to proceed?"
+            );
+            if (userChoice) {
+              window.open(link.href, "_blank");
+            }
           });
         });
       }
