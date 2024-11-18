@@ -39,18 +39,22 @@ function checkForAds() {
       if (article) {
         const articleLinks = article.querySelectorAll("a");
 
-        // Add click event listener to each <a> tag inside the <article>
         articleLinks.forEach((link) => {
-          link.addEventListener("click", (event) => {
-            event.preventDefault();
+          if (
+            link.hasAttribute("target") &&
+            link.getAttribute("target") === "_blank"
+          ) {
+            link.addEventListener("click", (event) => {
+              event.preventDefault();
 
-            const userChoice = confirm(
-              "This will redirect you to a third-party website. Do you want to proceed?"
-            );
-            if (userChoice) {
-              window.open(link.href, "_blank");
-            }
-          });
+              const userChoice = confirm(
+                "This will redirect you to a third-party website. Do you want to proceed?"
+              );
+              if (userChoice) {
+                window.open(link.href, "_blank");
+              }
+            });
+          }
         });
       }
 
