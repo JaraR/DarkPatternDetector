@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+
 import { createTheme } from "@mui/material/styles";
 
 import { AppProvider } from "@toolpad/core/AppProvider";
@@ -17,13 +17,13 @@ import logo from "../assets/logo1.png";
 
 const NAVIGATION = [
   {
-    segment: "dark-patterns",
-    title: "Dark Patterns On Social Media",
+    segment: "installation",
+    title: "Installation",
     icon: <HomeIcon />,
   },
   {
     segment: "project",
-    title: "Project and Report",
+    title: "Dark pattern and our project",
     icon: <EditNoteIcon />,
   },
   {
@@ -64,7 +64,7 @@ function DemoPageContent({ pathname }) {
         mt: 2,
       }}
     >
-      {pathname === "/dark-patterns" && <PatternCard />}
+      {pathname === "/installation" && <PatternCard />}
       {pathname === "/team" && <TeamList />}
       {pathname === "/project" && <Project />}
     </Box>
@@ -79,7 +79,7 @@ DemoPageContent.propTypes = {
 function Home(props) {
   const { window } = props;
   //this is default router
-  const router = useDemoRouter("/dark-patterns");
+  const router = useDemoRouter("/installation");
 
   const demoWindow = window !== undefined ? window() : undefined;
 

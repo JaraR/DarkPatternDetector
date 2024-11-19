@@ -7,6 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 export default function TeamList() {
   const asdMembers = [
@@ -31,7 +32,7 @@ export default function TeamList() {
     {
       name: "Ashus Zahid",
       role: "Jedi Knight",
-      avatar: "/static/images/avatar/4.jpg", // Use the appropriate avatar for Ahsoka
+      avatar: "/static/images/avatar/4.jpg",
     },
     {
       name: "Habib Abdulhamid",
@@ -49,17 +50,17 @@ export default function TeamList() {
     {
       name: "Andrea Curley ",
       role: "Jedi Master",
-      avatar: "/static/images/avatar/4.jpg", // Use the same or different avatar as per your preference
+      avatar: "/static/images/avatar/4.jpg",
     },
     {
       name: "Brendan Tierney",
       role: "Jedi Master",
-      avatar: "/static/images/avatar/6.jpg", // Use the same or different avatar as per your preference
+      avatar: "/static/images/avatar/6.jpg",
     },
     {
       name: "Damian Gordon",
       role: "Jedi Master",
-      avatar: "/static/images/avatar/10.jpg", // Add an appropriate avatar for Mace Windu
+      avatar: "/static/images/avatar/10.jpg",
     },
   ];
 
@@ -102,17 +103,35 @@ export default function TeamList() {
   );
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-around",
-        padding: 2,
-        width: "100%",
-      }}
-    >
-      {renderGroup("ASD Members", asdMembers)}
-      {renderGroup("DS Members", dsMembers)}
-      {renderGroup("Mentors", mentors)}
-    </Box>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          padding: 2,
+          width: "100%",
+        }}
+      >
+        {renderGroup("ASD Members", asdMembers)}
+        {renderGroup("DS Members", dsMembers)}
+        {renderGroup("Mentors", mentors)}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "left",
+          padding: 2,
+          gap: 2,
+          width: "100%",
+        }}
+      >
+        <Typography variant="h6" gutterBottom>
+          Our Github
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          <Button variant="contained">Github</Button>
+        </Typography>
+      </Box>
+    </>
   );
 }
