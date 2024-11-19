@@ -3,7 +3,6 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
 export default function BottomNavigation() {
@@ -24,24 +23,33 @@ export default function BottomNavigation() {
         title={
           <div style={{ textAlign: "left" }}>
             {" "}
-            {/* Align text to the left */}
             Hi :) Do you enjoy our detection tool and want to learn more about
             Dark Patterns?
-            <Link
+            <a
               href="https://x-factors.netlify.app/"
-              underline="hover"
-              sx={{ display: "block", marginTop: 1 }}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                textDecoration: "none",
+                display: "block",
+                marginTop: "8px",
+              }}
             >
-              {" "}
-              {/* Use block to stack and add margin */}
               <Typography
                 variant="body2"
                 component="span"
-                sx={{ fontWeight: "bold" }}
+                sx={{
+                  fontWeight: "bold",
+                  color: "#0177CC",
+                  textDecoration: "none",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
               >
                 Go to Our Website
               </Typography>
-            </Link>
+            </a>
           </div>
         }
         sx={{ padding: "16px" }}
