@@ -13,7 +13,8 @@ import TeamList from "../components/TeamList";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import HomeIcon from "@mui/icons-material/Home";
 import Project from "../components/Project";
-import logo from "../assets/logo1.png";
+import logo from "../assets/badgeicon-transparrent.png";
+// import Footer from "../components/Footer";
 
 const NAVIGATION = [
   {
@@ -38,7 +39,7 @@ const demoTheme = createTheme({
     colorSchemeSelector: "data-toolpad-color-scheme",
   },
   colorSchemes: { dark: true },
-  // light: true, an option
+
   breakpoints: {
     values: {
       xs: 0,
@@ -100,6 +101,8 @@ function Home(props) {
       <DashboardLayout>
         <DemoPageContent pathname={router.pathname} />
       </DashboardLayout>
+
+      {/* <Footer /> */}
     </AppProvider>
   );
 }

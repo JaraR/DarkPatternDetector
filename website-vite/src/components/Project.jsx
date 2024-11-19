@@ -14,6 +14,7 @@ import obstruction from "../assets/obstruction.png";
 import infinite from "../assets/infinite.png";
 import emotion from "../assets/emotion.png";
 import ads from "../assets/ads.png";
+import { Link } from "react-router-dom";
 
 export default function Types() {
   const cardsData = [
@@ -145,6 +146,12 @@ export default function Types() {
 
               border: `2px solid ${card.borderColor}`,
               borderRadius: "8px",
+              transition:
+                "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.05)",
+                boxShadow: "0px 12px 20px rgba(0, 0, 0, 0.6)",
+              },
             }}
           >
             <CardMedia
@@ -152,6 +159,8 @@ export default function Types() {
                 height: 200,
                 width: "100%",
                 objectFit: "cover",
+
+                transition: "transform 0.3s ease-in-out",
               }}
               image={card.image}
               title={card.title}
@@ -164,9 +173,20 @@ export default function Types() {
                 {card.description}
               </Typography>
             </CardContent>
-            <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
+            <CardActions
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 1,
+                paddingBottom: 2,
+              }}
+            >
+              <Button size="small" sx={{ fontWeight: "bold" }}>
+                Share
+              </Button>
+              <Button size="small" sx={{ fontWeight: "bold" }}>
+                Learn More
+              </Button>
             </CardActions>
           </Card>
         ))}{" "}
