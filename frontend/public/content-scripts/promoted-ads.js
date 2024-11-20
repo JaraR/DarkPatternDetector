@@ -18,9 +18,11 @@ function updateStorageAndNotify(type, storageKey, messageType) {
 
 // Function to highlight the ad feed
 function highlightAd(adSpan) {
-  adSpan.style.borderLeft = "6px dashed #c38ee8";
+  adSpan.style.borderLeft = "16px dashed #bd60ff";
+
   adSpan.style.backgroundColor = "#fff4e0";
-  adSpan.style.paddingLeft = "4px";
+
+  adSpan.style.paddingLeft = "8px";
 }
 
 // Function to check for ads
@@ -30,16 +32,39 @@ function checkForAds() {
   spans.forEach((span) => {
     if (span.textContent.trim() === adText && !alertedAds.includes(span)) {
       alertedAds.push(span);
-      // alert("Promoted ads detected!");
+      alert("Promoted ads detected!");
       console.log("Promoted ad detected:", span);
 
       highlightAd(span);
 
       const article = span.closest("article");
       if (article) {
+        const tweetTextDiv = article.querySelector('[data-testid="tweetText"]');
+
+        // Apply the blur effect to the tweetTextDiv
+        if (tweetTextDiv) {
+          tweetTextDiv.style.filter = "blur(5px)";
+
+          tweetTextDiv.addEventListener("mouseenter", () => {
+            tweetTextDiv.style.filter = "none";
+          });
+
+          tweetTextDiv.addEventListener("mouseleave", () => {
+            tweetTextDiv.style.filter = "blur(5px)";
+          });
+        }
+
         const articleLinks = article.querySelectorAll("a");
 
         articleLinks.forEach((link) => {
+          link.addEventListener("mouseenter", () => {
+            link.style.setProperty("filter", "none", "important");
+          });
+
+          link.addEventListener("mouseleave", () => {
+            link.style.setProperty("filter", "blur(5px)", "important");
+          });
+
           if (
             link.hasAttribute("target") &&
             link.getAttribute("target") === "_blank"
