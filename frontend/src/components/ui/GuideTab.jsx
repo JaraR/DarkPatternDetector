@@ -1,7 +1,8 @@
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
-import userFlow from "/src/assets/user-flow.png";
+import adsHeader from "/src/assets/ads-header.png";
+import autoplayHeader from "/src/assets/autoplay-header.png";
 
 export function GuideTab() {
   return (
@@ -9,7 +10,14 @@ export function GuideTab() {
       <Card>
         <CardContent className="flex flex-col items-center">
           <img
-            src={userFlow}
+            src={adsHeader}
+            alt="Guide"
+            className="w-full h-auto rounded-md"
+          />
+        </CardContent>
+        <CardContent className="flex flex-col items-center">
+          <img
+            src={autoplayHeader}
             alt="Guide"
             className="w-full h-auto rounded-md"
           />
