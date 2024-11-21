@@ -29,8 +29,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
-  const [isAutoplay, setIsAutoplay] = useState({});
-  const [isPromotedAds, setIsProtomotedAds] = useState({});
+  const [isAutoplay, setIsAutoplay] = useState(false);
+  const [isPromotedAds, setIsProtomotedAds] = useState(false);
+  const [isInfiniteScrolling, setIsInfiniteScrolling] = useState(false);
+
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   // autoplay detection
@@ -70,6 +72,27 @@ export default function SettingTest() {
       });
     }
   });
+
+  //Infinite scrolling
+  const startInfiniteScrollingDetection = (e) => {
+    console.log("Infinite Scrolling checked:", e);
+    if (chrome.storage) {
+      chrome.storage.sync.set({ infiniteScrolling: e });
+    }
+    setIsInfiniteScrolling(e);
+    if (e) {
+      setOpenSnackbar(true);
+    }
+  };
+
+  useEffect(() => {
+    if (chrome.storage) {
+      chrome.storage.sync.get(["infiniteScrolling"], (result) => {
+        setIsInfiniteScrolling(result.infiniteScrolling);
+      });
+    }
+  });
+
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
@@ -144,7 +167,11 @@ export default function SettingTest() {
                 />
               </Tooltip>
             </Label>
-            <Checkbox id="infinite-scrolling" />
+            <Checkbox
+              id="infinite-scrolling"
+              checked={isInfiniteScrolling}
+              onCheckedChange={startInfiniteScrollingDetection}
+            />
           </div>
 
           <div className="flex items-center justify-between space-x-3">

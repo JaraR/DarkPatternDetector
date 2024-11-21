@@ -61,14 +61,14 @@ function checkForAds() {
         const articleLinks = article.querySelectorAll("a");
 
         articleLinks.forEach((link) => {
-          link.style.setProperty("filter", "blur(5px)", "important");
-          link.addEventListener("mouseenter", () => {
-            link.style.setProperty("filter", "none", "important");
-          });
+          // link.style.setProperty("filter", "blur(5px)", "important");
+          // link.addEventListener("mouseenter", () => {
+          //   link.style.setProperty("filter", "none", "important");
+          // });
 
-          link.addEventListener("mouseleave", () => {
-            link.style.setProperty("filter", "blur(5px)", "important");
-          });
+          // link.addEventListener("mouseleave", () => {
+          //   link.style.setProperty("filter", "blur(5px)", "important");
+          // });
 
           if (
             link.hasAttribute("target") &&
