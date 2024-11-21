@@ -14,18 +14,26 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import HomeIcon from "@mui/icons-material/Home";
 import Project from "../components/Project";
 import logo from "../assets/badgeicon-transparrent.png";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
+
 // import Footer from "../components/Footer";
+import Blog from "../components/Blog";
 
 const NAVIGATION = [
   {
     segment: "installation",
-    title: "Installation",
+    title: "Installation Guide",
     icon: <HomeIcon />,
   },
   {
     segment: "project",
-    title: "Dark pattern and our project",
+    title: "Dark patterns and our project",
     icon: <EditNoteIcon />,
+  },
+  {
+    segment: "blog",
+    title: "X-Factors Blog",
+    icon: <RssFeedIcon />,
   },
   {
     segment: "team",
@@ -67,6 +75,7 @@ function DemoPageContent({ pathname }) {
     >
       {pathname === "/installation" && <PatternCard />}
       {pathname === "/team" && <TeamList />}
+      {pathname === "/blog" && <Blog />}
       {pathname === "/project" && <Project />}
     </Box>
   );

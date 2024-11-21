@@ -14,7 +14,6 @@ import obstruction from "../assets/obstruction.png";
 import infinite from "../assets/infinite.png";
 import emotion from "../assets/emotion.png";
 import ads from "../assets/ads.png";
-import { Link } from "react-router-dom";
 
 export default function Types() {
   const cardsData = [
