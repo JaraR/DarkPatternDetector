@@ -168,7 +168,13 @@ export default function Types() {
               <Typography gutterBottom variant="h5" component="div">
                 {card.title}
               </Typography>
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "text.secondary",
+                  textAlign: "center",
+                }}
+              >
                 {card.description}
               </Typography>
             </CardContent>

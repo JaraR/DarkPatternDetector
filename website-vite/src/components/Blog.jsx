@@ -1,8 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import Button from "@mui/material/Button";
+
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -11,6 +10,7 @@ import CardActions from "@mui/material/CardActions";
 import amazon from "../assets/amazon.png";
 import FOMO from "../assets/FOMO.png";
 import mental from "../assets/mental.png";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 export default function Types() {
   const cardsData = [
@@ -97,13 +97,47 @@ export default function Types() {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ marginBottom: "10px", fontSize: "45px" }}>
+        <h1
+          style={{
+            marginBottom: "10px",
+            fontSize: "45px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           X-Factors Blog
         </h1>
 
+        {/* Center the button */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <button
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "4px 8px",
+              fontSize: "14px",
+              border: "none",
+              color: "white",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            <RssFeedIcon sx={{ marginRight: "5px", fontSize: "18px" }} />{" "}
+            {/* Reduced icon size */}
+            <span>RSS FEED</span>
+          </button>
+        </Box>
+
         <span>Raising Awareness About Dark Patterns in Digital Design</span>
       </Box>
-
       <Box
         sx={{
           display: "flex",
@@ -146,24 +180,34 @@ export default function Types() {
               <Typography gutterBottom variant="h5" component="div">
                 {card.title}
               </Typography>
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+              <Typography
+                variant="body2"
+                sx={{ color: "text.secondary", textAlign: "center" }}
+              >
                 {card.description}
               </Typography>
             </CardContent>
             <CardActions
               sx={{
                 display: "flex",
-                justifyContent: "center",
+
                 gap: 1,
                 paddingBottom: 2,
               }}
             >
-              <Button size="small" sx={{ fontWeight: "bold" }}>
-                Share
-              </Button>
-              <Button size="small" sx={{ fontWeight: "bold" }}>
-                Learn More
-              </Button>
+              <Typography
+                sx={{
+                  fontSize: "14px",
+                  color: "lightgray",
+                  textAlign: "left",
+                }}
+              >
+                {new Date().toLocaleString("default", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </Typography>
             </CardActions>
           </Card>
         ))}{" "}
