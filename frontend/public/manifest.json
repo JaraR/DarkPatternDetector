@@ -10,7 +10,11 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content-scripts/autoplay.js", "content-scripts/promoted-ads.js"],
+      "js": [
+        "content-scripts/autoplay.js",
+        "content-scripts/promoted-ads.js",
+        "content-scripts/infiniteScrolling.js"
+      ],
       "run_at": "document_end"
     }
   ],
