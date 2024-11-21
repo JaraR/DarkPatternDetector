@@ -12,7 +12,13 @@
 } */
 
 body {
-  background: rgb(29, 29, 29) !important;
+  /* background: rgb(29, 29, 29) !important; */
+  background: linear-gradient(
+    135deg,
+    rgb(107, 107, 107),
+    rgb(36, 36, 36),
+    rgb(23, 23, 23)
+  ) !important;
   margin: 0;
   font-family: Arial, sans-serif;
   height: 100vh;

@@ -3,9 +3,10 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import chromeLogo from "../assets/chrome-logo.png";
-import macPreview from "../assets/mac-header.png";
+import macPreview from "../assets/mac.png";
 import autoplayHeader from "../assets/autoplay-header.png";
 import adsHeader from "../assets/ads-header.png";
+import tutorial from "../assets/tutorial.png";
 
 export default function PatternCards() {
   return (
@@ -24,7 +25,7 @@ export default function PatternCards() {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: { xs: "column", md: "row" },
-          gap: 2,
+          gap: 0,
           textAlign: "center",
           width: "100%",
         }}
@@ -82,7 +83,7 @@ export default function PatternCards() {
           sx={{
             display: "flex",
             justifyContent: "flex-end",
-            width: "120%",
+            width: "70%",
 
             mt: 3,
           }}
@@ -96,17 +97,38 @@ export default function PatternCards() {
           />
         </Box>
       </Box>
+      {/* Mac Tutorial Image */}
       <Box>
         <h2
           style={{
-            background: "linear-gradient(to right, #04ADF0, #FF7E74)",
+            background: "linear-gradient(to right, #FFDAB9, #E6E6FA)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontSize: "2rem",
+            padding: "0 10px",
+          }}
+        >
+          Tutorial and Walkthrough our chrome extension
+        </h2>
+        <img
+          src={tutorial}
+          alt="tutorial header"
+          style={{
+            width: "100%",
+            maxWidth: 700,
+            padding: 10,
+          }}
+        ></img>
+        <h2
+          style={{
+            background: "linear-gradient(to right, #FFDAB9, #E6E6FA)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontSize: "2.5rem",
             padding: "0 10px",
           }}
         >
-          What X-Factors Can do for You
+          What X-Factors can do for you
         </h2>
       </Box>
 
