@@ -44,7 +44,6 @@ function checkForAds() {
         // Apply the blur effect to the tweetTextDiv
         if (tweetTextDiv) {
           tweetTextDiv.style.filter = "blur(5px)";
-
           tweetTextDiv.addEventListener("mouseenter", () => {
             tweetTextDiv.style.filter = "none";
           });
@@ -54,9 +53,15 @@ function checkForAds() {
           });
         }
 
+        // const videoDiv = document.querySelector('[data-testid="videoPlayer"]');
+        // if (videoDiv) {
+        //   videoDiv.style.filter = "blur(5px)";
+        // }
+
         const articleLinks = article.querySelectorAll("a");
 
         articleLinks.forEach((link) => {
+          link.style.setProperty("filter", "blur(5px)", "important");
           link.addEventListener("mouseenter", () => {
             link.style.setProperty("filter", "none", "important");
           });
