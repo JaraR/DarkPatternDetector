@@ -7,7 +7,7 @@ import AboutUsTab from "@/components/ui/AboutUsTab";
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
-import GuideTab from "@/components/ui/GuideTab";
+import NewTab from "@/components/ui/NewTab";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
@@ -49,7 +49,7 @@ export function Home() {
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-us">About Us</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
-          <TabsTrigger value="guide">Guide</TabsTrigger>
+          <TabsTrigger value="new-tab">NewTab</TabsTrigger>
         </TabsList>
 
         <TabsContent value="results">
@@ -75,8 +75,8 @@ export function Home() {
         <TabsContent value="settings">
           <SettingTab />
         </TabsContent>
-        <TabsContent value="guide">
-          <GuideTab />
+        <TabsContent value="new-tab">
+          <NewTab />
         </TabsContent>
       </Tabs>
     </>
