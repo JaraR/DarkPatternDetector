@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useState } from "react"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -21,7 +22,7 @@ const FormSchema = z.object({
   tweet: z
     .string()
     .min(10, {
-      message: "Text must be at least 10 characters.",
+      message: "Tweet must be at least 10 characters.",
     })
     .max(840, {
       message: "Tweet must not be longer than 840 characters.",
@@ -32,25 +33,31 @@ export function TextareaForm() {
   const form = useForm({
     resolver: zodResolver(FormSchema),
   })
+  // States to hold API response and loading status
+  const [apiResponse, setApiResponse] = useState("")
+  const [loading, setLoading] = useState(false)
 
-// outputs JSON for OpenAI API in console
-  function onSubmit(data) {
+  // Handles form submission
+  async function onSubmit(data) {
     console.log(data)
     console.log(data.tweet)
-    console.log(JSON.stringify({
-        role: "user",
-        content: `Analyze the sentiment of this text and identify if it contains any information that should be verified. Indicate if it invokes specific emotions in readers and whether it may be emotionally manipulative. '${data.tweet}'`
-    }))
-
-    return(
-        OpenAIapi(data.tweet)
-    )
+    
+    setLoading(true) // Set loading state
+    try {
+      const response = await OpenAIapi(data.tweet) // Wait for API response
+      setApiResponse(response) // Update state with API response
+    } catch (error) { // Error handling
+      console.error("Error calling OpenAI API:", error)
+      setApiResponse("Error processing the request. Please try again.")
+    } finally {
+      setLoading(false) // Reset loading state
+    }
   }
 
-// Form controls and visible form info
+  // Form controls and visible form info
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="tweet"
@@ -59,19 +66,28 @@ export function TextareaForm() {
               <FormLabel>Emotional Steering</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Enter text here"
+                  placeholder="Enter tweet here"
                   className="resize-none"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                Use the box above to analyze a tweet for emotional steering.
+                Enter a tweet in the box above and click the submit button to analyze a tweet for emotional steering.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Submitting..." : "Submit"}
+        </Button>
+        {/* Display API response */}
+        {apiResponse && (
+          <div className="mt-4 p-4 border rounded bg-gray-50">
+            <h3 className="font-bold">Response:</h3>
+            <p>{apiResponse}</p>
+          </div>
+        )}
       </form>
     </Form>
   )
