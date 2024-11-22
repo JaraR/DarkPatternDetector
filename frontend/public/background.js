@@ -8,7 +8,7 @@ function updateBadge() {
         (data.promotedAdsCount || 0) +
         (data.infiniteScrollingCount || 0);
       chrome.action.setBadgeText({ text: totalCount.toString() });
-      chrome.action.setBadgeBackgroundColor({ color: "lightgray" });
+      chrome.action.setBadgeBackgroundColor({ color: "#808080" });
     }
   );
 }

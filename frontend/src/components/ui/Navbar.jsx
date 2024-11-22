@@ -106,7 +106,7 @@ export default function NavBar() {
       </Menu>
 
       {/* Snackbar that will show when the detection is turned on */}
-      <Snackbar
+      {/* <Snackbar
         open={openSnackbar}
         autoHideDuration={2000}
         onClose={handleCloseSnackbar}
@@ -128,7 +128,7 @@ export default function NavBar() {
         >
           Don't forget to enable the dark pattern on Setting page:)
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </Box>
   );
 }
