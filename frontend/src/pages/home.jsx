@@ -7,6 +7,7 @@ import AboutUsTab from "@/components/ui/AboutUsTab";
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
+import { ButtonLink } from "@/components/ui/buttonlink";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
@@ -62,6 +63,7 @@ export function Home() {
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
             />
+            <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
             <BottomNavigation />
           </div>
         </TabsContent>

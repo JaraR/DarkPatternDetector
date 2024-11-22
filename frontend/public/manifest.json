@@ -5,6 +5,7 @@
   "description": "To detect dark patterns on X.",
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "action": {
+    "default_title": "Click to show an alert",
     "default_popup": "index.html"
   },
   "content_scripts": [
