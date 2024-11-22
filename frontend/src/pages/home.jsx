@@ -7,6 +7,7 @@ import AboutUsTab from "@/components/ui/AboutUsTab";
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
+import { ButtonLink } from "@/components/ui/buttonlink";
 import { TipCarousel } from "@/components/TipCarousel";
 
 export function Home() {
@@ -63,6 +64,7 @@ export function Home() {
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
             />
+            <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
             <TipCarousel />
             <BottomNavigation />
           </div>
