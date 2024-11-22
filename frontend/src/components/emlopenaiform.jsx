@@ -38,10 +38,7 @@ export function TextareaForm() {
   const [loading, setLoading] = useState(false)
 
   // Handles form submission
-  async function onSubmit(data) {
-    console.log(data)
-    console.log(data.tweet)
-    
+  async function onSubmit(data) {    
     setLoading(true) // Set loading state
     try {
       const response = await OpenAIapi(data.tweet) // Wait for API response
