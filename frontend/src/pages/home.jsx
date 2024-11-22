@@ -7,6 +7,7 @@ import AboutUsTab from "@/components/ui/AboutUsTab";
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
+import { TipCarousel } from "@/components/TipCarousel";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
@@ -62,6 +63,7 @@ export function Home() {
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
             />
+            <TipCarousel />
             <BottomNavigation />
           </div>
         </TabsContent>
