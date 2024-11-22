@@ -1,100 +1,81 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
-import { ButtonLink } from "@/components/ui/buttonlink"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Navbar from "@/components/ui/navbar";
+import PieActiveArc from "@/components/ui/piechart";
+import AboutUsTab from "@/components/ui/AboutUsTab";
+
+import BottomNavigation from "@/components/ui/BottomNavigation";
+import Typography from "@mui/material/Typography";
+import SettingTab from "@/components/ui/SettingTab";
+import { ButtonLink } from "@/components/ui/buttonlink";
 
 export function Home() {
+  const [autoplayCount, setAutoplayCount] = useState(0);
+  const [promotedAdsCount, setPromotedAdsCount] = useState(0);
+  //update autoplay count to pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "updateAutoplay" }, (response) => {
+      console.log(
+        "autoplay count response received from background:",
+        response
+      );
+      if (response && response.count !== undefined) {
+        setAutoplayCount(response.count);
+      } else {
+        console.error("Error: Autoplay count not received or is undefined.");
+      }
+    });
+  }, []);
+  //update promoted ads to pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "updatePromotedAds" }, (response) => {
+      console.log("promoted ads response received from background:", response);
+      if (response && response.count !== undefined) {
+        setPromotedAdsCount(response.count);
+      } else {
+        console.error(
+          "Error: Promoted Ads count not received or is undefined."
+        );
+      }
+    });
+  }, []);
+
   return (
     <>
+      <Navbar />
+
       <Tabs defaultValue="results" className="w-[400px]">
-        <TabsList>
-            <TabsTrigger value="results">Results</TabsTrigger>
-            <TabsTrigger value="about-us">About Us</TabsTrigger>
-            <TabsTrigger value="settings">Settings</TabsTrigger>
+        <TabsList className="flex justify-around">
+          <TabsTrigger value="results">Results</TabsTrigger>
+          <TabsTrigger value="about-us">About Us</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
+
         <TabsContent value="results">
-          <div>
-            <div>
-              <p>Placeholder for Total # DP detected</p>
-              <p>Dark Patterns Detected</p>
-            </div>
-            <div>
-              <p>Emotional Steering <ButtonLink to="/EMLSettings">EML Settings</ButtonLink></p>
-              <p>Infinite Scrolling
-                <Button aschild>
-                  <Link to="/infinitescrollingsettings">IFSettings</Link>
-                </Button>
-              </p>
-              <p>Autoplay Videos <ButtonLink to="/autoplaysettings">APSettings</ButtonLink>
-              </p>
-              <p>Privacy Zuckering</p>
-              <p>Engagement Notification</p>
-              <p>Obstructing</p>
-              <p>Promoted Tweets and Ads that Blend In</p>
-            </div>
+          <div className="mt-8 mx-3 flex flex-col items-center text-center">
+            <Typography variant="h6" component="div" gutterBottom>
+              Total # detected dark pattern {promotedAdsCount + autoplayCount}
+            </Typography>
+            <Typography variant="subtitle1" component="div" gutterBottom>
+              Detected Dark Patterns
+            </Typography>
+            <PieActiveArc
+              autoplayCount={autoplayCount}
+              promotedAdsCount={promotedAdsCount}
+            />
+            <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
+            <BottomNavigation />
           </div>
         </TabsContent>
+
         <TabsContent value="about-us">
-          <section>
-            <div>
-              <h2>What does this detection tool do?</h2>
-              <p>This tool detects dark patterns on X/Twitter.</p>
-            </div>
-            <div>
-              <h2>What are dark patterns?</h2>
-              <p className="font-change">"Dark patterns are tricks used in websites and apps that make you do things that you didn't mean to, 
-                like buying or signing up for something." - <a href="https://www.deceptive.design">https://www.deceptive.design</a></p>
-            </div>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Emotional Steering</AccordionTrigger>
-                <AccordionContent>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                  malesuada lacus ex, sit amet blandit leo lobortis eget.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>Infinite Scrolling</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Autoplay Videos</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4">
-                <AccordionTrigger>Privacy Zuckering</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-5">
-                <AccordionTrigger>Engagement Notification</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-6">
-                <AccordionTrigger>Obstructing</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-7">
-                <AccordionTrigger>Promoted Tweets and Ads that Blend In</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </section>
+          <AboutUsTab />
         </TabsContent>
-        <TabsContent value="settings">hello world!</TabsContent>
+
+        <TabsContent value="settings">
+          <SettingTab />
+        </TabsContent>
       </Tabs>
     </>
-  )
+  );
 }
