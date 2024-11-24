@@ -9,9 +9,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
   }
   function updateResults(count) {
-    autoplayCount = count;
-    console.log("Autoplay count updated in background:", autoplayCount);
-    chrome.storage.local.set({ autoplayCount });
+    engagementNotifCount = count;
+    console.log("Engagement notification count updated in background:", engagementNotifCount);
+    chrome.storage.local.set({ engagementNotifCount });
   }
   function handleMessage(message, sendResponse) {
     switch (message.type) {
@@ -19,14 +19,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         updateBadge(message.count);
         break;
   
-      case "updateAutoplay":
+      case "updateEngagementNotif":
         updateResults(message.count, sendResponse);
         break;
   
       case "getResults":
-        chrome.storage.local.get(["autoplayCount"], (result) => {
-          const storedAutoplayCount = result.autoplayCount || 0;
-          sendResponse({ count: storedAutoplayCount });
+        chrome.storage.local.get(["engagementNotifCount"], (result) => {
+          const storedEngagementNotifCount = result.engagementNotifCount || 0;
+          sendResponse({ count: storedEngagementNotifCount });
         });
         break;
   

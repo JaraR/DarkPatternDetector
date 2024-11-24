@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-let alertedVideos = [];
+let alertedNotifs = [];
 
 const updateBadgeCount = () => {
   chrome.storage.local.get(["badgeCount"], function (result) {
@@ -15,40 +15,39 @@ const updateBadgeCount = () => {
   });
 };
 
-// Function to update autoplay count
-function updateAutoplayCount() {
-  chrome.storage.local.get(["autoplayCount"], function (result) {
-    let currentCount = result.autoplayCount || 0;
+// Function to update engagement notification count on piechart
+function updateEngagementNotifCount() {
+  chrome.storage.local.get(["engagementNotifCount"], function (result) {
+    let currentCount = result.engagementNotifCount || 0;
     currentCount += 1;
-    chrome.storage.local.set({ autoplayCount: currentCount });
+    chrome.storage.local.set({ engagementNotifCount: currentCount });
 
-    // Notify the background script to update the autoplay count
+    // Notify the background script to update the engagement notification count
     chrome.runtime.sendMessage({
-      type: "updateAutoplay",
+      type: "updateEngagementNotif",
       count: currentCount,
     });
   });
 }
 
-// Function to check for autoplay videos and update counts
-function checkAutoplay() {
-  const videos = document.querySelectorAll("article[data-testid='notification']");
-  videos.forEach((video) => {
-    if (!alertedVideos.includes(video)) {
-      if (video.autoplay || !video.paused) {
+// Function to check for notifications and update counts
+function checkEngagementNotif() {
+  const notifs = document.querySelectorAll("article[data-testid='notification']");
+  notifs.forEach((notif) => {
+    if (!alertedNotifs.includes(notif)) {
         alert("Notification detected!");
 
-        alertedVideos.push(video);
+        alertedNotifs.push(notif);
         updateBadgeCount();
-        updateAutoplayCount();
-      }
+        updateEngagementNotifCount();
+
     }
   });
 }
 
-// MutationObserver to detect added or changed video elements
+// MutationObserver to detect added or changed notification elements
 const observer = new MutationObserver(() => {
-  checkAutoplay();
+  checkEngagementNotif();
 });
 
 observer.observe(document.body, {

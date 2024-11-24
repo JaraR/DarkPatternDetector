@@ -7,12 +7,12 @@ import { Link } from "react-router-dom"
 import PieActiveArc from "@/components/ui/piechart"
 
 export function Home() {
-  const [autoplayCount, setAutoplayCount] = useState(0);
+  const [engagementNotifCount, setEngagementNotifCount] = useState(0);
 
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "getResults" }, (response) => {
       if (response && response.count != undefined) {
-        setAutoplayCount(response.count);
+        setEngagementNotifCount(response.count);
       }
     });
   }, []);
@@ -29,7 +29,7 @@ export function Home() {
             <div>
               <p>Placeholder for Total # DP detected</p>
               <p>Dark Patterns Detected</p>
-              <PieActiveArc autoplayCount={autoplayCount} />
+              <PieActiveArc engagementNotifCount={engagementNotifCount} />
             </div>
             <div>
               <p>Emotional Steering</p>

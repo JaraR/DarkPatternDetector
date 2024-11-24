@@ -2,14 +2,14 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
-export default function PieActiveArc({ autoplayCount }) {
+export default function PieActiveArc({ engagementNotifCount }) {
   const darkPattern = [
     {
-      label: `Autoplay ${autoplayCount}`,
-      value: autoplayCount,
+      label: `Autoplay`,
+      value: 10,
       color: "#94deff",
     },
-    { label: "Engagement Notifications", value: 10, color: "#9fa7b8" },
+    { label: `Engagement Notifications ${engagementNotifCount}`, value: engagementNotifCount, color: "#9fa7b8" },
     { label: "Infinite Scrolling", value: 10, color: "#b9bd76" },
     { label: "Emotional Steering", value: 30, color: "#ed681d" },
     { label: "Promoted Ads", value: 20, color: "#adb2ff" },
