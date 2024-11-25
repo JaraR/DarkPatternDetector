@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ButtonLink } from "@/components/ui/buttonlink"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Link } from "react-router-dom"
-import PieActiveArc from "@/components/ui/piechart"
+import PieActiveArc from "en-backup/piechart"
 
 export function Home() {
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);

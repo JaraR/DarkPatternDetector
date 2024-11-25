@@ -1,6 +1,6 @@
 import './App.css'
 import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import { Home } from './pages/Home'
+import { Home } from '../en-backup/home'
 import { AutoplaySettings } from './pages/AutoplaySettings'
 import { InfiniteScrollingSettings } from './pages/InfiniteScrollingSettings'
 
