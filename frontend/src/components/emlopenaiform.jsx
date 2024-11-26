@@ -18,6 +18,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { OpenAIapi } from "@/lib/openAIapi.mjs";
 // import EmlResult from "@/components/ui/EmlResult";
+import noReport from "/public/icons/no-report-eml.png";
 
 const FormSchema = z.object({
   tweet: z
@@ -68,9 +69,9 @@ export function TextareaForm() {
   const [verification, setVerification] = useState("");
   const [summary, setSummary] = useState("");
   const [manipulative, setManipulative] = useState("");
-  const isPositiveEmotion = positiveEmotions.some((emotion) =>
-    emotions.includes(emotion)
-  );
+  // const isPositiveEmotion = positiveEmotions.some((emotion) =>
+  //   emotions.includes(emotion)
+  // );
 
   // Handles form submission
   async function onSubmit(data) {
@@ -131,13 +132,13 @@ export function TextareaForm() {
             control={form.control}
             name="tweet"
             render={({ field }) => (
-              <FormItem className="m-5">
-                <FormLabel className="font-bold text-center">
+              <FormItem className="m-5 justify-center">
+                <FormLabel className="font-bold text-center text-xl ">
                   Emotional Steering
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Copy and paste a tweet you are interested here and click Start Analyze button to analyze
+                    placeholder="Copy and paste a tweet you are interested here and click Start Analyze button to generate a report
          "
                     className="resize-none placeholder:text-sm"
                     {...field}
@@ -158,29 +159,33 @@ export function TextareaForm() {
             </Button>
           </div>
 
-          {apiResponse && (
+          {apiResponse ? (
             <div className="p-4  m-4 border rounded bg-gray-50">
               <h3 className="font-bold text-lg text-center">Analysis Report</h3>
 
               {/* <p className="mt-2">{apiResponse}</p> */}
               <div className="mt-4">
-                <span className="font-bold">Sentiment:</span>
+                <span className="ring-2  mr-3 ring-green-400 text-green-600 rounded-lg p-1 text-center font-bold ">
+                  Sentiment:
+                </span>
                 <span
                   className={`px-4 py-2 font-bold text-black rounded-full ${
                     sentiment === "Positive"
-                      ? "bg-green-500"
+                      ? "text-green-500"
                       : sentiment === "Negative"
-                      ? "bg-red-500"
+                      ? "text-red-500"
                       : sentiment === "Neutral"
-                      ? "bg-gray-500"
-                      : "bg-yellow-500"
+                      ? "text-gray-500"
+                      : "text-yellow-500"
                   }`}
                 >
                   {sentiment}
                 </span>
               </div>
               <div className="mt-4">
-                <span className="font-bold">Manipulative:</span>
+                <span className="ring-2  mr-3 ring-red-400 text-red-600 rounded-lg p-1 text-center font-bold">
+                  Manipulative:
+                </span>
                 <span
                   className={`px-4 py-2 font-bold text-black rounded-full ${
                     manipulative.toLowerCase().includes("not") &&
@@ -203,7 +208,9 @@ export function TextareaForm() {
               </div> */}
 
               <div className="mt-4">
-                <span className="font-bold">Emotions:</span>
+                <span className="ring-2 mr-3 ring-purple-400 text-purple-600 rounded-lg p-1 text-center font-bold">
+                  Emotions:
+                </span>
                 <span
                 // className={`${
                 //   isPositiveEmotion
@@ -215,12 +222,49 @@ export function TextareaForm() {
                 </span>
               </div>
               <div className="mt-4">
-                <span className="font-bold">Verification Needed:</span>
+                <span className="ring-2 mr-3 ring-orange-400 text-orange-600 rounded-lg p-1 text-center font-bold">
+                  Fact-Based:
+                </span>
                 <span>{verification}</span>
               </div>
-              <div className="mt-4">
-                <span className="font-bold text-center">Summary:</span>
+              <div className="mt-4 ">
+                <span className="ring-2 mr-3 ring-blue-400 text-blue-600 rounded-lg p-1 text-center font-bold ">
+                  Summary:
+                </span>
                 <span>{summary}</span>
+              </div>
+            </div>
+          ) : (
+            <div className="p-4 m-4 gap-2 border rounded bg-gray-50 h-[250px] flex flex-col items-center justify-center  ">
+              <div className="text-center font-bold mt-0 text-2xl text-gray-600">
+                No report generated
+              </div>
+              <img src={noReport} alt="No Report" className="mb-2 w-20" />
+
+              <div className="flex-row gap-4 flex-wrap pt-2 flex items-center justify-center">
+                {/* Tag 1 */}
+                <div className="ring-2 ring-green-400 text-green-600 rounded-lg p-1 text-center font-bold  hover:ring-green-600 hover:text-green-800">
+                  Sentiment
+                </div>
+
+                {/* Tag 2 */}
+                <div className="ring-2 ring-purple-400 text-purple-600 rounded-lg p-1 text-center font-bold   hover:ring-purple-600 hover:text-purple-800">
+                  Emotion
+                </div>
+
+                {/* Tag 3 */}
+                <div className="ring-2 ring-orange-400 text-orange-600 rounded-lg p-1 text-center font-bold  hover:ring-orange-600 hover:text-orange-800">
+                  Fact-Based
+                </div>
+                {/* Tag 4 */}
+                <div className="ring-2 ring-red-400 text-red-600 rounded-lg p-1 text-center font-bold  hover:ring-red-600 hover:text-red-900">
+                  Manipulative
+                </div>
+
+                {/* Tag 5 */}
+                <div className="ring-2 ring-blue-400 text-blue-600 rounded-lg p-1 text-center font-bold  hover:ring-blue-600 hover:text-blue-900">
+                  Summary
+                </div>
               </div>
             </div>
           )}
