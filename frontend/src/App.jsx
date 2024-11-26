@@ -1,14 +1,20 @@
-import './App.css'
-import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import { Home } from '../en-backup/home'
-import { AutoplaySettings } from './pages/AutoplaySettings'
-import { InfiniteScrollingSettings } from './pages/InfiniteScrollingSettings'
+import "./App.css";
+import {
+  createHashRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import { Home } from "./pages/Home";
+import { AutoplaySettings } from "./pages/AutoplaySettings";
+import { InfiniteScrollingSettings } from "./pages/InfiniteScrollingSettings";
+import {EMLSettings} from "./pages/EMLSettings"
 
 // ESLint tests (note: have not gotten it to work, rolled back library installations)
 // eslint-config-react-app linting configuration requires ver 8.x, we are running ver 9.11.1-9.12,
 // need to either find another configuration or make our own.
-const title = 'React';
-const esLintTest='test123';
+// const title = "React";
+// const esLintTest = "test123";
 
 // Working router constant using react-router's new data API supporting routers. Uses hashrouter
 // as URL handling is different for chrome extensions and  currently does not have access to a server.
@@ -27,16 +33,17 @@ const router = createHashRouter(
       <Route path="/" element={<Home />} />
       <Route path="/infinitescrollingsettings" element={<InfiniteScrollingSettings />} />
       <Route path="/autoplaysettings" element={<AutoplaySettings />} />
+      <Route path="/EMLSettings" element={<EMLSettings />} />
     </>
   )
-)
+);
 
 function App() {
   return (
     <>
       <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
