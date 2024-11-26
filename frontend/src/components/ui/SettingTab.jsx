@@ -16,8 +16,9 @@ import notification from "/public/icons/notification.png";
 import obstruction from "/public/icons/obstruction.png";
 import ads from "/public/icons/ads.png";
 import privacy from "/public/icons/privacy.png";
+import { ButtonLink } from "@/components/ui/buttonlink";
 
-import CustomizationCard from "@/components/ui/CustomizationCard";
+// import CustomizationCard from "@/components/ui/CustomizationCard";
 
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
@@ -121,21 +122,6 @@ export default function SettingTest() {
 
           <div className="flex items-center justify-between space-x-3">
             <Label
-              htmlFor="emotional-steering"
-              className="flex items-center space-x-3"
-            >
-              <img
-                src={emotional}
-                alt="Emotional Steering Filter Icon"
-                className="h-6 w-6 mr-2"
-              />
-              <span className="text-lg font-light">Emotional Steering</span>
-            </Label>
-            <Checkbox id="emotional-steering" />
-          </div>
-
-          <div className="flex items-center justify-between space-x-3">
-            <Label
               htmlFor="promoted-ads"
               className="flex items-center space-x-3"
             >
@@ -152,22 +138,21 @@ export default function SettingTest() {
               onCheckedChange={startPromotedAdsDetection}
             />
           </div>
+        </CardContent>
+      </Card>
+      {/* this is #2 category of dark pattern detection */}
+      <Card className="border border-gray-300 m-3">
+        <CardHeader className="pt-2 pb-1">
+          <CardTitle className="flex items-center">
+            <img src={FilterIcon} alt="Filter Icon" className="h-6 w-6 mr-3" />
+            <span className="text-xl">Enable/Disable Dark Pattern</span>
+          </CardTitle>
 
-          <div className="flex items-center justify-between space-x-3">
-            <Label
-              htmlFor="privacy-zuckering"
-              className="flex items-center space-x-3"
-            >
-              <img
-                src={privacy}
-                alt="Privacy Zuckering Filter Icon"
-                className="h-6 w-6 mr-2"
-              />
-              <span className="text-lg font-light">Privacy Zuckering</span>
-            </Label>
-            <Checkbox id="privacy-zuckering" />
-          </div>
-
+          <CardDescription>
+            Go Start your Dark Pattern Detection
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
           <div className="flex items-center justify-between space-x-3">
             <Label
               htmlFor="obstruction"
@@ -182,9 +167,38 @@ export default function SettingTest() {
             </Label>
             <Checkbox id="obstruction" />
           </div>
+          <div className="flex items-center justify-between space-x-3">
+            <Label
+              htmlFor="emotional-steering"
+              className="flex items-center space-x-3"
+            >
+              <img
+                src={emotional}
+                alt="Emotional Steering Filter Icon"
+                className="h-6 w-6 mr-2"
+              />
+              <span className="text-lg font-light">Emotional Steering</span>
+            </Label>
+            {/* <Checkbox id="emotional-steering" /> */}
+            <ButtonLink to="/EMLSettings">GO</ButtonLink>
+          </div>
+          <div className="flex items-center justify-between space-x-3">
+            <Label
+              htmlFor="privacy-zuckering"
+              className="flex items-center space-x-3"
+            >
+              <img
+                src={privacy}
+                alt="Privacy Zuckering Filter Icon"
+                className="h-6 w-6 mr-2"
+              />
+              <span className="text-lg font-light">Privacy Zuckering</span>
+            </Label>
+            <Checkbox id="privacy-zuckering" />
+          </div>
         </CardContent>
       </Card>
-      <CustomizationCard />
+      {/* <CustomizationCard /> */}
     </>
   );
 }
