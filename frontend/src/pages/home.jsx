@@ -63,7 +63,10 @@ export function Home() {
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
             />
-            <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
+            <div>
+              <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
+              <ButtonLink to="Obstruction">Obstruction</ButtonLink>
+            </div>
             <BottomNavigation />
           </div>
         </TabsContent>
