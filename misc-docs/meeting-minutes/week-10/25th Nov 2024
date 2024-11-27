@@ -1,38 +1,25 @@
 # Mentor Meeting (Online)
 
-**Date and Time:** 14:00, 18th November (Monday)  
+**Date and Time:** 14:00, 25th November (Monday)  
 **Participants:** Jara, Jiaxin, Ling, Habib, Ashus  
 
 ## Discussion Summary:
 
-### Previous Work Conclusion:
-- **Implemented:**
-  - Auto-play
-  - Promoted ad
-  - Infinite scrolling
-  - Email (eml)
-- **Not Implemented:**
-  - Privacy "zukering"
-  - Obstruction
 
-**Action:**  
-Provide tips and indications for the features that were not implemented.
+- **Set Structure for Final Report:**  
+  - Design and implementation chapter: break down each pattern with the same design.  
+  - Ensure a clean and consistent structure.  
+  - Send the draft to Andrea by the end of next week.
 
----
+- **Future Work:**  
+  Outline and plan tasks for upcoming stages.
 
-### Next Steps:
-1. **Complete the Extension:**  
-   - Set a plan to complete by next Wednesday.
+- **Everyone’s Weekly Goal:**  
+  - Assign and focus on individual objectives for the week. 
+  - Documentation for the implementation
 
-2. **Website Enhancements:**  
-   - Brainstorm additional features or content to include on the website.
 
-3. **Key Deadlines:**
+- **Key Deadlines:**
    - **Final Report Due:** 19th December  
    - **Implementation and Presentation Due:** 12th December  
 
----
-
-### Discussion Points:
-- **Making the Extension Complete:**  
-  Identify and plan what needs to be done to finalize the extension.
