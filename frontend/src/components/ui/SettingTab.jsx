@@ -180,7 +180,11 @@ export default function SettingTest() {
               <span className="text-lg font-light">Emotional Steering</span>
             </Label>
             {/* <Checkbox id="emotional-steering" /> */}
-            <ButtonLink to="/EMLSettings">GO</ButtonLink>
+            <ButtonLink to="/EMLSettings">
+              <button className="ring-1 ring-black rounded-md p-2 m-0 ">
+                Enable
+              </button>
+            </ButtonLink>
           </div>
           <div className="flex items-center justify-between space-x-3">
             <Label

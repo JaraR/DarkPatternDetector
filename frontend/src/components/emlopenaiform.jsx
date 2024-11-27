@@ -17,8 +17,9 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { OpenAIapi } from "@/lib/openAIapi.mjs";
-// import EmlResult from "@/components/ui/EmlResult";
+
 import noReport from "/public/icons/no-report-eml.png";
+import backIcon from "/public/icons/back.png";
 
 const FormSchema = z.object({
   tweet: z
@@ -30,33 +31,7 @@ const FormSchema = z.object({
       message: "Tweet must not be longer than 840 characters.",
     }),
 });
-const positiveEmotions = [
-  "Happiness",
-  "Joy",
-  "Excitement",
-  "Gratitude",
-  "Contentment",
-  "Love",
-  "Appreciation",
-  "Pride",
-  "Amusement",
-  "Hope",
-  "Relief",
-  "Optimism",
-  "Admiration",
-  "Inspiration",
-  "Affection",
-  "Confidence",
-  "Elation",
-  "Cheerfulness",
-  "Delight",
-  "Bliss",
-  "Satisfaction",
-  "Kindness",
-  "Trust",
-  "Empathy",
-  "Fulfillment",
-];
+
 export function TextareaForm() {
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -69,9 +44,6 @@ export function TextareaForm() {
   const [verification, setVerification] = useState("");
   const [summary, setSummary] = useState("");
   const [manipulative, setManipulative] = useState("");
-  // const isPositiveEmotion = positiveEmotions.some((emotion) =>
-  //   emotions.includes(emotion)
-  // );
 
   // Handles form submission
   async function onSubmit(data) {
@@ -186,40 +158,14 @@ export function TextareaForm() {
                 <span className="ring-2  mr-3 ring-red-400 text-red-600 rounded-lg p-1 text-center font-bold">
                   Manipulative:
                 </span>
-                <span
-                  className={`px-4 py-2 font-bold text-black rounded-full ${
-                    manipulative.toLowerCase().includes("not") &&
-                    manipulative.toLowerCase().includes("manipulative")
-                      ? "bg-green-500" // Green for "Not manipulative"
-                      : "bg-red-500" // Red for "Manipulative"
-                  }`}
-                >
-                  {manipulative.toLowerCase().includes("not") &&
-                  manipulative.toLowerCase().includes("manipulative")
-                    ? "Not manipulative"
-                    : "Manipulative"}
-                </span>
-
-                {/* <div className="pt-2">{manipulative}</div> */}
+                <span>{manipulative}</span>
               </div>
-              {/* <div className="mt-4">
-                <span className="font-bold">Emotions:</span>
-                <span>{emotions}</span>
-              </div> */}
 
               <div className="mt-4">
                 <span className="ring-2 mr-3 ring-purple-400 text-purple-600 rounded-lg p-1 text-center font-bold">
                   Emotions:
                 </span>
-                <span
-                // className={`${
-                //   isPositiveEmotion
-                //     ? "bg-orange-500 rounded-full p-2"
-                //     : "bg-red-500 rounded-full p-2"
-                // }`}
-                >
-                  {emotions}
-                </span>
+                <span>{emotions}</span>
               </div>
               <div className="mt-4">
                 <span className="ring-2 mr-3 ring-orange-400 text-orange-600 rounded-lg p-1 text-center font-bold">

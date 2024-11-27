@@ -43,7 +43,6 @@ export function Home() {
   return (
     <>
       <Navbar />
-
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
