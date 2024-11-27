@@ -31,10 +31,7 @@ const router = createHashRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Home />} />
-      <Route
-        path="/infinitescrollingsettings"
-        element={<InfiniteScrollingSettings />}
-      />
+      <Route path="/infinitescrollingsettings" element={<InfiniteScrollingSettings />} />
       <Route path="/autoplaysettings" element={<AutoplaySettings />} />
       <Route path="/EMLSettings" element={<EMLSettings />} />
     </>

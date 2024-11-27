@@ -23,6 +23,7 @@ import CustomizationCard from "@/components/ui/CustomizationCard";
 export default function SettingTest() {
   const [isAutoplay, setIsAutoplay] = useState({});
   const [isPromotedAds, setIsProtomotedAds] = useState({});
+  const [isEngagementNotif, setIsEngagementNotif] = useState({});
 
   // autoplay detection
   const startAutoplayDetection = (e) => {
@@ -52,6 +53,22 @@ export default function SettingTest() {
     if (chrome.storage) {
       chrome.storage.sync.get(["promotedAds"], (result) => {
         setIsProtomotedAds(result.promotedAds);
+      });
+    }
+  });
+
+  // Engagement notification detection
+  const startEngagementNotifDetection = (e) => {
+    if (chrome.storage) {
+      chrome.storage.sync.set({ engagementNotif: e });
+    }
+    setIsEngagementNotif(e);
+  };
+
+  useEffect(() => {
+    if (chrome.storage) {
+      chrome.storage.sync.get(["engagementNotif"], (result) => {
+        setIsEngagementNotif(result.engagementNotif);
       });
     }
   });
@@ -116,7 +133,11 @@ export default function SettingTest() {
                 Engagement Notification
               </span>
             </Label>
-            <Checkbox id="engagement-notification" />
+            <Checkbox
+              id="engagement-notification"
+              checked={isEngagementNotif}
+              onCheckedChange={startEngagementNotifDetection}
+            />
           </div>
 
           <div className="flex items-center justify-between space-x-3">
