@@ -7,11 +7,19 @@ import AboutUsTab from "@/components/ui/AboutUsTab";
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
+
 import Guide from "@/components/ui/Guide";
+
+import { ButtonLink } from "@/components/ui/buttonlink";
+
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
+
+
+
+  const [engagementNotifCount, setEngagementNotifCount] = useState(0);
 
   //update autoplay count to pie chart
   useEffect(() => {
@@ -41,6 +49,18 @@ export function Home() {
     });
   }, []);
 
+  // Updates engagement notification count on pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "updateEngagementNotif" }, (response) => {
+      console.log("Engagement notification response received from background: ",response);
+      if (response && response.count !== undefined) {
+        setEngagementNotifCount(response.count);
+      } else {
+        console.error("Error: Engagement notification count not received or is undefined.");
+      }
+    });
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -56,18 +76,26 @@ export function Home() {
         <TabsContent value="results">
           <div className="mt-3 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
+
               <span className="font-bold ">
-                {promotedAdsCount + autoplayCount}
+                {promotedAdsCount + autoplayCount + engagementNotifCount}
                 Times
               </span>
               <br />
               Dark Pattern Detected in Total
+
+            
             </Typography>
 
             <PieActiveArc
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
+              engagementNotifCount={engagementNotifCount}
             />
+
+
+
+            <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
 
             <BottomNavigation />
           </div>

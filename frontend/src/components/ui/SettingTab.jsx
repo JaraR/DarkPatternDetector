@@ -29,10 +29,12 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
+
   const [isAutoplay, setIsAutoplay] = useState(false);
   const [isPromotedAds, setIsProtomotedAds] = useState(false);
-
+  const [isEngagementNotif, setIsEngagementNotif] = useState({});
   const [openSnackbar, setOpenSnackbar] = useState(false);
+
 
   // autoplay detection
   const startAutoplayDetection = (e) => {
@@ -72,9 +74,28 @@ export default function SettingTest() {
     }
   });
 
+
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
+
+
+  // Engagement notification detection
+  const startEngagementNotifDetection = (e) => {
+    if (chrome.storage) {
+      chrome.storage.sync.set({ engagementNotif: e });
+    }
+    setIsEngagementNotif(e);
+  };
+
+  useEffect(() => {
+    if (chrome.storage) {
+      chrome.storage.sync.get(["engagementNotif"], (result) => {
+        setIsEngagementNotif(result.engagementNotif);
+      });
+    }
+  });
+
 
   return (
     <>
@@ -175,7 +196,11 @@ export default function SettingTest() {
                 />
               </Tooltip>
             </Label>
-            <Checkbox id="engagement-notification" />
+            <Checkbox
+              id="engagement-notification"
+              checked={isEngagementNotif}
+              onCheckedChange={startEngagementNotifDetection}
+            />
           </div>
 
           <div className="flex items-center justify-between space-x-3">
