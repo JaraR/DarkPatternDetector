@@ -1,7 +1,7 @@
 import * as React from "react";
 import flowChart from "../../assets/user-flow.png";
 
-export function NewTab() {
+export function Guide() {
   return (
     <div>
       <img
@@ -13,4 +13,4 @@ export function NewTab() {
   );
 }
 
-export default NewTab;
+export default Guide;

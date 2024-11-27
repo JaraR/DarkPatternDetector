@@ -7,9 +7,8 @@ import AboutUsTab from "@/components/ui/AboutUsTab";
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
-import NewTab from "@/components/ui/NewTab";
+import Guide from "@/components/ui/Guide";
 
-import Timer from "@/components/ui/Timer";
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
@@ -70,14 +69,18 @@ export function Home() {
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-us">About Us</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
-          <TabsTrigger value="new-tab">NewTab</TabsTrigger>
+          <TabsTrigger value="new-tab">How-To Guide</TabsTrigger>
         </TabsList>
 
         <TabsContent value="results">
           <div className="mt-3 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
-              Total # detected dark pattern{" "}
-              {promotedAdsCount + autoplayCount + infiniteScrollingCount}
+              <span className="font-bold ">
+                {promotedAdsCount + autoplayCount + infiniteScrollingCount}{" "}
+                Times
+              </span>
+              <br />
+              Dark Pattern Detected in Total
             </Typography>
 
             <PieActiveArc
@@ -85,7 +88,7 @@ export function Home() {
               promotedAdsCount={promotedAdsCount}
               infiniteScrollingCount={infiniteScrollingCount}
             />
-            <Timer />
+
             <BottomNavigation />
           </div>
         </TabsContent>
@@ -97,8 +100,8 @@ export function Home() {
         <TabsContent value="settings">
           <SettingTab />
         </TabsContent>
-        <TabsContent value="new-tab">
-          <NewTab />
+        <TabsContent value="how-to-guide">
+          <Guide />
         </TabsContent>
       </Tabs>
     </>

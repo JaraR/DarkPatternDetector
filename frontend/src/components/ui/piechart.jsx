@@ -2,16 +2,16 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
-export default function PieActiveArc({
-  autoplayCount,
-  promotedAdsCount,
-  infiniteScrollingCount,
-}) {
+export default function PieActiveArc({ autoplayCount, promotedAdsCount }) {
   console.log("Autoplay Count:", autoplayCount);
   console.log("Promoted Ads Count:", promotedAdsCount);
-  console.log("infinite scrolling Count:", infiniteScrollingCount);
+
   const darkPattern = [
-    { label: "Engagement Notification", value: 10, color: "#ffa600" },
+    {
+      label: `Engagement Notification`,
+      value: 10,
+      color: "#ffa600",
+    },
     {
       label: `Autoplay ${autoplayCount}`,
       value: autoplayCount,
@@ -23,11 +23,7 @@ export default function PieActiveArc({
       value: promotedAdsCount,
       color: "#c38ee8",
     },
-    {
-      label: `Infinite Scrolling ${infiniteScrollingCount}`,
-      value: infiniteScrollingCount,
-      color: "#0095e1",
-    },
+    { label: "Infinite Scrolling", value: 10, color: "#0095e1" },
     { label: "Obstruction", value: 10, color: "#a1a1a8" },
     { label: "Privacy Zuckering", value: 5, color: "#374c80" },
   ];
