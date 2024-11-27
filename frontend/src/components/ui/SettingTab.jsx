@@ -31,7 +31,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function SettingTest() {
   const [isAutoplay, setIsAutoplay] = useState(false);
   const [isPromotedAds, setIsProtomotedAds] = useState(false);
-  const [isInfiniteScrolling, setIsInfiniteScrolling] = useState(false);
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -69,26 +68,6 @@ export default function SettingTest() {
     if (chrome.storage) {
       chrome.storage.sync.get(["promotedAds"], (result) => {
         setIsProtomotedAds(result.promotedAds);
-      });
-    }
-  });
-
-  //Infinite scrolling
-  const startInfiniteScrollingDetection = (e) => {
-    console.log("Infinite Scrolling checked:", e);
-    if (chrome.storage) {
-      chrome.storage.sync.set({ infiniteScrolling: e });
-    }
-    setIsInfiniteScrolling(e);
-    if (e) {
-      setOpenSnackbar(true);
-    }
-  };
-
-  useEffect(() => {
-    if (chrome.storage) {
-      chrome.storage.sync.get(["infiniteScrolling"], (result) => {
-        setIsInfiniteScrolling(result.infiniteScrolling);
       });
     }
   });
@@ -167,11 +146,7 @@ export default function SettingTest() {
                 />
               </Tooltip>
             </Label>
-            <Checkbox
-              id="infinite-scrolling"
-              checked={isInfiniteScrolling}
-              onCheckedChange={startInfiniteScrollingDetection}
-            />
+            <Checkbox id="infinite-scrolling" />
           </div>
 
           <div className="flex items-center justify-between space-x-3">

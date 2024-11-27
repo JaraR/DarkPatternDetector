@@ -32,7 +32,7 @@ function checkForAds() {
   spans.forEach((span) => {
     if (span.textContent.trim() === adText && !alertedAds.includes(span)) {
       alertedAds.push(span);
-      alert("Promoted ads detected!");
+      // alert("Promoted ads detected!");
       console.log("Promoted ad detected:", span);
 
       highlightAd(span);
@@ -53,10 +53,10 @@ function checkForAds() {
           });
         }
 
-        const videoDiv = document.querySelector('[data-testid="videoPlayer"]');
-        if (videoDiv) {
-          videoDiv.style.filter = "blur(5px)";
-        }
+        // const videoDiv = document.querySelector('[data-testid="videoPlayer"]');
+        // if (videoDiv) {
+        //   videoDiv.style.filter = "blur(5px)";
+        // }
 
         const articleLinks = article.querySelectorAll("a");
 

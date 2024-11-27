@@ -9,39 +9,22 @@ import Switch from "@mui/material/Switch";
 import logo from "../../assets/logo2.png";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
-
-// Alert component for Snackbar
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 export default function NavBar() {
   const [isDetectionOn, setIsDetectionOn] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [openSnackbar, setOpenSnackbar] = React.useState(false);
-  const openMenu = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = React.useState(null); // State to track anchor element for menu
+  const openMenu = Boolean(anchorEl); // Boolean to check if the menu is open
 
   const handleSwitchChange = (event) => {
     setIsDetectionOn(event.target.checked);
-    if (event.target.checked) {
-      setOpenSnackbar(true);
-    }
   };
-
   const handleMenuClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget); // Open the menu when icon is clicked
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null); // Close the menu
   };
-
-  const handleCloseSnackbar = () => {
-    setOpenSnackbar(false);
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "white", color: "black" }}>
@@ -104,31 +87,6 @@ export default function NavBar() {
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
         <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
       </Menu>
-
-      {/* Snackbar that will show when the detection is turned on */}
-      {/* <Snackbar
-        open={openSnackbar}
-        autoHideDuration={2000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        sx={{
-          "& .MuiSnackbarContent-root": {
-            padding: "8px 16px",
-            fontSize: "0.875rem",
-            height: "40px",
-
-            borderRadius: "8px",
-          },
-        }}
-      >
-        <Alert
-          onClose={handleCloseSnackbar}
-          severity="info"
-          sx={{ width: "70%", backgroundColor: "#ade0f4", color: "gray" }}
-        >
-          Don't forget to enable the dark pattern on Setting page:)
-        </Alert>
-      </Snackbar> */}
     </Box>
   );
 }

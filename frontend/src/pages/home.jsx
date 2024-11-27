@@ -12,7 +12,7 @@ import Guide from "@/components/ui/Guide";
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
-  const [infiniteScrollingCount, setInfiniteScrollingCount] = useState(0);
+
   //update autoplay count to pie chart
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "updateAutoplay" }, (response) => {
@@ -40,25 +40,6 @@ export function Home() {
       }
     });
   }, []);
-  //update infinite scrolling to pie chart
-  useEffect(() => {
-    chrome.runtime.sendMessage(
-      { type: "updateInfiniteScrolling" },
-      (response) => {
-        console.log(
-          "infinite scrolling count response received from background:",
-          response
-        );
-        if (response && response.count !== undefined) {
-          setInfiniteScrollingCount(response.count);
-        } else {
-          console.error(
-            "Error: infinite scrolling count not received or is undefined."
-          );
-        }
-      }
-    );
-  }, []);
 
   return (
     <>
@@ -76,7 +57,7 @@ export function Home() {
           <div className="mt-3 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
               <span className="font-bold ">
-                {promotedAdsCount + autoplayCount + infiniteScrollingCount}{" "}
+                {promotedAdsCount + autoplayCount}
                 Times
               </span>
               <br />
@@ -86,7 +67,6 @@ export function Home() {
             <PieActiveArc
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
-              infiniteScrollingCount={infiniteScrollingCount}
             />
 
             <BottomNavigation />
