@@ -17,8 +17,8 @@
 // Function to update the badge text and background color
 function updateBadge() {
   // Fetch both counts from storage and update the badge with the sum
-  chrome.storage.local.get(["autoplayCount", "promotedAdsCount"], (data) => {
-    const totalCount = (data.autoplayCount || 0) + (data.promotedAdsCount || 0);
+  chrome.storage.local.get(["autoplayCount", "promotedAdsCount", "engagementNotifCount"], (data) => {
+    const totalCount = (data.autoplayCount || 0) + (data.promotedAdsCount || 0) + (data.engagementNotifCount || 0);
     chrome.action.setBadgeText({ text: totalCount.toString() });
     chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
   });
@@ -40,6 +40,16 @@ function updatePromotedAdsCount(count) {
   // Store the updated promoted ads count in local storage
   chrome.storage.local.set({ promotedAdsCount: count }, () => {
     // After updating the promoted ads count, update the badge
+    updateBadge();
+  });
+}
+
+// Updates engagement notification count
+function updateEngagementNotifCount(count) {
+  console.log("Engagment notification count updated in background:", count);
+  // Store the engagement notification count in local storage
+  chrome.storage.local.set({ engagementNotifCount: count }, () => {
+    // After updating the engagement notification count, update the badge
     updateBadge();
   });
 }
@@ -76,6 +86,15 @@ function handleMessage(message, sender, sendResponse) {
       });
       break;
 
+    case "updateEngagementNotif":
+      updateEngagementNotifCount(message.count);
+      chrome.storage.local.get(["engagementNotifCount"], (result) => {
+        const storedEngagementNotifCount = result.engagementNotifCount || 0;
+        console.log("Retrieved engagement notification count in background:", storedEngagementNotifCount);
+        sendResponse({ count: storedEngagementNotifCount });
+      });
+      break;
+
     default:
       sendResponse({ status: "Unknown message type" });
       break;
@@ -90,6 +109,8 @@ const MESSAGE_TYPE = {
   STOP_AUTOPLAY: "stopAutoplay",
   START_PROMOTED_ADS: "startPromotedAds",
   STOP_PROMOTED_ADS: "stopPromotedAds",
+  START_ENGAGEMENT_NOTIF: "startEngagementNotif",
+  STOP_ENGAGEMENT_NOTIF: "stopEngagementNotif",
 };
 
 // Function to send a message to the content script in the active tab
@@ -174,6 +195,36 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
           "Failed to send promoted ads message to content script:",
           error
         );
+      }
+    }
+
+    // Check if engagement notification setting changed
+    if (changes.engagementNotif) {
+      const newEngagementNotifValue = changes.engagementNotif.newValue;
+      console.log("Engagement Notification setting changed:", newEngagementNotifValue);
+
+      const engagementNotifMessageType = newEngagementNotifValue
+        ? MESSAGE_TYPE.START_ENGAGEMENT_NOTIF
+        : MESSAGE_TYPE.STOP_ENGAGEMENT_NOTIF;
+
+      try {
+        // Query relevant tabs (e.g.: X, Bluesky, Reddit)
+        const tabs = await chrome.tabs.query({
+          active: true,
+          currentWindow: true,
+          url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+        });
+
+        if(tabs.length > 0 && tabs[0].id !== undefined) {
+          const response = await sendMessageToContent(tabs[0].id, {
+            type: engagementNotifMessageType
+          });
+          console.log("Response from content script for engagement notifications:", response);
+        } else {
+          console.warn("No relevant tab found or tab ID is undefined.");
+        }
+      } catch (error) {
+        console.error("Failed to send engagement notification message to content script:", error);
       }
     }
   }

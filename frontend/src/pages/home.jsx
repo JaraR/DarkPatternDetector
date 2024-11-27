@@ -12,6 +12,7 @@ import { ButtonLink } from "@/components/ui/buttonlink";
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
+  const [engagementNotifCount, setEngagementNotifCount] = useState(0);
   //update autoplay count to pie chart
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "updateAutoplay" }, (response) => {
@@ -40,6 +41,18 @@ export function Home() {
     });
   }, []);
 
+  // Updates engagement notification count on pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "updateEngagementNotif" }, (response) => {
+      console.log("Engagement notification response received from background: ",response);
+      if (response && response.count !== undefined) {
+        setEngagementNotifCount(response.count);
+      } else {
+        console.error("Error: Engagement notification count not received or is undefined.");
+      }
+    });
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -54,7 +67,7 @@ export function Home() {
         <TabsContent value="results">
           <div className="mt-8 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
-              Total # detected dark pattern {promotedAdsCount + autoplayCount}
+              Total # detected dark pattern {promotedAdsCount + autoplayCount + engagementNotifCount}
             </Typography>
             <Typography variant="subtitle1" component="div" gutterBottom>
               Detected Dark Patterns
@@ -62,6 +75,7 @@ export function Home() {
             <PieActiveArc
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
+              engagementNotifCount={engagementNotifCount}
             />
             <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
             <BottomNavigation />
