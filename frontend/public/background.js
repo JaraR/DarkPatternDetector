@@ -1,19 +1,3 @@
-// // Function to update the badge text and background color
-// function updateBadge(count) {
-//   chrome.action.setBadgeText({ text: count.toString() });
-//   chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
-// }
-// //autoplay
-// function updateAutoplayCount(count) {
-//   console.log("Autoplay count updated in background:", count);
-//   chrome.storage.local.set({ autoplayCount: count });
-// }
-// //promoted ads
-// function updatePromotedAdsCount(count) {
-//   console.log("Promoted Ads count updated in background:", count);
-//   chrome.storage.local.set({ promotedAdsCount: count });
-// }
-
 // Function to update the badge text and background color
 function updateBadge() {
   // Fetch both counts from storage and update the badge with the sum

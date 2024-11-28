@@ -63,11 +63,11 @@ export default function SettingTest() {
         <CardHeader className="pt-2 pb-1">
           <CardTitle className="flex items-center">
             <img src={FilterIcon} alt="Filter Icon" className="h-6 w-6 mr-3" />
-            <span className="text-xl">Enable/Disable Dark Pattern</span>
+            <span className="text-xl">Choose a Dark Pattern to detect</span>
           </CardTitle>
 
           <CardDescription>
-            Select Dark Pattern you want to detect
+            Navigate to X and see X-Factors in action
           </CardDescription>
         </CardHeader>
 
@@ -145,14 +145,12 @@ export default function SettingTest() {
         <CardHeader className="pt-2 pb-1">
           <CardTitle className="flex items-center">
             <img src={FilterIcon} alt="Filter Icon" className="h-6 w-6 mr-3" />
-            <span className="text-xl">Enable/Disable Dark Pattern</span>
+            <span className="text-xl">Choose a Dark Pattern to detect</span>
           </CardTitle>
 
-          <CardDescription>
-            Go Start your Dark Pattern Detection
-          </CardDescription>
+          <CardDescription>Generate dark pattern report</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-1">
           <div className="flex items-center justify-between space-x-3">
             <Label
               htmlFor="obstruction"
@@ -165,7 +163,12 @@ export default function SettingTest() {
               />
               <span className="text-lg font-light">Obstruction</span>
             </Label>
-            <Checkbox id="obstruction" />
+            {/* <Checkbox id="obstruction" /> */}
+            <ButtonLink to="/EMLSettings">
+              <button className="ring-1  ring-black rounded-md p-1 hover:bg-gray-200 hover:ring-gray-700 transition">
+                Enable
+              </button>
+            </ButtonLink>
           </div>
           <div className="flex items-center justify-between space-x-3">
             <Label
@@ -181,7 +184,7 @@ export default function SettingTest() {
             </Label>
             {/* <Checkbox id="emotional-steering" /> */}
             <ButtonLink to="/EMLSettings">
-              <button className="ring-1 ring-black rounded-md p-2 m-0 ">
+              <button className="ring-1 ring-black rounded-md p-1 hover:bg-gray-200 hover:ring-gray-700 transition">
                 Enable
               </button>
             </ButtonLink>
@@ -198,7 +201,12 @@ export default function SettingTest() {
               />
               <span className="text-lg font-light">Privacy Zuckering</span>
             </Label>
-            <Checkbox id="privacy-zuckering" />
+            {/* <Checkbox id="privacy-zuckering" /> */}
+            <ButtonLink to="/EMLSettings">
+              <button className="ring-1 ring-black rounded-md p-1 hover:bg-gray-200 hover:ring-gray-700 transition">
+                Enable
+              </button>
+            </ButtonLink>
           </div>
         </CardContent>
       </Card>

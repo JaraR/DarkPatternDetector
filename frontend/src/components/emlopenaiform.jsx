@@ -19,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { OpenAIapi } from "@/lib/openAIapi.mjs";
 
 import noReport from "/public/icons/no-report-eml.png";
-import backIcon from "/public/icons/back.png";
+import emlIcon from "/public/icons/emotion.png";
 
 const FormSchema = z.object({
   tweet: z
@@ -99,20 +99,26 @@ export function TextareaForm() {
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 ">
           <FormField
             control={form.control}
             name="tweet"
             render={({ field }) => (
-              <FormItem className="m-5 justify-center">
-                <FormLabel className="font-bold text-center text-xl ">
+              <FormItem className="ml-3 mt-1  justify-center">
+                <FormLabel className="flex font-bold text-center text-xl">
+                  <img
+                    src={emlIcon}
+                    alt="Emotional Steering Icon"
+                    className="w-6 h-6 mx-3"
+                  />
                   Emotional Steering
                 </FormLabel>
+
                 <FormControl>
                   <Textarea
                     placeholder="Copy and paste a tweet you are interested here and click Start Analyze button to generate a report
          "
-                    className="resize-none placeholder:text-sm"
+                    className=" placeholder:text-sm"
                     {...field}
                   />
                 </FormControl>
@@ -121,11 +127,11 @@ export function TextareaForm() {
               </FormItem>
             )}
           />
-          <div className="flex flex-col-3 justify-end pr-5 ">
+          <div className="flex flex-col-3 justify-end mt-0 mr-3 p-0">
             <Button
               type="submit"
               disabled={loading}
-              className="bg-pink-700 text-white font-bold rounded-full px-4 py-2 text-sm hover:bg-pink-900"
+              className="bg-pink-700 text-white font-bold rounded-full px-1.5 py-0.5 text-sm hover:bg-pink-900"
             >
               {loading ? "Analyzing..." : "Start Analyze"}
             </Button>
@@ -137,9 +143,10 @@ export function TextareaForm() {
 
               {/* <p className="mt-2">{apiResponse}</p> */}
               <div className="mt-4">
-                <span className="ring-2  mr-3 ring-green-400 text-green-600 rounded-lg p-1 text-center font-bold ">
-                  Sentiment:
+                <span className="ring-2 mr-3  inline-block w-[82px] ring-green-400 text-green-600 rounded-lg p-1 text-center font-bold">
+                  Sentiment
                 </span>
+
                 <span
                   className={`px-4 py-2 font-bold text-black rounded-full ${
                     sentiment === "Positive"
@@ -155,37 +162,37 @@ export function TextareaForm() {
                 </span>
               </div>
               <div className="mt-4">
-                <span className="ring-2  mr-3 ring-red-400 text-red-600 rounded-lg p-1 text-center font-bold">
-                  Manipulative:
+                <span className="ring-2 inline-block w-[82px] mr-3 ring-red-400 text-red-600 rounded-lg p-1 text-center font-bold">
+                  Manipulative
                 </span>
                 <span>{manipulative}</span>
               </div>
 
               <div className="mt-4">
-                <span className="ring-2 mr-3 ring-purple-400 text-purple-600 rounded-lg p-1 text-center font-bold">
-                  Emotions:
+                <span className="ring-2 mr-3 inline-block w-[82px] ring-purple-400 text-purple-600 rounded-lg p-1 text-center font-bold">
+                  Emotions
                 </span>
                 <span>{emotions}</span>
               </div>
               <div className="mt-4">
-                <span className="ring-2 mr-3 ring-orange-400 text-orange-600 rounded-lg p-1 text-center font-bold">
-                  Fact-Based:
+                <span className="ring-2 mr-3 inline-block w-[82px] ring-orange-400 text-orange-600 rounded-lg p-1 text-center font-bold">
+                  Fact-Based
                 </span>
                 <span>{verification}</span>
               </div>
               <div className="mt-4 ">
-                <span className="ring-2 mr-3 ring-blue-400 text-blue-600 rounded-lg p-1 text-center font-bold ">
-                  Summary:
+                <span className="ring-2 mr-3 inline-block w-[82px] ring-blue-400 text-blue-600 rounded-lg p-1 text-center font-bold ">
+                  Summary
                 </span>
                 <span>{summary}</span>
               </div>
             </div>
           ) : (
             <div className="p-4 m-4 gap-2 border rounded bg-gray-50 h-[250px] flex flex-col items-center justify-center  ">
+              <img src={noReport} alt="No Report" className="mb-2 w-20" />
               <div className="text-center font-bold mt-0 text-2xl text-gray-600">
                 No report generated
               </div>
-              <img src={noReport} alt="No Report" className="mb-2 w-20" />
 
               <div className="flex-row gap-4 flex-wrap pt-2 flex items-center justify-center">
                 {/* Tag 1 */}
