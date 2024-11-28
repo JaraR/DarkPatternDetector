@@ -5,11 +5,13 @@ import { PieChart } from "@mui/x-charts/PieChart";
 export default function PieActiveArc({ autoplayCount, promotedAdsCount, engagementNotifCount }) {
   console.log("Autoplay Count:", autoplayCount);
   console.log("Promoted Ads Count:", promotedAdsCount);
+
   console.log("Engagement Notification Count:", engagementNotifCount);
   const darkPattern = [
     { label: `Engagement Notification ${engagementNotifCount}`,
       value: engagementNotifCount,
       color: "#ffa600" },
+
     {
       label: `Autoplay ${autoplayCount}`,
       value: autoplayCount,

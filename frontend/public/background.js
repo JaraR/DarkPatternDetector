@@ -1,35 +1,19 @@
-// // Function to update the badge text and background color
-// function updateBadge(count) {
-//   chrome.action.setBadgeText({ text: count.toString() });
-//   chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
-// }
-// //autoplay
-// function updateAutoplayCount(count) {
-//   console.log("Autoplay count updated in background:", count);
-//   chrome.storage.local.set({ autoplayCount: count });
-// }
-// //promoted ads
-// function updatePromotedAdsCount(count) {
-//   console.log("Promoted Ads count updated in background:", count);
-//   chrome.storage.local.set({ promotedAdsCount: count });
-// }
-
-// Function to update the badge text and background color
+// function to Sum Up all the counts
 function updateBadge() {
+
   // Fetch both counts from storage and update the badge with the sum
   chrome.storage.local.get(["autoplayCount", "promotedAdsCount", "engagementNotifCount"], (data) => {
     const totalCount = (data.autoplayCount || 0) + (data.promotedAdsCount || 0) + (data.engagementNotifCount || 0);
+
     chrome.action.setBadgeText({ text: totalCount.toString() });
-    chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
+    chrome.action.setBadgeBackgroundColor({ color: "#fcd400" });
   });
 }
 
 // Autoplay update function
 function updateAutoplayCount(count) {
   console.log("Autoplay count updated in background:", count);
-  // Store the updated autoplay count in local storage
   chrome.storage.local.set({ autoplayCount: count }, () => {
-    // After updating the autoplay count, update the badge
     updateBadge();
   });
 }
@@ -37,9 +21,7 @@ function updateAutoplayCount(count) {
 // Promoted ads update function
 function updatePromotedAdsCount(count) {
   console.log("Promoted Ads count updated in background:", count);
-  // Store the updated promoted ads count in local storage
   chrome.storage.local.set({ promotedAdsCount: count }, () => {
-    // After updating the promoted ads count, update the badge
     updateBadge();
   });
 }
@@ -143,7 +125,7 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
         const tabs = await chrome.tabs.query({
           active: true,
           currentWindow: true,
-          url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+          url: ["*://*.x.com/*", "*://*.bsky.app/*"],
         });
 
         if (tabs.length > 0 && tabs[0].id !== undefined) {
