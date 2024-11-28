@@ -7,11 +7,17 @@ import AboutUsTab from "@/components/ui/AboutUsTab";
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
+
 // import { ButtonLink } from "@/components/ui/buttonlink";
+
+import Guide from "@/components/ui/Guide";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
+
+  const [engagementNotifCount, setEngagementNotifCount] = useState(0);
+
   //update autoplay count to pie chart
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "updateAutoplay" }, (response) => {
@@ -40,6 +46,26 @@ export function Home() {
     });
   }, []);
 
+  // Updates engagement notification count on pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage(
+      { type: "updateEngagementNotif" },
+      (response) => {
+        console.log(
+          "Engagement notification response received from background: ",
+          response
+        );
+        if (response && response.count !== undefined) {
+          setEngagementNotifCount(response.count);
+        } else {
+          console.error(
+            "Error: Engagement notification count not received or is undefined."
+          );
+        }
+      }
+    );
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -48,21 +74,28 @@ export function Home() {
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-us">About Us</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="new-tab">How-To Guide</TabsTrigger>
         </TabsList>
 
         <TabsContent value="results">
-          <div className="mt-8 mx-3 flex flex-col items-center text-center">
+          <div className="mt-3 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
-              Total # detected dark pattern {promotedAdsCount + autoplayCount}
+              <span className="font-bold ">
+                {promotedAdsCount + autoplayCount + engagementNotifCount}
+                Times
+              </span>
+              <br />
+              Dark Pattern Detected in Total
             </Typography>
-            <Typography variant="subtitle1" component="div" gutterBottom>
-              Detected Dark Patterns
-            </Typography>
+
             <PieActiveArc
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
+              engagementNotifCount={engagementNotifCount}
             />
+
             {/* <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink> */}
+
             <BottomNavigation />
           </div>
         </TabsContent>
@@ -73,6 +106,9 @@ export function Home() {
 
         <TabsContent value="settings">
           <SettingTab />
+        </TabsContent>
+        <TabsContent value="how-to-guide">
+          <Guide />
         </TabsContent>
       </Tabs>
     </>

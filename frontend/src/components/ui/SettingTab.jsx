@@ -20,10 +20,21 @@ import { ButtonLink } from "@/components/ui/buttonlink";
 
 // import CustomizationCard from "@/components/ui/CustomizationCard";
 
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import Tooltip from "@mui/material/Tooltip";
+import InfoIcon from "@mui/icons-material/Info";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
-  const [isAutoplay, setIsAutoplay] = useState({});
-  const [isPromotedAds, setIsProtomotedAds] = useState({});
+  const [isAutoplay, setIsAutoplay] = useState(false);
+  const [isPromotedAds, setIsProtomotedAds] = useState(false);
+  const [isEngagementNotif, setIsEngagementNotif] = useState({});
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   // autoplay detection
   const startAutoplayDetection = (e) => {
@@ -31,6 +42,9 @@ export default function SettingTest() {
       chrome.storage.sync.set({ autoplay: e });
     }
     setIsAutoplay(e);
+    if (e) {
+      setOpenSnackbar(true);
+    }
   };
 
   useEffect(() => {
@@ -47,12 +61,35 @@ export default function SettingTest() {
       chrome.storage.sync.set({ promotedAds: e });
     }
     setIsProtomotedAds(e);
+    if (e) {
+      setOpenSnackbar(true);
+    }
   };
 
   useEffect(() => {
     if (chrome.storage) {
       chrome.storage.sync.get(["promotedAds"], (result) => {
         setIsProtomotedAds(result.promotedAds);
+      });
+    }
+  });
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
+
+  // Engagement notification detection
+  const startEngagementNotifDetection = (e) => {
+    if (chrome.storage) {
+      chrome.storage.sync.set({ engagementNotif: e });
+    }
+    setIsEngagementNotif(e);
+  };
+
+  useEffect(() => {
+    if (chrome.storage) {
+      chrome.storage.sync.get(["engagementNotif"], (result) => {
+        setIsEngagementNotif(result.engagementNotif);
       });
     }
   });
@@ -80,7 +117,21 @@ export default function SettingTest() {
                 className="h-6 w-6 mr-2"
               />
               <span className="text-lg font-light">Autoplay</span>
+
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Highlight and pause videos that play automatically.
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
             </Label>
+
             <Checkbox
               id="autoplay"
               checked={isAutoplay}
@@ -99,6 +150,19 @@ export default function SettingTest() {
                 className="h-6 w-6 mr-2"
               />
               <span className="text-lg font-light">Infinite Scrolling</span>
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Notifify user when infinite scrolling is detected and shows
+                    a timer
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
             </Label>
             <Checkbox id="infinite-scrolling" />
           </div>
@@ -116,8 +180,24 @@ export default function SettingTest() {
               <span className="text-lg font-light">
                 Engagement Notification
               </span>
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Highlight the notification and give a reminder.
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
             </Label>
-            <Checkbox id="engagement-notification" />
+            <Checkbox
+              id="engagement-notification"
+              checked={isEngagementNotif}
+              onCheckedChange={startEngagementNotifDetection}
+            />
           </div>
 
           <div className="flex items-center justify-between space-x-3">
@@ -131,6 +211,19 @@ export default function SettingTest() {
                 className="h-6 w-6 mr-2"
               />
               <span className="text-lg font-light">Promoted Ads</span>
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Highlight embedded ads and give a reminder before user is
+                    redirected to third party website.
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
             </Label>
             <Checkbox
               id="promoted-ads"
@@ -162,6 +255,19 @@ export default function SettingTest() {
                 className="h-6 w-6 mr-2"
               />
               <span className="text-lg font-light">Obstruction</span>
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Give a reminder popup when the website is obstructing user
+                    to complete a task.
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
             </Label>
             {/* <Checkbox id="obstruction" /> */}
             <ButtonLink to="/EMLSettings">
@@ -181,6 +287,19 @@ export default function SettingTest() {
                 className="h-6 w-6 mr-2"
               />
               <span className="text-lg font-light">Emotional Steering</span>
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Analyze the content on X website and get the sentiment
+                    analysis report.
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
             </Label>
             {/* <Checkbox id="emotional-steering" /> */}
             <ButtonLink to="/EMLSettings">
@@ -200,6 +319,20 @@ export default function SettingTest() {
                 className="h-6 w-6 mr-2"
               />
               <span className="text-lg font-light">Privacy Zuckering</span>
+
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Give a reminder popup when user is about to share personal
+                    information.
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
             </Label>
             {/* <Checkbox id="privacy-zuckering" /> */}
             <ButtonLink to="/EMLSettings">
@@ -211,6 +344,30 @@ export default function SettingTest() {
         </CardContent>
       </Card>
       {/* <CustomizationCard /> */}
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        sx={{
+          "& .MuiSnackbarContent-root": {
+            padding: "8px 16px",
+            fontSize: "0.875rem",
+            height: "40px",
+            borderRadius: "8px",
+          },
+        }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="info"
+          sx={{ width: "100%", backgroundColor: "#ade0f4", color: "gray" }}
+        >
+          Navigate to X website and scroll down to see to see X-Factors in
+          action
+        </Alert>
+      </Snackbar>
     </>
   );
 }
