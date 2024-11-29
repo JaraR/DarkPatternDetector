@@ -1,8 +1,9 @@
 import { OpenAI } from "openai";
+import 'dotenv/config';
 
 // API KEY NOT ENCRYPTED; DO NOT PUSH WITH API KEY IN FILE
 // dangerouslyAllowBrowser allows API usage in browser. TAKE CARE WHERE KEY IS USED - uncomment to allow use
-const API_KEY = ""
+const API_KEY = process.env.API_KEY
 const openai = new OpenAI({
     apiKey: API_KEY,
     // dangerouslyAllowBrowser: true
