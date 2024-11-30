@@ -1,12 +1,15 @@
 import { TextareaForm } from "@/components/emlopenaiform";
 import { ButtonLink } from "@/components/ui/buttonlink";
+import Navbar from "@/components/ui/navbar";
 
 export function EMLSettings() {
-    return (
-        <>
-            <ButtonLink to="/">Home</ButtonLink>
-            <TextareaForm />
-        </>
-    )
-
+  return (
+    <>
+      <Navbar />
+      <ButtonLink to="/" variant="link">
+        ↖ Back
+      </ButtonLink>
+      <TextareaForm />
+    </>
+  );
 }

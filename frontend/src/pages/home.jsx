@@ -8,16 +8,13 @@ import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
 
+// import { ButtonLink } from "@/components/ui/buttonlink";
+
 import Guide from "@/components/ui/Guide";
-
-import { ButtonLink } from "@/components/ui/buttonlink";
-
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
-
-
 
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
 
@@ -51,20 +48,27 @@ export function Home() {
 
   // Updates engagement notification count on pie chart
   useEffect(() => {
-    chrome.runtime.sendMessage({ type: "updateEngagementNotif" }, (response) => {
-      console.log("Engagement notification response received from background: ",response);
-      if (response && response.count !== undefined) {
-        setEngagementNotifCount(response.count);
-      } else {
-        console.error("Error: Engagement notification count not received or is undefined.");
+    chrome.runtime.sendMessage(
+      { type: "updateEngagementNotif" },
+      (response) => {
+        console.log(
+          "Engagement notification response received from background: ",
+          response
+        );
+        if (response && response.count !== undefined) {
+          setEngagementNotifCount(response.count);
+        } else {
+          console.error(
+            "Error: Engagement notification count not received or is undefined."
+          );
+        }
       }
-    });
+    );
   }, []);
 
   return (
     <>
       <Navbar />
-
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
@@ -76,15 +80,12 @@ export function Home() {
         <TabsContent value="results">
           <div className="mt-3 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
-
               <span className="font-bold ">
                 {promotedAdsCount + autoplayCount + engagementNotifCount}
                 Times
               </span>
               <br />
               Dark Pattern Detected in Total
-
-            
             </Typography>
 
             <PieActiveArc
@@ -93,9 +94,7 @@ export function Home() {
               engagementNotifCount={engagementNotifCount}
             />
 
-
-
-            <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
+            {/* <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink> */}
 
             <BottomNavigation />
           </div>

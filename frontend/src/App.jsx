@@ -8,7 +8,7 @@ import {
 import { Home } from "./pages/Home";
 import { AutoplaySettings } from "./pages/AutoplaySettings";
 import { InfiniteScrollingSettings } from "./pages/InfiniteScrollingSettings";
-import {EMLSettings} from "./pages/EMLSettings"
+import { EMLSettings } from "./pages/EMLSettings";
 
 // ESLint tests (note: have not gotten it to work, rolled back library installations)
 // eslint-config-react-app linting configuration requires ver 8.x, we are running ver 9.11.1-9.12,
@@ -31,7 +31,11 @@ const router = createHashRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Home />} />
-      <Route path="/infinitescrollingsettings" element={<InfiniteScrollingSettings />} />
+
+      <Route
+        path="/infinitescrollingsettings"
+        element={<InfiniteScrollingSettings />}
+      />
       <Route path="/autoplaysettings" element={<AutoplaySettings />} />
       <Route path="/EMLSettings" element={<EMLSettings />} />
     </>

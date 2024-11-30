@@ -16,8 +16,10 @@ import notification from "/public/icons/notification.png";
 import obstruction from "/public/icons/obstruction.png";
 import ads from "/public/icons/ads.png";
 import privacy from "/public/icons/privacy.png";
+import { ButtonLink } from "@/components/ui/buttonlink";
 
-import CustomizationCard from "@/components/ui/CustomizationCard";
+// import CustomizationCard from "@/components/ui/CustomizationCard";
+
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
@@ -29,12 +31,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
-
   const [isAutoplay, setIsAutoplay] = useState(false);
   const [isPromotedAds, setIsProtomotedAds] = useState(false);
   const [isEngagementNotif, setIsEngagementNotif] = useState({});
   const [openSnackbar, setOpenSnackbar] = useState(false);
-
 
   // autoplay detection
   const startAutoplayDetection = (e) => {
@@ -74,11 +74,9 @@ export default function SettingTest() {
     }
   });
 
-
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
-
 
   // Engagement notification detection
   const startEngagementNotifDetection = (e) => {
@@ -96,18 +94,17 @@ export default function SettingTest() {
     }
   });
 
-
   return (
     <>
       <Card className="border border-gray-300 m-3">
         <CardHeader className="pt-2 pb-1">
           <CardTitle className="flex items-center">
             <img src={FilterIcon} alt="Filter Icon" className="h-6 w-6 mr-3" />
-            <span className="text-xl">Enable/Disable Dark Pattern</span>
+            <span className="text-xl">Choose a Dark Pattern to detect</span>
           </CardTitle>
 
           <CardDescription>
-            Select Dark Pattern you want to detect
+            Navigate to X and see X-Factors in action
           </CardDescription>
         </CardHeader>
 
@@ -205,34 +202,6 @@ export default function SettingTest() {
 
           <div className="flex items-center justify-between space-x-3">
             <Label
-              htmlFor="emotional-steering"
-              className="flex items-center space-x-3"
-            >
-              <img
-                src={emotional}
-                alt="Emotional Steering Filter Icon"
-                className="h-6 w-6 mr-2"
-              />
-              <span className="text-lg font-light">Emotional Steering</span>
-              <Tooltip
-                title={
-                  <span style={{ fontSize: "0.85rem" }}>
-                    Analyze the content on X website and show the sentiment
-                    analysis results.
-                  </span>
-                }
-              >
-                <InfoIcon
-                  className="text-gray-300 cursor-pointer"
-                  fontSize="small"
-                />
-              </Tooltip>
-            </Label>
-            <Checkbox id="emotional-steering" />
-          </div>
-
-          <div className="flex items-center justify-between space-x-3">
-            <Label
               htmlFor="promoted-ads"
               className="flex items-center space-x-3"
             >
@@ -262,35 +231,19 @@ export default function SettingTest() {
               onCheckedChange={startPromotedAdsDetection}
             />
           </div>
+        </CardContent>
+      </Card>
+      {/* this is #2 category of dark pattern detection */}
+      <Card className="border border-gray-300 m-3">
+        <CardHeader className="pt-2 pb-1">
+          <CardTitle className="flex items-center">
+            <img src={FilterIcon} alt="Filter Icon" className="h-6 w-6 mr-3" />
+            <span className="text-xl">Choose a Dark Pattern to detect</span>
+          </CardTitle>
 
-          <div className="flex items-center justify-between space-x-3">
-            <Label
-              htmlFor="privacy-zuckering"
-              className="flex items-center space-x-3"
-            >
-              <img
-                src={privacy}
-                alt="Privacy Zuckering Filter Icon"
-                className="h-6 w-6 mr-2"
-              />
-              <span className="text-lg font-light">Privacy Zuckering</span>
-              <Tooltip
-                title={
-                  <span style={{ fontSize: "0.85rem" }}>
-                    Give a reminder popup when user is about to share personal
-                    information.
-                  </span>
-                }
-              >
-                <InfoIcon
-                  className="text-gray-300 cursor-pointer"
-                  fontSize="small"
-                />
-              </Tooltip>
-            </Label>
-            <Checkbox id="privacy-zuckering" />
-          </div>
-
+          <CardDescription>Generate dark pattern report</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-1">
           <div className="flex items-center justify-between space-x-3">
             <Label
               htmlFor="obstruction"
@@ -316,11 +269,76 @@ export default function SettingTest() {
                 />
               </Tooltip>
             </Label>
-            <Checkbox id="obstruction" />
+            {/* <Checkbox id="obstruction" /> */}
+            <ButtonLink to="/EMLSettings" variant="border">
+                Go
+            </ButtonLink>
+          </div>
+          <div className="flex items-center justify-between space-x-3">
+            <Label
+              htmlFor="emotional-steering"
+              className="flex items-center space-x-3"
+            >
+              <img
+                src={emotional}
+                alt="Emotional Steering Filter Icon"
+                className="h-6 w-6 mr-2"
+              />
+              <span className="text-lg font-light">Emotional Steering</span>
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Analyze the content on X website and get the sentiment
+                    analysis report.
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
+            </Label>
+            {/* <Checkbox id="emotional-steering" /> */}
+            <ButtonLink to="/EMLSettings" variant="border">
+                Go
+            </ButtonLink>
+          </div>
+          <div className="flex items-center justify-between space-x-3">
+            <Label
+              htmlFor="privacy-zuckering"
+              className="flex items-center space-x-3"
+            >
+              <img
+                src={privacy}
+                alt="Privacy Zuckering Filter Icon"
+                className="h-6 w-6 mr-2"
+              />
+              <span className="text-lg font-light">Privacy Zuckering</span>
+
+              <Tooltip
+                title={
+                  <span style={{ fontSize: "0.85rem" }}>
+                    Give a reminder popup when user is about to share personal
+                    information.
+                  </span>
+                }
+              >
+                <InfoIcon
+                  className="text-gray-300 cursor-pointer"
+                  fontSize="small"
+                />
+              </Tooltip>
+            </Label>
+            {/* <Checkbox id="privacy-zuckering" /> */}
+            <ButtonLink to="/EMLSettings" variant="border">
+                Go
+            </ButtonLink>
           </div>
         </CardContent>
       </Card>
-      <CustomizationCard />
+      {/* <CustomizationCard /> */}
+
       <Snackbar
         open={openSnackbar}
         autoHideDuration={4000}

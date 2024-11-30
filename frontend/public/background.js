@@ -1,13 +1,18 @@
 // function to Sum Up all the counts
 function updateBadge() {
-
   // Fetch both counts from storage and update the badge with the sum
-  chrome.storage.local.get(["autoplayCount", "promotedAdsCount", "engagementNotifCount"], (data) => {
-    const totalCount = (data.autoplayCount || 0) + (data.promotedAdsCount || 0) + (data.engagementNotifCount || 0);
+  chrome.storage.local.get(
+    ["autoplayCount", "promotedAdsCount", "engagementNotifCount"],
+    (data) => {
+      const totalCount =
+        (data.autoplayCount || 0) +
+        (data.promotedAdsCount || 0) +
+        (data.engagementNotifCount || 0);
 
-    chrome.action.setBadgeText({ text: totalCount.toString() });
-    chrome.action.setBadgeBackgroundColor({ color: "#fcd400" });
-  });
+      chrome.action.setBadgeText({ text: totalCount.toString() });
+      chrome.action.setBadgeBackgroundColor({ color: "#fcd400" });
+    }
+  );
 }
 
 // Autoplay update function
@@ -72,7 +77,10 @@ function handleMessage(message, sender, sendResponse) {
       updateEngagementNotifCount(message.count);
       chrome.storage.local.get(["engagementNotifCount"], (result) => {
         const storedEngagementNotifCount = result.engagementNotifCount || 0;
-        console.log("Retrieved engagement notification count in background:", storedEngagementNotifCount);
+        console.log(
+          "Retrieved engagement notification count in background:",
+          storedEngagementNotifCount
+        );
         sendResponse({ count: storedEngagementNotifCount });
       });
       break;
@@ -183,7 +191,10 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
     // Check if engagement notification setting changed
     if (changes.engagementNotif) {
       const newEngagementNotifValue = changes.engagementNotif.newValue;
-      console.log("Engagement Notification setting changed:", newEngagementNotifValue);
+      console.log(
+        "Engagement Notification setting changed:",
+        newEngagementNotifValue
+      );
 
       const engagementNotifMessageType = newEngagementNotifValue
         ? MESSAGE_TYPE.START_ENGAGEMENT_NOTIF
@@ -197,16 +208,22 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
           url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
         });
 
-        if(tabs.length > 0 && tabs[0].id !== undefined) {
+        if (tabs.length > 0 && tabs[0].id !== undefined) {
           const response = await sendMessageToContent(tabs[0].id, {
-            type: engagementNotifMessageType
+            type: engagementNotifMessageType,
           });
-          console.log("Response from content script for engagement notifications:", response);
+          console.log(
+            "Response from content script for engagement notifications:",
+            response
+          );
         } else {
           console.warn("No relevant tab found or tab ID is undefined.");
         }
       } catch (error) {
-        console.error("Failed to send engagement notification message to content script:", error);
+        console.error(
+          "Failed to send engagement notification message to content script:",
+          error
+        );
       }
     }
   }
