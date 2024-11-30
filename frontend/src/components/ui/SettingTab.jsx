@@ -270,10 +270,8 @@ export default function SettingTest() {
               </Tooltip>
             </Label>
             {/* <Checkbox id="obstruction" /> */}
-            <ButtonLink to="/EMLSettings">
-              <button className="ring-1  ring-black rounded-md p-1 hover:bg-gray-200 hover:ring-gray-700 transition">
-                Enable
-              </button>
+            <ButtonLink to="/EMLSettings" variant="border">
+                Go
             </ButtonLink>
           </div>
           <div className="flex items-center justify-between space-x-3">
@@ -302,10 +300,8 @@ export default function SettingTest() {
               </Tooltip>
             </Label>
             {/* <Checkbox id="emotional-steering" /> */}
-            <ButtonLink to="/EMLSettings">
-              <button className="ring-1 ring-black rounded-md p-1 hover:bg-gray-200 hover:ring-gray-700 transition">
-                Enable
-              </button>
+            <ButtonLink to="/EMLSettings" variant="border">
+                Go
             </ButtonLink>
           </div>
           <div className="flex items-center justify-between space-x-3">
@@ -335,10 +331,8 @@ export default function SettingTest() {
               </Tooltip>
             </Label>
             {/* <Checkbox id="privacy-zuckering" /> */}
-            <ButtonLink to="/EMLSettings">
-              <button className="ring-1 ring-black rounded-md p-1 hover:bg-gray-200 hover:ring-gray-700 transition">
-                Enable
-              </button>
+            <ButtonLink to="/EMLSettings" variant="border">
+                Go
             </ButtonLink>
           </div>
         </CardContent>
