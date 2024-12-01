@@ -34,7 +34,7 @@ export default function SettingTest() {
   const [isAutoplay, setIsAutoplay] = useState(false);
   const [isPromotedAds, setIsProtomotedAds] = useState(false);
   const [isEngagementNotif, setIsEngagementNotif] = useState({});
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  // const [openSnackbar, setOpenSnackbar] = useState(false);
 
   // autoplay detection
   const startAutoplayDetection = (e) => {
@@ -42,9 +42,9 @@ export default function SettingTest() {
       chrome.storage.sync.set({ autoplay: e });
     }
     setIsAutoplay(e);
-    if (e) {
-      setOpenSnackbar(true);
-    }
+    // if (e) {
+    //   setOpenSnackbar(true);
+    // }
   };
 
   useEffect(() => {
@@ -61,9 +61,9 @@ export default function SettingTest() {
       chrome.storage.sync.set({ promotedAds: e });
     }
     setIsProtomotedAds(e);
-    if (e) {
-      setOpenSnackbar(true);
-    }
+    // if (e) {
+    //   setOpenSnackbar(true);
+    // }
   };
 
   useEffect(() => {
@@ -74,9 +74,9 @@ export default function SettingTest() {
     }
   });
 
-  const handleCloseSnackbar = () => {
-    setOpenSnackbar(false);
-  };
+  // const handleCloseSnackbar = () => {
+  //   setOpenSnackbar(false);
+  // };
 
   // Engagement notification detection
   const startEngagementNotifDetection = (e) => {

@@ -15,7 +15,6 @@ import Guide from "@/components/ui/Guide";
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
-
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
 
   //update autoplay count to pie chart
