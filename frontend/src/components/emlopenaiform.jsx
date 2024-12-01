@@ -116,8 +116,7 @@ export function TextareaForm() {
 
                 <FormControl>
                   <Textarea
-                    placeholder="Copy and paste a tweet you are interested here and click Start Analyze button to generate a report
-         "
+                    placeholder="Copy and paste a tweet you are interested in here and click the Analyze button to generate a report"
                     className=" placeholder:text-sm"
                     {...field}
                   />
@@ -133,7 +132,7 @@ export function TextareaForm() {
               disabled={loading}
               className="bg-pink-700 text-white font-bold rounded-full px-1.5 py-0.5 text-sm hover:bg-pink-900"
             >
-              {loading ? "Analyzing..." : "Start Analyze"}
+              {loading ? "Analyzing..." : "Analyze"}
             </Button>
           </div>
 

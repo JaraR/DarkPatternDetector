@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/ui/navbar";
 import PieActiveArc from "@/components/ui/piechart";
-import AboutUsTab from "@/components/ui/AboutUsTab";
+import AboutDPTab from "@/components/ui/AboutDPTab";
 
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
@@ -72,9 +72,9 @@ export function Home() {
       <Tabs defaultValue="results" className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
-          <TabsTrigger value="about-us">About Us</TabsTrigger>
+          <TabsTrigger value="about-dp">About Dark Patterns</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
-          <TabsTrigger value="new-tab">How-To Guide</TabsTrigger>
+          <TabsTrigger value="use-guide">Use Guide</TabsTrigger>
         </TabsList>
 
         <TabsContent value="results">
@@ -100,14 +100,14 @@ export function Home() {
           </div>
         </TabsContent>
 
-        <TabsContent value="about-us">
-          <AboutUsTab />
+        <TabsContent value="about-dp">
+          <AboutDPTab />
         </TabsContent>
 
         <TabsContent value="settings">
           <SettingTab />
         </TabsContent>
-        <TabsContent value="how-to-guide">
+        <TabsContent value="use-guide">
           <Guide />
         </TabsContent>
       </Tabs>

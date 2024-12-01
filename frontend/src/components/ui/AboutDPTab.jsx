@@ -13,7 +13,7 @@ import infiniteIcon from "/public/icons/infinite.png";
 import notificationIcon from "/public/icons/notification.png";
 import privacyIcon from "/public/icons/privacy.png";
 
-export default function AboutUsTab() {
+export default function AboutDPTab() {
   return (
     <section className="m-5">
       <div>
