@@ -3,20 +3,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/ui/navbar";
 import PieActiveArc from "@/components/ui/piechart";
 import AboutDPTab from "@/components/ui/AboutDPTab";
-
 import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
-
-// import { ButtonLink } from "@/components/ui/buttonlink";
-
 import Guide from "@/components/ui/Guide";
+import { useLocation } from "react-router-dom";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
-
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
+
+  const returnTab = useLocation()
+  
+  if (returnTab.state === null) {
+    returnTab.state = "results";
+  }
+  console.log(returnTab.state)
 
   //update autoplay count to pie chart
   useEffect(() => {
@@ -69,7 +72,7 @@ export function Home() {
   return (
     <>
       <Navbar />
-      <Tabs defaultValue="results" className="w-[400px]">
+      <Tabs defaultValue={returnTab.state} className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-dp">About Dark Patterns</TabsTrigger>
