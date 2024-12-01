@@ -2,36 +2,43 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 
-export default function PieActiveArc({ autoplayCount, promotedAdsCount, engagementNotifCount }) {
+export default function PieActiveArc({
+  autoplayCount,
+  promotedAdsCount,
+  engagementNotifCount,
+}) {
   console.log("Autoplay Count:", autoplayCount);
   console.log("Promoted Ads Count:", promotedAdsCount);
 
   console.log("Engagement Notification Count:", engagementNotifCount);
   const darkPattern = [
-    { label: `Engagement Notification ${engagementNotifCount}`,
+    {
+      label: `Engagement Notification ${engagementNotifCount}`,
       value: engagementNotifCount,
-      color: "#ffa600" },
+      color: "#ffa600",
+    },
 
     {
-      label: `Autoplay ${autoplayCount}`,
+      label: `Video Autoplay ${autoplayCount}`,
       value: autoplayCount,
       color: "#ff8453",
     },
-    { label: "Emotional Steering", value: 10, color: "#ef5675" },
+    // { label: "Emotional Steering", value: 0, color: "#ef5675" },
     {
       label: `Promoted Ads ${promotedAdsCount}`,
       value: promotedAdsCount,
       color: "#c38ee8",
     },
-    { label: "Infinite Scrolling", value: 10, color: "#0095e1" },
-    { label: "Obstruction", value: 10, color: "#a1a1a8" },
-    { label: "Privacy Zuckering", value: 5, color: "#374c80" },
+    { label: "Infinite Scrolling", value: 0, color: "#0095e1" },
+    // { label: "Obstruction", value: 0, color: "#a1a1a8" },
+    // { label: "Privacy Zuckering", value: 0, color: "#374c80" },
   ];
 
   // bugs here:
   const valueFormatter = (value) => `${value} times`;
+  const hasActivity = darkPattern.some((item) => item.value > 0);
 
-  return (
+  return hasActivity ? (
     <PieChart
       style={{
         display: "flex",
@@ -57,5 +64,9 @@ export default function PieActiveArc({ autoplayCount, promotedAdsCount, engageme
       height={240}
       margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
     />
+  ) : (
+    <div className="w-full h-[300px] flex justify-center items-center bg-gray-100 border border-gray-300 rounded-lg">
+      <h4>No activities detected, go to Setting tab enable detection :)</h4>
+    </div>
   );
 }

@@ -271,7 +271,7 @@ export default function SettingTest() {
             </Label>
             {/* <Checkbox id="obstruction" /> */}
             <ButtonLink to="/EMLPage" variant="border">
-                Go
+              Go
             </ButtonLink>
           </div>
           <div className="flex items-center justify-between space-x-3">
@@ -301,7 +301,7 @@ export default function SettingTest() {
             </Label>
             {/* <Checkbox id="emotional-steering" /> */}
             <ButtonLink to="/EMLPage" variant="border">
-                Go
+              Go
             </ButtonLink>
           </div>
           <div className="flex items-center justify-between space-x-3">
@@ -332,14 +332,14 @@ export default function SettingTest() {
             </Label>
             {/* <Checkbox id="privacy-zuckering" /> */}
             <ButtonLink to="/EMLPage" variant="border">
-                Go
+              Go
             </ButtonLink>
           </div>
         </CardContent>
       </Card>
       {/* <CustomizationCard /> */}
 
-      <Snackbar
+      {/* <Snackbar
         open={openSnackbar}
         autoHideDuration={4000}
         onClose={handleCloseSnackbar}
@@ -361,7 +361,7 @@ export default function SettingTest() {
           Navigate to X website and scroll down to see to see X-Factors in
           action
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </>
   );
 }
