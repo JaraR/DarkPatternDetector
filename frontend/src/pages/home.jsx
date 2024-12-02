@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Navbar from "@/components/ui/navbar";
-import PieActiveArc from "@/components/ui/piechart";
-import AboutDPTab from "@/components/ui/AboutDPTab";
-import BottomNavigation from "@/components/ui/BottomNavigation";
+import Navbar from "@/components/custom/Navbar";
+import PieActiveArc from "@/components/custom/piechart";
+import AboutDPTab from "@/components/custom/AboutDPTab";
+import BottomNavigation from "@/components/custom/BottomNavigation";
 import Typography from "@mui/material/Typography";
-import SettingTab from "@/components/ui/SettingTab";
-import Guide from "@/components/ui/Guide";
+import SettingTab from "@/components/custom/SettingTab";
+import Guide from "@/components/custom/Guide";
 import { useLocation } from "react-router-dom";
 
 export function Home() {
@@ -15,7 +15,7 @@ export function Home() {
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
 
   const returnTab = useLocation()
-  
+
   if (returnTab.state === null) {
     returnTab.state = "results";
   }
