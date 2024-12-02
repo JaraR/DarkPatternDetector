@@ -10,7 +10,6 @@ export default function PieActiveArc({
 }) {
   console.log("Autoplay Count:", autoplayCount);
   console.log("Promoted Ads Count:", promotedAdsCount);
-
   console.log("Engagement Notification Count:", engagementNotifCount);
   const darkPattern = [
     {
@@ -24,15 +23,15 @@ export default function PieActiveArc({
       value: autoplayCount,
       color: "#ff8453",
     },
-    // { label: "Emotional Steering", value: 0, color: "#ef5675" },
+    { label: "Emotional Steering", value: 0, color: "#ef5675" },
     {
       label: `Promoted Ads ${promotedAdsCount}`,
       value: promotedAdsCount,
       color: "#c38ee8",
     },
     { label: "Infinite Scrolling", value: 0, color: "#0095e1" },
-    // { label: "Obstruction", value: 0, color: "#a1a1a8" },
-    // { label: "Privacy Zuckering", value: 0, color: "#374c80" },
+    { label: "Obstruction", value: 0, color: "#a1a1a8" },
+    { label: "Privacy Zuckering", value: 0, color: "#374c80" },
   ];
 
   // bugs here:
@@ -63,12 +62,12 @@ export default function PieActiveArc({
             color: darkPattern.map((item) => item.color),
           },
         ]}
-        height={180}
+        height={260}
         margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
       />
     </>
   ) : (
-    <div className="w-full h-[300px] flex flex-col justify-start items-center bg-gray-100 border border-gray-300 rounded-lg">
+    <div className="w-full h-[280px] flex flex-col justify-start items-center bg-gray-100 border border-gray-300 rounded-lg">
       <img
         src={noActivity}
         alt="No activities"
@@ -76,7 +75,7 @@ export default function PieActiveArc({
       ></img>
       <div className="text-gray-500 font-bold text-lg">
         No activities detected <br />
-        Go to Settings Tab Enable detection
+        Go to Settings tab Enable detections
       </div>
     </div>
   );
