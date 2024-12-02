@@ -1,6 +1,6 @@
-import { TextareaForm } from "@/components/emlopenaiform";
+import { TextareaForm } from "@/components/custom/emlopenaiform";
 import { ButtonLink } from "@/components/ui/buttonlink";
-import Navbar from "@/components/ui/navbar";
+import Navbar from "@/components/custom/Navbar";
 
 export function EMLPage() {
   return (
