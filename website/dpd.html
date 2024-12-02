@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Pattern Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        /* Header and Logo Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #282c34;
+            color: white;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        header img {
+            width: 80px;
+            height: auto;
+        }
+        header p {
+            margin: 5px;
+        }
+
+        /* Download Button */
+        .download-btn {
+            background-color: #f39c12;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+        .download-btn:hover {
+            background-color: #e67e22;
+        }
+
+        /* Navigation Section */
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #444;
+            padding: 15px;
+        }
+        nav .nav-item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        nav .nav-item:hover {
+            transform: scale(1.1);
+        }
+        nav img {
+            width: 60px;
+            height: 60px;
+            display: block;
+            margin: 0 auto;
+        }
+        nav p {
+            color: white;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        /* Description Section */
+        .description {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        .description.active {
+            display: block;
+        }
+        .description img {
+            width: 80px;
+            height: 80px;
+        }
+        .description h2 {
+            font-size: 1.5rem;
+            margin: 20px 0 10px 0;
+            color: #444;
+        }
+        .description p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #282c34;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        footer h2 {
+            margin-top: 0;
+        }
+        .team, .mentors {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .team-member, .mentor {
+            margin: 10px;
+            text-align: center;
+        }
+        .team-member img, .mentor img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        .team-member p, .mentor p {
+            margin: 5px 0;
+        }
+        .mentor a {
+            color: #f39c12;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .mentor a:hover {
+            color: #e67e22;
+        }
+        .resources {
+            margin-top: 30px;
+        }
+        .resources a {
+            color: #f7f7f7;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #444;
+            border-radius: 5px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .resources a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <div>
+        <img src="shady-figure-logo.png" alt="Dark Pattern Detector Logo">
+        <h1>Dark Pattern Detector</h1>
+        <p>Unmasking Manipulative Design Practices</p>
+    </div>
+    <!-- Visible Download Button -->
+    <a href="download-link.zip" class="download-btn">Download Extension</a>
+</header>
+
+<!-- Navigation Section -->
+<nav>
+    <div class="nav-item" onclick="toggleDescription('privacy-zuckering', 'PZ.png', 'Privacy Zuckering')">
+        <img src="PZ.png" alt="Privacy Zuckering">
+        <p>Privacy Zuckering</p>
+    </div>
+    <div class="nav-item" onclick="toggleDescription('infinite-scrolling', 'IS.png', 'Infinite Scrolling')">
+        <img src="IS.png" alt="Infinite Scrolling">
+        <p>Infinite Scrolling</p>
+    </div>
+    <div class="nav-item" onclick="toggleDescription('emotional-steering', 'EML.png', 'Emotional Steering')">
+        <img src="EML.png" alt="Emotional Steering">
+        <p>Emotional Steering</p>
+    </div>
+    <div class="nav-item" onclick="toggleDescription('autoplay', 'AP.png', 'Autoplay')">
+        <img src="AP.png" alt="Autoplay">
+        <p>Autoplay</p>
+    </div>
+    <div class="nav-item" onclick="toggleDescription('obstructing-content', 'OC.png', 'Obstructing Content')">
+        <img src="OC.png" alt="Obstructing Content">
+        <p>Obstructing Content</p>
+    </div>
+    <div class="nav-item" onclick="toggleDescription('engagement-notifications', 'EN.png', 'Engagement Notifications')">
+        <img src="EN.png" alt="Engagement Notifications">
+        <p>Engagement Notifications</p>
+    </div>
+    <div class="nav-item" onclick="toggleDescription('promoted-ads', 'PR.png', 'Promoted Ads')">
+        <img src="PR.png" alt="Promoted Ads">
+        <p>Promoted Tweets and Ads</p>
+    </div>
+</nav>
+
+<!-- Description Section -->
+<div id="privacy-zuckering" class="description">
+    <img src="PZ.png" alt="Privacy Zuckering">
+    <h2>Privacy Zuckering</h2>
+    <p>Privacy Zuckering is a dark pattern that tricks you into sharing more personal information than you intend. It typically involves confusing or hidden privacy settings that make it difficult for you to protect your data.</p>
+</div>
+<div id="infinite-scrolling" class="description">
+    <img src="IS.png" alt="Infinite Scrolling">
+    <h2>Infinite Scrolling</h2>
+    <p>Infinite Scrolling is a dark pattern designed to keep you engaged by continuously loading more content as you scroll down a page, without a clear stopping point. 
+        This design makes it easy to lose track of time as new posts or updates keep appearing.
+
+    </p>
+</div>
+<div id="emotional-steering" class="description">
+    <img src="EML.png" alt="Emotional Steering">
+    <h2>Emotional Steering</h2>
+    <p>Emotional Steering (EML) is a dark pattern that manipulates your emotions to influence your decisions. It uses fear, guilt, or urgency to push you toward a specific action.</p>
+</div>
+<div id="autoplay" class="description">
+    <img src="AP.png" alt="Autoplay">
+    <h2>Autoplay</h2>
+    <p>Autoplay is a dark pattern where videos, music, or other media play automatically without your consent. This is often used to keep you engaged longer by starting new content without you actively choosing to watch it.</p>
+</div>
+<div id="obstructing-content" class="description">
+    <img src="OC.png" alt="Obstructing Content">
+    <h2>Obstructing Content</h2>
+    <p>Obstructiing Content or (Buried Content) is a dark pattern that makes important information or options hard to find, often burying them deep in menus or pages. This forces you to go through multiple steps to access something that should be simple.</p>
+</div>
+<div id="engagement-notifications" class="description">
+    <img src="EN.png" alt="Engagement Notifications">
+    <h2>Engagement Notifications</h2>
+    <p>Engagement Notifications is a dark pattern where platforms send frequent, attention-grabbing alerts to keep you engaged, even when you're not interested. </p>
+</div>
+<div id="promoted-ads" class="description">
+    <img src="PR.png" alt="Promoted Ads">
+    <h2>Promoted Tweets and Ads</h2>
+    <p>Promoted Tweets and Ads that Blend In is a dark pattern where paid advertisements are designed to look like regular content, making it hard for you to tell them apart from organic posts.</p>
+</div>
+
+<!-- Footer Section -->
+<footer>
+    <h2>Meet the Team</h2>
+    <div class="team">
+        <div class="team-member">
+            <img src="male.jpg" alt="Jara Rodriguez">
+            <p>Jara Rodriguez</p>
+            <p>Core team member working on the project's code and design.</p>
+        </div>
+        <div class="team-member">
+            <img src="male.jpg" alt="Habib Abdulhamid">
+            <p>Habib Abdulhamid</p>
+            <p>Focuses on the user experience and implementation of the UI.</p>
+        </div>
+        <div class="team-member">
+            <img src="male.jpg" alt="Ashus Zahid">
+            <p>Ashus Zahid</p>
+            <p>Works on backend development and functionality.</p>
+        </div>
+        <div class="team-member">
+            <img src="male.jpg" alt="Abduallah Shah">
+            <p>Abduallah Shah</p>
+            <p>Handles the project’s security and database management.</p>
+        </div>
+        <div class="team-member">
+            <img src="female.jpg" alt="Ling Jiang">
+            <p>Ling Jiang</p>
+            <p>Responsible for front-end design and layout.</p>
+        </div>
+        <div class="team-member">
+            <img src="female.jpg" alt="Jiaxin Liu">
+            <p>Jiaxin Liu</p>
+            <p>Contributes to testing and debugging.</p>
+        </div>
+    </div>
+
+    <h2>Mentors</h2>
+    <div class="mentors">
+        <div class="mentor">
+            <img src="male.jpg" alt="Damian Gordon">
+            <p><a href="https://example.com/damian" target="_blank">Damian Gordon</a></p>
+        </div>
+        <div class="mentor">
+            <img src="male.jpg" alt="Brendon Tierney">
+            <p><a href="https://example.com/brendon" target="_blank">Brendon Tierney</a></p>
+        </div>
+        <div class="mentor">
+            <img src="female.jpg" alt="Andrea Curley">
+            <p><a href="https://example.com/andrea" target="_blank">Andrea Curley</a></p>
+        </div>
+    </div>
+
+    <div class="resources">
+        <a href="https://github.com/JaraR/DarkPatternDetector" target="_blank">GitHub Repository</a>
+        <a href="full-project-report.pdf" target="_blank">Full Project Report</a>
+        <a href="references.html" target="_blank">References</a>
+    </div>
+</footer>
+
+<script>
+    function toggleDescription(id, icon, name) {
+        var element = document.getElementById(id);
+        var descriptions = document.querySelectorAll('.description');
+        
+        descriptions.forEach(function(desc) {
+            desc.classList.remove('active');
+        });
+        
+        element.classList.add('active');
+        element.querySelector('img').src = icon;
+        element.querySelector('h2').textContent = name;
+    }
+</script>
+
+</body>
+</html>
