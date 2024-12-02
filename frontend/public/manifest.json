@@ -1,12 +1,26 @@
 {
   "manifest_version": 3,
   "name": "Dark Pattern Detection on X",
-  "version": "1.0",
+  "version": "0.1.0",
   "description": "To detect dark patterns on X.",
-  "permissions": ["storage", "activeTab", "scripting", "tabs"],
-
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "action": {
-    "default_popup": "popup.html",
-    "default_title": "Open"
+    "default_title": "Click to show an alert",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-scripts/autoplay.js", "content-scripts/promoted-ads.js", "content-scripts/engagement-notifs.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/badgeLogo.png",
+    "48": "icons/badgeLogo.png",
+    "128": "icons/badgeLogo.png"
   }
 }
