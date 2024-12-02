@@ -1,6 +1,31 @@
 const adText = "Ad";
 let alertedAds = [];
 
+let tweetCounter = 0;
+let adDetectionStarted = false;
+const visibleTweets = new Set();
+const allVisibleTweets = new Set();
+
+const tweetVisibilityTracker = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const tweet = entry.target;
+
+      if (entry.isIntersecting) {
+        visibleTweets.add(tweet);
+        allVisibleTweets.add(tweet);
+      } else {
+        visibleTweets.delete(tweet);
+      }
+
+      if (adDetectionStarted) {
+        tweetCounter = allVisibleTweets.size;
+        console.log("Total visible tweets (ever visible): ", tweetCounter);
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
 function updateStorageAndNotify(type, storageKey, messageType) {
   chrome.storage.local.get([storageKey], function (result) {
     let currentCount = result[storageKey] || 0;
@@ -49,10 +74,10 @@ function addAdOverlay(article) {
   icon.style.height = "80px";
   icon.alt = "Promoted Ads";
   icon.style.zIndex = "9999";
-  // Append the icon to the overlay
   overlay.appendChild(icon);
-  // Append the overlay to the article
   article.appendChild(overlay);
+
+  //span overlay
   const text = document.createElement("span");
   text.textContent = "Promoted Ads Detected";
   text.style.marginTop = "10px";
@@ -110,6 +135,10 @@ function checkForAds() {
           }
         });
       }
+      if (!adDetectionStarted) {
+        adDetectionStarted = true;
+        tweetCounter = 0;
+      }
 
       // Call the updateStorageAndNotify function
       updateStorageAndNotify(
@@ -117,6 +146,11 @@ function checkForAds() {
         "promotedAdsCount",
         "updatePromotedAds"
       );
+    }
+    const article = span.closest("article");
+    if (article && !article.hasAttribute("data-observed")) {
+      article.setAttribute("data-observed", true);
+      tweetVisibilityTracker.observe(article);
     }
   });
 }
