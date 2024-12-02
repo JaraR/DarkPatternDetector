@@ -5,25 +5,21 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-// import Switch from "@mui/material/Switch";
+
 import logo from "../../assets/logo2.png";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 export default function NavBar() {
-  // const [isDetectionOn, setIsDetectionOn] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null); // State to track anchor element for menu
-  const openMenu = Boolean(anchorEl); // Boolean to check if the menu is open
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenu = Boolean(anchorEl);
 
-  // const handleSwitchChange = (event) => {
-  //   setIsDetectionOn(event.target.checked);
-  // };
   const handleMenuClick = (event) => {
-    setAnchorEl(event.currentTarget); // Open the menu when icon is clicked
+    setAnchorEl(event.currentTarget);
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null); // Close the menu
+    setAnchorEl(null);
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -59,21 +55,7 @@ export default function NavBar() {
               flexDirection: "column",
               alignItems: "center",
             }}
-          >
-            {/* <Switch checked={isDetectionOn} onChange={handleSwitchChange} /> */}
-
-            {/* <Typography
-              variant="body1"
-              sx={{
-                fontSize: "0.75rem",
-                color: "#424242",
-                lineHeight: 0.5,
-                mb: 2,
-              }}
-            >
-              Detection {isDetectionOn ? "On" : "Off"}
-            </Typography> */}
-          </Box>
+          ></Box>
         </Toolbar>
       </AppBar>
       <Menu

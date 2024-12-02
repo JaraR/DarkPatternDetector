@@ -1,6 +1,6 @@
 const adText = "Ad";
 let alertedAds = [];
-
+//this is for future work
 let tweetCounter = 0;
 let adDetectionStarted = false;
 const visibleTweets = new Set();
