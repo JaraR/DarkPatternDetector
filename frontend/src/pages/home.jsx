@@ -8,8 +8,6 @@ import BottomNavigation from "@/components/ui/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/ui/SettingTab";
 
-// import { ButtonLink } from "@/components/ui/buttonlink";
-
 import Guide from "@/components/ui/Guide";
 
 export function Home() {
@@ -92,8 +90,6 @@ export function Home() {
               promotedAdsCount={promotedAdsCount}
               engagementNotifCount={engagementNotifCount}
             />
-
-            {/* <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink> */}
 
             <BottomNavigation />
           </div>

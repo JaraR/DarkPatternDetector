@@ -42,9 +42,6 @@ export default function SettingTest() {
       chrome.storage.sync.set({ autoplay: e });
     }
     setIsAutoplay(e);
-    // if (e) {
-    //   setOpenSnackbar(true);
-    // }
   };
 
   useEffect(() => {
@@ -61,9 +58,6 @@ export default function SettingTest() {
       chrome.storage.sync.set({ promotedAds: e });
     }
     setIsProtomotedAds(e);
-    // if (e) {
-    //   setOpenSnackbar(true);
-    // }
   };
 
   useEffect(() => {
@@ -73,10 +67,6 @@ export default function SettingTest() {
       });
     }
   });
-
-  // const handleCloseSnackbar = () => {
-  //   setOpenSnackbar(false);
-  // };
 
   // Engagement notification detection
   const startEngagementNotifDetection = (e) => {

@@ -24,15 +24,15 @@ export default function PieActiveArc({
       value: autoplayCount,
       color: "#ff8453",
     },
-    // { label: "Emotional Steering", value: 0, color: "#ef5675" },
+    { label: "Emotional Steering", value: 0, color: "#ef5675" },
     {
       label: `Promoted Ads ${promotedAdsCount}`,
       value: promotedAdsCount,
       color: "#c38ee8",
     },
     { label: "Infinite Scrolling", value: 0, color: "#0095e1" },
-    // { label: "Obstruction", value: 0, color: "#a1a1a8" },
-    // { label: "Privacy Zuckering", value: 0, color: "#374c80" },
+    { label: "Obstruction", value: 0, color: "#a1a1a8" },
+    { label: "Privacy Zuckering", value: 0, color: "#374c80" },
   ];
 
   // bugs here:
@@ -63,7 +63,7 @@ export default function PieActiveArc({
             color: darkPattern.map((item) => item.color),
           },
         ]}
-        height={180}
+        height={240}
         margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
       />
     </>
