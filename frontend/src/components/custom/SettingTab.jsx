@@ -262,7 +262,7 @@ export default function SettingTest() {
               </Tooltip>
             </Label>
             {/* <Checkbox id="obstruction" /> */}
-            <ButtonLink to="/EMLPage" variant="border">
+            <ButtonLink to="/EMLPage" variant="border" size="sm">
               Go
             </ButtonLink>
           </div>
@@ -292,7 +292,7 @@ export default function SettingTest() {
               </Tooltip>
             </Label>
             {/* <Checkbox id="emotional-steering" /> */}
-            <ButtonLink to="/EMLPage" variant="border">
+            <ButtonLink to="/EMLPage" variant="border" size="sm">
               Go
             </ButtonLink>
           </div>
@@ -323,7 +323,7 @@ export default function SettingTest() {
               </Tooltip>
             </Label>
             {/* <Checkbox id="privacy-zuckering" /> */}
-            <ButtonLink to="/EMLPage" variant="border">
+            <ButtonLink to="/EMLPage" variant="border" size="sm">
               Go
             </ButtonLink>
           </div>
