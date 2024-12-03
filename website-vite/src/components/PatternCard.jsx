@@ -7,6 +7,7 @@ import macPreview from "../assets/mac.png";
 import autoplayHeader from "../assets/autoplay-header.png";
 import adsHeader from "../assets/ads-header.png";
 import tutorial from "../assets/tutorial.png";
+import notificationHeader from "../assets/notification-header.png";
 
 export default function PatternCards() {
   return (
@@ -101,7 +102,7 @@ export default function PatternCards() {
       <Box>
         <h2
           style={{
-            background: "linear-gradient(to right, #FFDAB9, #E6E6FA)",
+            background: "linear-gradient(to right, #51acea, #9771f2)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontSize: "2rem",
@@ -121,17 +122,17 @@ export default function PatternCards() {
         ></img>
         <h2
           style={{
-            background: "linear-gradient(to right, #FFDAB9, #E6E6FA)",
+            background: "linear-gradient(to right, #4EABEA, #0a6aaa)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontSize: "2.5rem",
             padding: "0 10px",
           }}
         >
-          What X-Factors can do for you
+          What X-Factors Can Do for You
         </h2>
       </Box>
-
+      {/* autoplay */}
       <Box
         sx={{
           display: "flex",
@@ -150,7 +151,7 @@ export default function PatternCards() {
         ></img>
         <h2
           style={{
-            background: "linear-gradient(to right, #FFDAB9, #E6E6FA)",
+            background: "linear-gradient(to right, #ff723a, #e05c2c)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontSize: "2rem",
@@ -169,6 +170,8 @@ export default function PatternCards() {
           </span>
         </h2>
       </Box>
+
+      {/* promoted ads */}
       <Box
         sx={{
           display: "flex",
@@ -178,7 +181,7 @@ export default function PatternCards() {
       >
         <h2
           style={{
-            background: "linear-gradient(to right, #E6E6FA, #ADD8E6)",
+            background: "linear-gradient(to right, #C38EE7, #6f6be5)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontSize: "2rem",
@@ -205,6 +208,43 @@ export default function PatternCards() {
             padding: 10,
           }}
         ></img>
+      </Box>
+
+      {/* notification */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src={notificationHeader}
+          alt="notification header"
+          style={{
+            width: "100%",
+            maxWidth: 700,
+            padding: 10,
+          }}
+        ></img>
+        <h2
+          style={{
+            background: "linear-gradient(to right, #FFA602, #d3732a)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontSize: "2rem",
+            padding: "0 10px",
+          }}
+        >
+          Engagement Notification <br />
+          Detection
+          <span
+            style={{
+              fontSize: "1.6rem",
+              fontWeight: "bold",
+            }}
+          ></span>
+        </h2>
       </Box>
     </Box>
   );

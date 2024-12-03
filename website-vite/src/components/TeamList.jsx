@@ -120,7 +120,7 @@ export default function TeamList() {
         sx={{
           display: "flex",
           justifyContent: "left",
-          padding: 2,
+          padding: 4,
           gap: 2,
           width: "100%",
         }}
@@ -129,7 +129,14 @@ export default function TeamList() {
           Our Github
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
-          <Button variant="contained">Github</Button>
+          <Button
+            variant="contained"
+            href="https://github.com/JaraR/DarkPatternDetector.git"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
+          </Button>
         </Typography>
       </Box>
     </>
