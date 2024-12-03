@@ -82,14 +82,14 @@ export function Home() {
         </TabsList>
 
         <TabsContent value="results">
-          <div className="mt-3 mx-3 flex flex-col items-center text-center">
+          <div className="mt-5 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
               <span className="font-bold ">
                 {promotedAdsCount + autoplayCount + engagementNotifCount}
                 Times
               </span>
               <br />
-              Dark Pattern Detected in Total
+              Dark Pattern Activities Detected in Total
             </Typography>
 
             <PieActiveArc

@@ -42,6 +42,7 @@ export default function SettingTest() {
       chrome.storage.sync.set({ autoplay: e });
     }
     setIsAutoplay(e);
+
   };
 
   useEffect(() => {
@@ -58,6 +59,7 @@ export default function SettingTest() {
       chrome.storage.sync.set({ promotedAds: e });
     }
     setIsProtomotedAds(e);
+
   };
 
   useEffect(() => {
