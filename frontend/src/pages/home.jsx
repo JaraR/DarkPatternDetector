@@ -5,6 +5,7 @@ import PieActiveArc from "@/components/custom/piechart";
 import AboutDPTab from "@/components/custom/AboutDPTab";
 import BottomNavigation from "@/components/custom/BottomNavigation";
 import Typography from "@mui/material/Typography";
+
 import SettingTab from "@/components/custom/SettingTab";
 import Guide from "@/components/custom/Guide";
 import { useLocation } from "react-router-dom";
@@ -14,12 +15,12 @@ export function Home() {
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
 
-  const returnTab = useLocation()
+  const returnTab = useLocation();
 
   if (returnTab.state === null) {
     returnTab.state = "results";
   }
-  console.log(returnTab.state)
+  console.log(returnTab.state);
 
   //update autoplay count to pie chart
   useEffect(() => {
@@ -96,8 +97,6 @@ export function Home() {
               promotedAdsCount={promotedAdsCount}
               engagementNotifCount={engagementNotifCount}
             />
-
-            {/* <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink> */}
 
             <BottomNavigation />
           </div>

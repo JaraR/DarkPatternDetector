@@ -34,7 +34,7 @@ export default function SettingTest() {
   const [isAutoplay, setIsAutoplay] = useState(false);
   const [isPromotedAds, setIsProtomotedAds] = useState(false);
   const [isEngagementNotif, setIsEngagementNotif] = useState({});
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  // const [openSnackbar, setOpenSnackbar] = useState(false);
 
   // autoplay detection
   const startAutoplayDetection = (e) => {
@@ -42,9 +42,6 @@ export default function SettingTest() {
       chrome.storage.sync.set({ autoplay: e });
     }
     setIsAutoplay(e);
-    if (e) {
-      setOpenSnackbar(true);
-    }
   };
 
   useEffect(() => {
@@ -61,9 +58,6 @@ export default function SettingTest() {
       chrome.storage.sync.set({ promotedAds: e });
     }
     setIsProtomotedAds(e);
-    if (e) {
-      setOpenSnackbar(true);
-    }
   };
 
   useEffect(() => {
@@ -73,10 +67,6 @@ export default function SettingTest() {
       });
     }
   });
-
-  const handleCloseSnackbar = () => {
-    setOpenSnackbar(false);
-  };
 
   // Engagement notification detection
   const startEngagementNotifDetection = (e) => {
@@ -271,7 +261,7 @@ export default function SettingTest() {
             </Label>
             {/* <Checkbox id="obstruction" /> */}
             <ButtonLink to="/EMLPage" variant="border">
-                Go
+              Go
             </ButtonLink>
           </div>
           <div className="flex items-center justify-between space-x-3">
@@ -301,7 +291,7 @@ export default function SettingTest() {
             </Label>
             {/* <Checkbox id="emotional-steering" /> */}
             <ButtonLink to="/EMLPage" variant="border">
-                Go
+              Go
             </ButtonLink>
           </div>
           <div className="flex items-center justify-between space-x-3">
@@ -332,14 +322,14 @@ export default function SettingTest() {
             </Label>
             {/* <Checkbox id="privacy-zuckering" /> */}
             <ButtonLink to="/EMLPage" variant="border">
-                Go
+              Go
             </ButtonLink>
           </div>
         </CardContent>
       </Card>
       {/* <CustomizationCard /> */}
 
-      <Snackbar
+      {/* <Snackbar
         open={openSnackbar}
         autoHideDuration={4000}
         onClose={handleCloseSnackbar}
@@ -361,7 +351,7 @@ export default function SettingTest() {
           Navigate to X website and scroll down to see to see X-Factors in
           action
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </>
   );
 }

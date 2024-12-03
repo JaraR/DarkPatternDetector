@@ -5,25 +5,25 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Switch from "@mui/material/Switch";
+// import Switch from "@mui/material/Switch";
 import logo from "../../assets/logo2.png";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 export default function NavBar() {
-  const [isDetectionOn, setIsDetectionOn] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null); // State to track anchor element for menu
-  const openMenu = Boolean(anchorEl); // Boolean to check if the menu is open
+  // const [isDetectionOn, setIsDetectionOn] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenu = Boolean(anchorEl);
 
-  const handleSwitchChange = (event) => {
-    setIsDetectionOn(event.target.checked);
-  };
+  // const handleSwitchChange = (event) => {
+  //   setIsDetectionOn(event.target.checked);
+  // };
   const handleMenuClick = (event) => {
-    setAnchorEl(event.currentTarget); // Open the menu when icon is clicked
+    setAnchorEl(event.currentTarget);
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null); // Close the menu
+    setAnchorEl(null);
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -60,8 +60,9 @@ export default function NavBar() {
               alignItems: "center",
             }}
           >
-            <Switch checked={isDetectionOn} onChange={handleSwitchChange} />
-            <Typography
+            {/* <Switch checked={isDetectionOn} onChange={handleSwitchChange} /> */}
+
+            {/* <Typography
               variant="body1"
               sx={{
                 fontSize: "0.75rem",
@@ -71,7 +72,7 @@ export default function NavBar() {
               }}
             >
               Detection {isDetectionOn ? "On" : "Off"}
-            </Typography>
+            </Typography> */}
           </Box>
         </Toolbar>
       </AppBar>
