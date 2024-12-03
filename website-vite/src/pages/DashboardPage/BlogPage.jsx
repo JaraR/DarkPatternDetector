@@ -7,9 +7,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 
-import amazon from "../assets/amazon.png";
-import FOMO from "../assets/FOMO.png";
-import mental from "../assets/mental.png";
+import amazon from "../../assets/amazon.png";
+import FOMO from "../../assets/FOMO.png";
+import mental from "../../assets/mental.png";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 export default function Types() {

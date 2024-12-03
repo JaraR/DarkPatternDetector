@@ -1,4 +1,3 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -7,15 +6,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
-import notification from "../assets/notification.png";
-import autoplay from "../assets/autoplay.png";
-import privacy from "../assets/privacy.png";
-import obstruction from "../assets/obstruction.png";
-import infinite from "../assets/infinite.png";
-import emotion from "../assets/emotion.png";
-import ads from "../assets/ads.png";
+import notification from "../../../assets/notification.png";
+import autoplay from "../../../assets/autoplay.png";
+import privacy from "../../../assets/privacy.png";
+import obstruction from "../../../assets/obstruction.png";
+import infinite from "../../../assets/infinite.png";
+import emotion from "../../../assets/emotion.png";
+import ads from "../../../assets/ads.png";
+import { Link } from "react-router-dom";
 
-export default function Types() {
+export default function ProjectPage() {
   const cardsData = [
     {
       id: 1,
@@ -74,6 +74,7 @@ export default function Types() {
       borderColor: "#ffffff",
     },
   ];
+
   return (
     <Box
       sx={{
@@ -189,7 +190,7 @@ export default function Types() {
               <Button size="small" sx={{ fontWeight: "bold" }}>
                 Share
               </Button>
-              <Button size="small" sx={{ fontWeight: "bold" }}>
+              <Button component={Link} to={`/card/${card.id}`} size="small">
                 Learn More
               </Button>
             </CardActions>

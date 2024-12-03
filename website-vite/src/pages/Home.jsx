@@ -1,4 +1,3 @@
-import * as React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 
@@ -7,14 +6,14 @@ import { AppProvider } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { useDemoRouter } from "@toolpad/core/internal";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
-import PatternCard from "../components/PatternCard";
-import TeamList from "../components/TeamList";
+import Installation from "./DashboardPage/InstallationPage";
+import TeamList from "./DashboardPage/TeamListPage";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import HomeIcon from "@mui/icons-material/Home";
-import Project from "../components/Project";
+import Project from "./DashboardPage/ProjectPage/ProjectPageBase";
 import logo from "../assets/badgeicon-transparrent.png";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
-import Blog from "../components/Blog";
+import Blog from "./DashboardPage/BlogPage";
 
 const NAVIGATION = [
   {
@@ -86,7 +85,7 @@ function DemoPageContent({ pathname }) {
         mt: 2,
       }}
     >
-      {pathname === "/installation" && <PatternCard />}
+      {pathname === "/installation" && <Installation />}
       {pathname === "/team" && <TeamList />}
       {pathname === "/blog" && <Blog />}
       {pathname === "/project" && <Project />}
@@ -105,8 +104,6 @@ function Home(props) {
   const demoWindow = window !== undefined ? window() : undefined;
 
   return (
-    // preview-start
-
     <AppProvider
       navigation={NAVIGATION.map((nav) => ({
         ...nav,

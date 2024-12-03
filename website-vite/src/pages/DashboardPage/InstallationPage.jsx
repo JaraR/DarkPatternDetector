@@ -1,15 +1,14 @@
-import * as React from "react";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import chromeLogo from "../assets/chrome-logo.png";
-import macPreview from "../assets/mac.png";
-import autoplayHeader from "../assets/autoplay-header.png";
-import adsHeader from "../assets/ads-header.png";
-import tutorial from "../assets/tutorial.png";
-import notificationHeader from "../assets/notification-header.png";
+import chromeLogo from "../../assets/chrome-logo.png";
+import macPreview from "../../assets/mac.png";
+import autoplayHeader from "../../assets/autoplay-header.png";
+import adsHeader from "../../assets/ads-header.png";
+import tutorial from "../../assets/tutorial.png";
+import notificationHeader from "../../assets/notification-header.png";
 
-export default function PatternCards() {
+export default function Installation() {
   return (
     <Box
       sx={{
