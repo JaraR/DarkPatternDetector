@@ -62,12 +62,16 @@ export default function PieActiveArc({
             color: darkPattern.map((item) => item.color),
           },
         ]}
+
         height={260}
+
         margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
       />
     </>
   ) : (
+
     <div className="w-full h-[280px] flex flex-col justify-start items-center bg-gray-100 border border-gray-300 rounded-lg">
+
       <img
         src={noActivity}
         alt="No activities"
@@ -76,6 +80,7 @@ export default function PieActiveArc({
       <div className="text-gray-500 font-bold text-lg">
         No activities detected <br />
         Go to Settings tab Enable detections
+
       </div>
     </div>
   );

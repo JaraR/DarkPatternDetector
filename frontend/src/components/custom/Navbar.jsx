@@ -5,14 +5,15 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-
 import logo from "../../assets/logo2.png";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 export default function NavBar() {
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
+
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,7 +56,9 @@ export default function NavBar() {
               flexDirection: "column",
               alignItems: "center",
             }}
+
           ></Box>
+
         </Toolbar>
       </AppBar>
       <Menu
