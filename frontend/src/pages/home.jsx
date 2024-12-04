@@ -13,6 +13,7 @@ import { useLocation } from "react-router-dom";
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
+  const [infiniteScrollCount, setIsInfiniteScrollCount] = useState(0);
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
 
   const returnTab = useLocation();
@@ -50,6 +51,23 @@ export function Home() {
     });
   }, []);
 
+  //update infinite scroll to pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "updateInfiniteScroll" }, (response) => {
+      console.log(
+          "infinite scroll response received from background:",
+          response
+      );
+      if (response && response.count !== undefined) {
+        setIsInfiniteScrollCount(response.count);
+      } else {
+        console.error(
+            "Error: Infinite Scroll count not received or is undefined."
+        );
+      }
+    });
+  }, []);
+
   // Updates engagement notification count on pie chart
   useEffect(() => {
     chrome.runtime.sendMessage(
@@ -68,7 +86,7 @@ export function Home() {
         }
       }
     );
-  }, []);
+  }, [infiniteScrollCount]);
 
   return (
     <>
@@ -85,7 +103,7 @@ export function Home() {
           <div className="mt-5 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
               <span className="font-bold ">
-                {promotedAdsCount + autoplayCount + engagementNotifCount}
+                {promotedAdsCount + autoplayCount + engagementNotifCount +infiniteScrollCount}
                 Times
               </span>
               <br />
@@ -95,6 +113,7 @@ export function Home() {
             <PieActiveArc
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
+              infiniteScrollCount={infiniteScrollCount}
               engagementNotifCount={engagementNotifCount}
             />
 
