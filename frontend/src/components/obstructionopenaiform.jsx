@@ -18,7 +18,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { OpenAIapi } from "@/lib/obstructionOpenAIapi.mjs";
 
-import noReport from "/public/icons/no-report-eml.png";
+import noReport from "/public/icons/no-report-obstruction.png";
 import emlIcon from "/public/icons/obstruction.png";
 
 const FormSchema = z.object({
