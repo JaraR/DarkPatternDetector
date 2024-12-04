@@ -63,7 +63,7 @@ async function onSubmit(data) {
             control={form.control}
             name="tweet"
             render={({ field }) => (
-              <FormItem className="ml-3 mt-1  justify-center">
+              <FormItem className="mr-3 ml-3  justify-center">
                 <FormLabel className="flex font-bold text-center text-xl">
                   <img
                     src={emlIcon}
