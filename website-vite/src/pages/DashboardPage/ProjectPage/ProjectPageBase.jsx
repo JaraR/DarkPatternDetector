@@ -55,7 +55,7 @@ export default function ProjectPage() {
       image: notification,
       description:
         "Engagement notifications are a type of dark pattern used on social media and websites to manipulate user behavior by creating urgency and prompting immediate interaction. They alert users to new likes, comments, or messages on their content, fostering feelings of social validation and fear of missing out.",
-      borderColor: "bg-yellow-200",
+      borderColor: "bg-yellow-100",
     },
     {
       id: 6,

@@ -8,7 +8,7 @@ export default function Banner() {
         <h2 className="font-bold text-white text-2xl pb-5">
           Related dark patterns
         </h2>
-        <div className=" grid grid-cols-3 gap-10 rounded text-white">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 rounded text-white ">
           <a
             href="/"
             className=" p-5 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
