@@ -1,12 +1,4 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import CardActions from "@mui/material/CardActions";
-
+import React from "react";
 import amazon from "../../assets/amazon.png";
 import FOMO from "../../assets/FOMO.png";
 import mental from "../../assets/mental.png";
@@ -21,7 +13,7 @@ export default function Types() {
       image: amazon,
       description:
         "Amazon uses dark patterns like obstruction, confirmshaming, and misdirection to make unsubscribing from Prime difficult, pressuring users to stay subscribed.",
-      borderColor: "#FE8096",
+      borderColor: "border-pink-400",
     },
     {
       id: 2,
@@ -30,7 +22,7 @@ export default function Types() {
       image: FOMO,
       description:
         "Platforms like Facebook, Instagram, and Twitter use engagement notifications as a dark pattern to exploit FOMO, keeping users hooked and increasing screen time and addictive behaviors.",
-      borderColor: "#485E8D",
+      borderColor: "border-blue-700",
     },
     {
       id: 3,
@@ -38,180 +30,53 @@ export default function Types() {
       image: mental,
       description:
         "Over time, these patterns can contribute to increased stress, depression, and even addictive behavior, as users feel compelled to stay online, sacrificing their real-world connections and emotional well-being",
-      borderColor: "#2169A3",
+      borderColor: "border-blue-600",
     },
-    //     {
-    //       id: 7,
-    //       title: "Autoplay",
-    //       image: autoplay,
-    //       description:
-    //         "Auto-play often falls under the category of manipulative patterns like Bait & Switch or Forced Continuity, which encourage further engagement without giving users an explicit choice to stop. This can extend user session times, making it difficult to disengage from the platform .",
-    //       borderColor: "#FE7028",
-    //     },
-    //     {
-    //       id: 4,
-    //       title: "Promoted Ads",
-    //       image: ads,
-    //       description:
-    //         "In X formerly known as twitter the posts that are promoted or sponsored have a very subtle AD written on the top right corner which when a user is skimming through might not register. According to recent reports almost every 3rd or 4th post in users timeline is an advert or a sponsored post that is unsoliceted information that is being force fed to the user. ",
-    //       borderColor: "#c504ff",
-    //     },
-    //     {
-    //       id: 5,
-    //       title: "Engagement Notification",
-    //       image: notification,
-    //       description:
-    //         "Engagement notifications are a type of dark pattern used on social media and websites to manipulate user behavior by creating urgency and prompting immediate interaction. They alert users to new likes, comments, or messages on their content, fostering feelings of social validation and fear of missing out ",
-    //       borderColor: "#ceac00",
-    //     },
-    //     {
-    //       id: 6,
-    //       title: "Obstruction",
-    //       image: obstruction,
-    //       description:
-    //         "Obstruction is a dark pattern that creates obstacles in users' path to make it difficult for them to complete the tasks that they desire. The more complicated and unclear the path it is, the more frustration it causes users, so that users are more likely to give up and choose the path that benefits the company rather than users themselves. The use case could be making it difficult to unsubscribe from membership.",
-    //       borderColor: "#ffffff",
-    //     },
   ];
+
   return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        // justifyContent: "center",
-        alignItems: "center",
-        textAlign: "left",
-        mt: 2,
-      }}
-    >
-      <Box
-        sx={{
-          maxWidth: 800,
-          textAlign: "center",
-          ml: 2,
-          fontWeight: "bold",
-          color: "white",
-          padding: "10px",
-          marginBottom: "20px",
-        }}
-      >
-        <h1
-          style={{
-            marginBottom: "10px",
-            fontSize: "45px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+    <div className="flex flex-col items-center text-left w-full h-full mt-4 px-4">
+      {/* Header */}
+      <div className="max-w-3xl text-center font-bold text-white mb-6">
+        <h1 className="mb-4 text-4xl flex items-center justify-center text-transparent bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text">
           X-Factors Blog
         </h1>
-
-        {/* Center the button */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <button
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "4px 8px",
-              fontSize: "14px",
-              border: "none",
-              color: "white",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            <RssFeedIcon sx={{ marginRight: "5px", fontSize: "18px" }} />{" "}
-            {/* Reduced icon size */}
+        <div className="flex justify-center mb-4">
+          <button className="flex items-center justify-center px-4 py-2 text-sm text-white rounded-md bg-gradient-to-r from-purple-500 to-blue-500">
+            <RssFeedIcon className="mr-2 text-base" />
             <span>RSS FEED</span>
           </button>
-        </Box>
-
+        </div>
         <span>Raising Awareness About Dark Patterns in Digital Design</span>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: 2,
-          position: "relative",
-        }}
-      >
+      </div>
+
+      {/* Cards */}
+      <div className="flex flex-wrap justify-center gap-6">
         {cardsData.map((card) => (
-          <Card
+          <div
             key={card.id}
-            sx={{
-              maxWidth: 345,
-              margin: 1,
-              boxShadow: "0px 6px 10px rgba(0, 0, 0, 0.5)",
-
-              border: `2px solid ${card.borderColor}`,
-              borderRadius: "8px",
-              transition:
-                "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
-              "&:hover": {
-                transform: "scale(1.05)",
-                boxShadow: "0px 12px 20px rgba(0, 0, 0, 0.6)",
-              },
-            }}
+            className={`max-w-sm w-full p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl ${card.borderColor} border-2`}
           >
-            <CardMedia
-              sx={{
-                height: 200,
-                width: "100%",
-                objectFit: "cover",
-
-                transition: "transform 0.3s ease-in-out",
-              }}
-              image={card.image}
-              title={card.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {card.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ color: "text.secondary", textAlign: "center" }}
-              >
+            <div
+              className="h-48 w-full bg-cover rounded-lg"
+              style={{ backgroundImage: `url(${card.image})` }}
+            ></div>
+            <div className="mt-4">
+              <h5 className="text-lg font-semibold">{card.title}</h5>
+              <p className="text-sm text-gray-600 text-center mt-2">
                 {card.description}
-              </Typography>
-            </CardContent>
-            <CardActions
-              sx={{
-                display: "flex",
-
-                gap: 1,
-                paddingBottom: 2,
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: "14px",
-                  color: "lightgray",
-                  textAlign: "left",
-                }}
-              >
-                {new Date().toLocaleString("default", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </Typography>
-            </CardActions>
-          </Card>
-        ))}{" "}
-      </Box>
-    </Box>
+              </p>
+            </div>
+            <div className="mt-4 text-gray-400 text-sm">
+              {new Date().toLocaleString("default", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

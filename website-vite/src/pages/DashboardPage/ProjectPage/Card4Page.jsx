@@ -1,6 +1,7 @@
 import Footer from "../../../components/Footer";
 import Banner from "../../../components/Banner";
-import Help from "../../../components/Help";
+import Help from "../../../components/Support";
+import ads from "../../../assets/ads.png";
 export default function Card4Page() {
   return (
     <>
@@ -8,24 +9,25 @@ export default function Card4Page() {
         <div>
           <div className="mx-10  ">
             <div className="pt-10">
-              <a href="/project" className="text-white font-bold">
+              <a href="/" className="text-white font-bold">
                 ← Go back to all dark pattern
               </a>
             </div>
             <article className="bg-gray-700 mx-10 ">
-              <header className="mt-20 mx-30 text-center">
+              <header className="mt-20 mx-30 text-center ">
                 <h1 className="font-bold text-white text-4xl">
                   How Promoted Ads Implemented and detected on X
                 </h1>
-                <div className="mx-40 my-10">
-                  <h2 className="text-white font-bold my-10 text-start">
+                <div className="mx-40 my-10 text-white">
+                  <h2 className=" text-2xl font-bold my-10 text-start">
                     TakeAway:
                   </h2>
                   <ul className="space-y-5 text-start">
                     <li>1</li>
-                    <li>1</li>
-                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
                   </ul>
+                  <img src={ads} alt="ads" className="rounded-md mt-10"></img>
                 </div>
               </header>
               <div
@@ -36,11 +38,11 @@ export default function Card4Page() {
                   <div className="bg-gray-500 rounded ml-10 mt-10 p-5">
                     <h3 className="mb-10 font-bold">This article contains:</h3>
                     <ul className="space-y-5">
-                      <li>1</li>
-                      <li>2</li>
-                      <li>3</li>
-                      <li>4</li>
-                      <li>5</li>
+                      <li>1.Introduction</li>
+                      <li>2.How Promoted Ads Detection is Implemented on X</li>
+                      <li>3.How to Detect Promoted Ads on X</li>
+                      <li>4.How X-Factors can help</li>
+                      <li>5.Conclusion</li>
                     </ul>
                   </div>
                 </div>
@@ -76,7 +78,7 @@ export default function Card4Page() {
                       without realizing that it is paid promotion.
                     </p>
                     <h2 className="text-white font-bold text-2xl">
-                      How Promoted Ads are Implemented on X
+                      How Promoted Ads Detection is Implemented on X
                     </h2>
                     <p className="text-white ">
                       Promoted ads on X are implemented using a combination of
@@ -129,7 +131,7 @@ export default function Card4Page() {
                       be a promoted ad.
                     </p>
                     <h2 className="text-white font-bold text-2xl">
-                      How our tool can help
+                      How X-Factors can help
                     </h2>
                     <p className="text-white ">
                       Our tool can help you detect promoted ads on X by

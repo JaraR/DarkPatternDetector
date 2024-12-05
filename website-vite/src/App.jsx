@@ -17,8 +17,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/project" element={<ProjectPageBase />} />
-          {/* <Route path="/card/:id" element={<ProjectPageBase />} /> */}
-
           <Route path="/card/1" element={<Card1Page />} />
           <Route path="/card/2" element={<Card2Page />} />
           <Route path="/card/4" element={<Card4Page />} />
