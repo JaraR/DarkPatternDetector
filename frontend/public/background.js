@@ -1,3 +1,34 @@
+// This is new feature: to Reset badge count when tabs are closed
+chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
+  try {
+    // Get information about the closed tab
+    const tabs = await chrome.tabs.query({
+      url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+    });
+
+    // Check if there are no remaining relevant tabs
+    if (tabs.length === 0) {
+      console.log("No relevant tabs open. Resetting badge count.");
+
+      // Reset counts in storage
+      chrome.storage.local.set(
+        {
+          autoplayCount: 0,
+          promotedAdsCount: 0,
+          engagementNotifCount: 0,
+        },
+        () => {
+          // Update badge
+          chrome.action.setBadgeText({ text: "" });
+          console.log("Badge count reset.");
+        }
+      );
+    }
+  } catch (error) {
+    console.error("Error while checking tabs or resetting badge:", error);
+  }
+});
+
 // function to Sum Up all the counts
 function updateBadge() {
   // Fetch both counts from storage and update the badge with the sum
