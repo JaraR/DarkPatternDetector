@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import chromeLogo from "../../assets/chrome-logo.png";
 import macPreview from "../../assets/mac.png";
 import autoplayHeader from "../../assets/autoplay-header.png";
-import adsHeader from "../../assets/ads-header.png";
+import adsHeader from "../../assets/ad-header.png";
 import tutorial from "../../assets/tutorial.png";
 import notificationHeader from "../../assets/notification-header.png";
 

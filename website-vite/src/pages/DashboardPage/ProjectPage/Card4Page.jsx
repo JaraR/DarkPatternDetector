@@ -1,15 +1,19 @@
-export default function Card3Page() {
+import Footer from "../../../components/Footer";
+import Banner from "../../../components/Banner";
+import Help from "../../../components/Help";
+export default function Card4Page() {
   return (
     <>
-      <main>
-        <div className="bg-gray-700 w-full h-full">
-          <div className="bg-gray-600 mx-10 h-[80%] ">
-            <a href="/project" className="text-white font-bold">
-              {" "}
-              ← Go back to all dark pattern
-            </a>
-            <article className="bg-gray-500 ">
-              <header className="mt-20 mx-20 text-center">
+      <main className="bg-gray-700 w-screen h-full">
+        <div>
+          <div className="mx-10  ">
+            <div className="pt-10">
+              <a href="/project" className="text-white font-bold">
+                ← Go back to all dark pattern
+              </a>
+            </div>
+            <article className="bg-gray-700 mx-10 ">
+              <header className="mt-20 mx-30 text-center">
                 <h1 className="font-bold text-white text-4xl">
                   How Promoted Ads Implemented and detected on X
                 </h1>
@@ -24,10 +28,13 @@ export default function Card3Page() {
                   </ul>
                 </div>
               </header>
-              <div className="bg-gray-400 grid grid-cols-4 gap-10">
+              <div
+                className="sticky bg-gray-600 grid grid-cols-4 gap-10 rounded-md text-white"
+                alt="table of content"
+              >
                 <div className="...">
-                  <div className="bg-gray-300 rounded ml-5 ">
-                    <h3 className="mb-10">This article contains:</h3>
+                  <div className="bg-gray-500 rounded ml-10 mt-10 p-5">
+                    <h3 className="mb-10 font-bold">This article contains:</h3>
                     <ul className="space-y-5">
                       <li>1</li>
                       <li>2</li>
@@ -37,8 +44,8 @@ export default function Card3Page() {
                     </ul>
                   </div>
                 </div>
-                <div className="col-span-3 ...">
-                  <section className="space-y-10 mx-20 text-justify">
+                <div className=" overflow-y-auto max-h-screen col-span-3 ...">
+                  <section className="space-y-10 mx-20 my-10 text-justify">
                     <h2 className="text-white font-bold text-2xl">
                       Introduction
                     </h2>
@@ -163,31 +170,16 @@ export default function Card3Page() {
                 </div>
               </div>
             </article>
-            <div className="rounded bg-gray-300 my-10 text-center ">
-              <div className="space-y-3 p-5 mx-10">
-                <div>icon1 +icons2</div>
-                <h2 className="font-bold text-2xl text-white">
-                  Still have questions
-                </h2>
-                <p className="text-white">
-                  reach out to us at example@gmail.com. We are happy to help.
-                </p>
-                <button className="bg-blue-500  text-white font-bold rounded-full p-2">
-                  Get In Touch
-                </button>
-              </div>
-            </div>
-            <div className="bg-gray-700 rounded">
-              <h2>Other related dark patterns</h2>
-              <div>
-                <a>
-                  <h3>1</h3>
-                </a>
-              </div>
-            </div>
+            <Help />
           </div>
         </div>
+
+        <Banner />
       </main>
+
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }
