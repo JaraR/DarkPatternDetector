@@ -1,18 +1,19 @@
 // function to Sum Up all the counts
 function updateBadge() {
-  // Fetch both counts from storage and update the badge with the sum
-  chrome.storage.local.get(
-    ["autoplayCount", "promotedAdsCount", "engagementNotifCount"],
-    (data) => {
-      const totalCount =
-        (data.autoplayCount || 0) +
-        (data.promotedAdsCount || 0) +
-        (data.engagementNotifCount || 0);
+  const keys = ["autoplayCount", "promotedAdsCount", "engagementNotifCount", "infiniteScrollCount"];
 
-      chrome.action.setBadgeText({ text: totalCount.toString() });
-      chrome.action.setBadgeBackgroundColor({ color: "#fcd400" });
-    }
-  );
+  console.log("Updating badge with keys:", keys);
+
+  chrome.storage.local.get(keys, (data) => {
+    // Calculate the total count
+    const totalCount = keys.reduce((sum, key) => sum + (data[key] || 0), 0);
+
+    console.log("Total count:", totalCount);
+
+    // Update the badge text and background color
+    chrome.action.setBadgeText({text: totalCount.toString()});
+    chrome.action.setBadgeBackgroundColor({color: "#Fcd400"});
+  });
 }
 
 // Autoplay update function
@@ -27,6 +28,16 @@ function updateAutoplayCount(count) {
 function updatePromotedAdsCount(count) {
   console.log("Promoted Ads count updated in background:", count);
   chrome.storage.local.set({ promotedAdsCount: count }, () => {
+    updateBadge();
+  });
+}
+
+// Infinite Scroll update function
+function updateInfiniteScrollCount(count) {
+  console.log("Infinite Scroll count updated in background:", count);
+  // Store the updated infinite scroll count in local storage
+  chrome.storage.local.set({infiniteScrollCount: count}, () => {
+    // After updating the infinite scroll count, update the badge
     updateBadge();
   });
 }
@@ -54,8 +65,8 @@ function handleMessage(message, sender, sendResponse) {
       chrome.storage.local.get(["autoplayCount"], (result) => {
         const storedAutoplayCount = result.autoplayCount || 0;
         console.log(
-          "Retrieved autoplay count in background:",
-          storedAutoplayCount
+            "Retrieved autoplay count in background:",
+            storedAutoplayCount
         );
         sendResponse({ count: storedAutoplayCount });
       });
@@ -66,10 +77,22 @@ function handleMessage(message, sender, sendResponse) {
       chrome.storage.local.get(["promotedAdsCount"], (result) => {
         const storedPromotedAdsCount = result.promotedAdsCount || 0;
         console.log(
-          "Retrieved promoted ads count in background:",
-          storedPromotedAdsCount
+            "Retrieved promoted ads count in background:",
+            storedPromotedAdsCount
         );
         sendResponse({ count: storedPromotedAdsCount });
+      });
+      break;
+
+    case "updateInfiniteScroll":
+      updateInfiniteScrollCount(message.count);
+      chrome.storage.local.get(["infiniteScrollCount"], (result) => {
+        const storedInfiniteScrollCount = result.infiniteScrollCount || 0;
+        console.log(
+            "Retrieved infinite scroll count in background:",
+            storedInfiniteScrollCount
+        );
+        sendResponse({count: storedInfiniteScrollCount});
       });
       break;
 
@@ -78,8 +101,8 @@ function handleMessage(message, sender, sendResponse) {
       chrome.storage.local.get(["engagementNotifCount"], (result) => {
         const storedEngagementNotifCount = result.engagementNotifCount || 0;
         console.log(
-          "Retrieved engagement notification count in background:",
-          storedEngagementNotifCount
+            "Retrieved engagement notification count in background:",
+            storedEngagementNotifCount
         );
         sendResponse({ count: storedEngagementNotifCount });
       });
@@ -99,21 +122,28 @@ const MESSAGE_TYPE = {
   STOP_AUTOPLAY: "stopAutoplay",
   START_PROMOTED_ADS: "startPromotedAds",
   STOP_PROMOTED_ADS: "stopPromotedAds",
+  START_INFINITE_SCROLL: "startInfiniteScroll",
+  STOP_INFINITE_SCROLL: "stopInfiniteScroll",
   START_ENGAGEMENT_NOTIF: "startEngagementNotif",
   STOP_ENGAGEMENT_NOTIF: "stopEngagementNotif",
 };
 
 // Function to send a message to the content script in the active tab
-function sendMessageToContent(tabId, message) {
-  return new Promise((resolve, reject) => {
-    chrome.tabs.sendMessage(tabId, message, (response) => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-      } else {
-        resolve(response);
-      }
+async function sendMessageToContent(tabId, message) {
+  try {
+    const response = await new Promise((resolve, reject) => {
+      chrome.tabs.sendMessage(tabId, message, (response) => {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError.message);
+        } else {
+          resolve(response);
+        }
+      });
     });
-  });
+    console.log("Message sent and response received:", response);
+  } catch (error) {
+    console.log("Error communicating with content script:", error);
+  }
 }
 
 // Listener for changes in chrome.storage
@@ -125,8 +155,8 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
       console.log("Autoplay setting changed:", newAutoplayValue);
 
       const autoplayMessageType = newAutoplayValue
-        ? MESSAGE_TYPE.START_AUTOPLAY
-        : MESSAGE_TYPE.STOP_AUTOPLAY;
+          ? MESSAGE_TYPE.START_AUTOPLAY
+          : MESSAGE_TYPE.STOP_AUTOPLAY;
 
       try {
         // Query relevant tabs (e.g., X, Bluesky, Reddit)
@@ -146,8 +176,8 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
         }
       } catch (error) {
         console.error(
-          "Failed to send autoplay message to content script:",
-          error
+            "Failed to send autoplay message to content script:",
+            error
         );
       }
     }
@@ -158,8 +188,8 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
       console.log("Promoted Ads setting changed:", newPromotedAdsValue);
 
       const promotedAdsMessageType = newPromotedAdsValue
-        ? MESSAGE_TYPE.START_PROMOTED_ADS
-        : MESSAGE_TYPE.STOP_PROMOTED_ADS;
+          ? MESSAGE_TYPE.START_PROMOTED_ADS
+          : MESSAGE_TYPE.STOP_PROMOTED_ADS;
 
       try {
         // Query relevant tabs (e.g., X, Bluesky, Reddit)
@@ -174,16 +204,53 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
             type: promotedAdsMessageType,
           });
           console.log(
-            "Response from content script for promoted ads:",
-            response
+              "Response from content script for promoted ads:",
+              response
           );
         } else {
           console.warn("No relevant tab found or tab ID is undefined.");
         }
       } catch (error) {
         console.error(
-          "Failed to send promoted ads message to content script:",
-          error
+            "Failed to send promoted ads message to content script:",
+            error
+        );
+      }
+    }
+
+    //Check if infiniteScroll setting changed
+    if (changes.infiniteScroll) {
+      const newInfiniteScrollValue = changes.infiniteScroll.newValue;
+      console.log("Infinite Scroll setting changed:", newInfiniteScrollValue);
+      const infiniteScrollMessageType = newInfiniteScrollValue
+          ? MESSAGE_TYPE.START_INFINITE_SCROLL
+          : MESSAGE_TYPE.STOP_INFINITE_SCROLL;
+
+      console.log("[here1: ]Infinite Scroll message type:", infiniteScrollMessageType);
+
+      try {
+        // Query relevant tabs (e.g., X, Bluesky, Reddit)
+        const tabs = await chrome.tabs.query({
+          active: true,
+          currentWindow: true,
+          url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+        });
+
+        if (tabs.length > 0 && tabs[0].id !== undefined) {
+          const response = await sendMessageToContent(tabs[0].id, {
+            type: infiniteScrollMessageType,
+          });
+          console.log(
+              "Response from content script for infinite scroll:",
+              response
+          );
+        } else {
+          console.warn("No relevant tab found or tab ID is undefined.");
+        }
+      } catch (error) {
+        console.error(
+            "Failed to send infinite scroll message to content script:",
+            error
         );
       }
     }
@@ -192,13 +259,13 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
     if (changes.engagementNotif) {
       const newEngagementNotifValue = changes.engagementNotif.newValue;
       console.log(
-        "Engagement Notification setting changed:",
-        newEngagementNotifValue
+          "Engagement Notification setting changed:",
+          newEngagementNotifValue
       );
 
       const engagementNotifMessageType = newEngagementNotifValue
-        ? MESSAGE_TYPE.START_ENGAGEMENT_NOTIF
-        : MESSAGE_TYPE.STOP_ENGAGEMENT_NOTIF;
+          ? MESSAGE_TYPE.START_ENGAGEMENT_NOTIF
+          : MESSAGE_TYPE.STOP_ENGAGEMENT_NOTIF;
 
       try {
         // Query relevant tabs (e.g.: X, Bluesky, Reddit)
@@ -213,16 +280,16 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
             type: engagementNotifMessageType,
           });
           console.log(
-            "Response from content script for engagement notifications:",
-            response
+              "Response from content script for engagement notifications:",
+              response
           );
         } else {
           console.warn("No relevant tab found or tab ID is undefined.");
         }
       } catch (error) {
         console.error(
-          "Failed to send engagement notification message to content script:",
-          error
+            "Failed to send engagement notification message to content script:",
+            error
         );
       }
     }
@@ -230,3 +297,17 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
 });
 
 chrome.runtime.onMessage.addListener(handleMessage);
+
+//consol log for debugging////////////////////////////////////////////////////////////
+chrome.storage.local.get(null, (items) => {
+  console.log("Local storage content:", items);
+});
+
+chrome.storage.sync.get(null, (items) => {
+  console.log("Sync storage content:", items);
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  console.log(`Changes in ${area}:`, changes);
+});
+//////////////////////////////////////////////////////////////////////////////////////
