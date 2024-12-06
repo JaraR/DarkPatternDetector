@@ -42,7 +42,6 @@ export default function SettingTest() {
       chrome.storage.sync.set({ autoplay: e });
     }
     setIsAutoplay(e);
-
   };
 
   useEffect(() => {
@@ -51,7 +50,28 @@ export default function SettingTest() {
         setIsAutoplay(result.autoplay);
       });
     }
-  });
+    const storageListener = (changes, areaName) => {
+      if (areaName === "sync" && changes.autoplay) {
+        setIsAutoplay(changes.autoplay.newValue);
+      }
+    };
+
+    chrome.storage.onChanged.addListener(storageListener);
+
+    const handleTabClose = () => {
+      setIsAutoplay(false);
+      chrome.storage.sync.set({ autoplay: false });
+    };
+
+    // Listen for tab close
+    chrome.tabs.onRemoved.addListener(handleTabClose);
+
+    // Cleanup listeners when the component is unmounted
+    return () => {
+      chrome.tabs.onRemoved.removeListener(handleTabClose);
+      chrome.storage.onChanged.removeListener(storageListener);
+    };
+  }, []);
 
   //prmoted ads detection
   const startPromotedAdsDetection = (e) => {
@@ -59,7 +79,6 @@ export default function SettingTest() {
       chrome.storage.sync.set({ promotedAds: e });
     }
     setIsProtomotedAds(e);
-
   };
 
   useEffect(() => {

@@ -8,7 +8,9 @@ chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
 
     // Check if there are no remaining relevant tabs
     if (tabs.length === 0) {
-      console.log("No relevant tabs open. Resetting badge count.");
+      chrome.storage.sync.set({ autoplay: false }, () => {
+        console.log("Autoplay setting reset to false after tab closed.");
+      });
 
       // Reset counts in storage
       chrome.storage.local.set(
