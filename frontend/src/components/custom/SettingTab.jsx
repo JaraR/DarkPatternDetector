@@ -243,7 +243,7 @@ export default function SettingTest() {
                       alt="Ads info"
                       style={{ width: "100%" }}
                     />
-                    Enable it and navigate to X website to see it in action!
+                    Navigate to X website to see it in action!
                   </span>
                 }
               >
