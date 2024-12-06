@@ -23,14 +23,14 @@ import tooltipNotif from "../../assets/tooltip-notif.png";
 
 // import CustomizationCard from "@/components/ui/CustomizationCard";
 
-import Snackbar from "@mui/material/Snackbar";
+// import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+// "const Alert = React.forwardRef(function Alert(props, ref) {
+//   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });"
 
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
