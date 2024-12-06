@@ -48,7 +48,7 @@ export default function TeamList() {
 
   const mentors = [
     {
-      name: "Andrea Curley ",
+      name: "Andrea Curley",
       role: "Jedi Master",
       avatar: "/static/images/avatar/4.jpg",
     },
@@ -107,19 +107,23 @@ export default function TeamList() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" }, // Stack vertically on mobile, horizontally on larger screens
           justifyContent: "space-around",
           padding: 2,
           width: "100%",
+          gap: 2,
         }}
       >
         {renderGroup("ASD Members", asdMembers)}
         {renderGroup("DS Members", dsMembers)}
         {renderGroup("Mentors", mentors)}
       </Box>
+
       <Box
         sx={{
           display: "flex",
-          justifyContent: "left",
+          flexDirection: "column", // Stack elements on mobile
+          justifyContent: "flex-start",
           padding: 4,
           gap: 2,
           width: "100%",
@@ -134,6 +138,9 @@ export default function TeamList() {
             href="https://github.com/JaraR/DarkPatternDetector.git"
             target="_blank"
             rel="noopener noreferrer"
+            sx={{
+              alignSelf: "flex-start", // Align button to the left on mobile
+            }}
           >
             Github
           </Button>

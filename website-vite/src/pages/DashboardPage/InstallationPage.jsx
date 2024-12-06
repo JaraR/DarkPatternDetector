@@ -1,6 +1,3 @@
-import CardActions from "@mui/material/CardActions";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 import chromeLogo from "../../assets/chrome-logo.png";
 import macPreview from "../../assets/mac.png";
 import autoplayHeader from "../../assets/autoplay-header.png";
@@ -10,241 +7,93 @@ import notificationHeader from "../../assets/notification-header.png";
 
 export default function Installation() {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        gap: 2,
-        position: "relative",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: { xs: "column", md: "row" },
-          gap: 0,
-          textAlign: "center",
-          width: "100%",
-        }}
-      >
-        <CardActions
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <h2
-            style={{
-              background: "linear-gradient(to right, #04ADF0, #FF7E74)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              fontSize: "2.5rem",
-              padding: "0 10px",
-            }}
-          >
+    <div className="flex flex-wrap justify-center gap-6 relative">
+      {/* Main Section */}
+      <div className="flex flex-col md:flex-row items-center justify-center text-center w-full gap-6">
+        <div className="flex flex-col items-center px-4">
+          <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-red-400 text-2xl md:text-4xl font-bold p-2 md:p-4">
             Install Our Dark Pattern Detector <br />
             X-Factors
           </h2>
-
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              mt: 2,
-              color: "white",
-              fontWeight: "bold",
-              borderRadius: "999px",
-              minWidth: "200px",
-              minHeight: "60px",
-              backgroundColor: "#04ADF0",
-              "&:hover": {
-                backgroundColor: "#0177CC",
-              },
-            }}
-          >
+          <button className="mt-4 text-white font-bold rounded-full px-6 md:px-8 py-2 md:py-3 bg-blue-500 hover:bg-blue-700 flex items-center">
             <img
               src={chromeLogo}
               alt="Chrome Logo"
-              style={{
-                width: 24,
-                height: 24,
-                marginRight: 8,
-              }}
+              className="w-5 h-5 md:w-6 md:h-6 mr-2"
             />
             Get X-Factors for Chrome
-          </Button>
-        </CardActions>
-        {/* Mac Preview Image */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            width: "70%",
-
-            mt: 3,
-          }}
-        >
+          </button>
+        </div>
+        <div className="flex justify-center w-full md:w-4/5 mt-4 md:mt-6">
           <img
             src={macPreview}
-            alt="mac preview"
-            style={{
-              maxWidth: "100%",
-            }}
+            alt="Mac Preview"
+            className="max-w-full w-full md:w-auto"
           />
-        </Box>
-      </Box>
-      {/* Mac Tutorial Image */}
-      <Box>
-        <h2
-          style={{
-            background: "linear-gradient(to right, #51acea, #9771f2)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontSize: "2rem",
-            padding: "0 10px",
-          }}
-        >
-          Tutorial and Walkthrough our chrome extension
+        </div>
+      </div>
+
+      {/* Tutorial Section */}
+      <div className="px-4">
+        <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-xl md:text-3xl font-bold p-2 md:p-4">
+          Tutorial and Walkthrough Our Chrome Extension
         </h2>
         <img
           src={tutorial}
-          alt="tutorial header"
-          style={{
-            width: "100%",
-            maxWidth: 700,
-            padding: 10,
-          }}
-        ></img>
-        <h2
-          style={{
-            background: "linear-gradient(to right, #4EABEA, #0a6aaa)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontSize: "2.5rem",
-            padding: "0 10px",
-          }}
-        >
+          alt="Tutorial Header"
+          className="w-full max-w-md md:max-w-xl mx-auto p-2 md:p-4"
+        />
+        <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-800 text-2xl md:text-4xl font-bold p-2 md:p-4">
           What X-Factors Can Do for You
         </h2>
-      </Box>
-      {/* autoplay */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <img
-          src={autoplayHeader}
-          alt="autoplay header"
-          style={{
-            width: "100%",
-            maxWidth: 700,
-            padding: 10,
-          }}
-        ></img>
-        <h2
-          style={{
-            background: "linear-gradient(to right, #ff723a, #e05c2c)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontSize: "2rem",
-            padding: "0 10px",
-          }}
-        >
-          Autoplay Detection <br />
-          <span
-            style={{
-              fontSize: "1.6rem",
-              fontWeight: "bold",
-            }}
-          >
-            Pause autoplayed Videos <br />
-            Watch on Your Own Terms
-          </span>
-        </h2>
-      </Box>
+      </div>
 
-      {/* promoted ads */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <h2
-          style={{
-            background: "linear-gradient(to right, #C38EE7, #6f6be5)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontSize: "2rem",
-            padding: "0 10px",
-          }}
-        >
-          Promoted Ads Detection <br />
-          <span
-            style={{
-              fontSize: "1.6rem",
-              fontWeight: "bold",
-            }}
-          >
-            Spot the Ads <br />
-            Navigate with Control
-          </span>
-        </h2>
-        <img
-          src={adsHeader}
-          alt="ads header"
-          style={{
-            width: "100%",
-            maxWidth: 700,
-            padding: 10,
-          }}
-        ></img>
-      </Box>
+      {/* Features Sections */}
+      <div className="flex flex-wrap justify-around items-center gap-6 px-4">
+        {/* Autoplay */}
+        <div className="flex flex-col md:flex-row items-center">
+          <img
+            src={autoplayHeader}
+            alt="Autoplay Header"
+            className="w-full md:max-w-lg p-2 md:p-4 sm:pr-6"
+          />
+          <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500 text-lg md:text-2xl font-bold text-center">
+            Autoplay Detection <br />
+            <span className="text-sm md:text-lg font-semibold">
+              Pause Autoplayed Videos <br />
+              Watch on Your Own Terms
+            </span>
+          </h2>
+        </div>
 
-      {/* notification */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <img
-          src={notificationHeader}
-          alt="notification header"
-          style={{
-            width: "100%",
-            maxWidth: 700,
-            padding: 10,
-          }}
-        ></img>
-        <h2
-          style={{
-            background: "linear-gradient(to right, #FFA602, #d3732a)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontSize: "2rem",
-            padding: "0 10px",
-          }}
-        >
-          Engagement Notification <br />
-          Detection
-          <span
-            style={{
-              fontSize: "1.6rem",
-              fontWeight: "bold",
-            }}
-          ></span>
-        </h2>
-      </Box>
-    </Box>
+        {/* Promoted Ads */}
+        <div className="flex flex-col-reverse md:flex-row items-center">
+          <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-600 text-lg md:text-2xl font-bold text-center">
+            Promoted Ads Detection <br />
+            <span className="text-sm md:text-lg font-semibold">
+              Spot the Ads <br />
+              Navigate with Control
+            </span>
+          </h2>
+          <img
+            src={adsHeader}
+            alt="Ads Header"
+            className="w-full md:max-w-lg p-2 md:p-4"
+          />
+        </div>
+
+        {/* Engagement Notification */}
+        <div className="flex flex-col md:flex-row items-center">
+          <img
+            src={notificationHeader}
+            alt="Notification Header"
+            className="w-full md:max-w-lg p-2 md:p-4"
+          />
+          <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600 text-lg md:text-2xl font-bold text-center">
+            Engagement Notification Detection
+          </h2>
+        </div>
+      </div>
+    </div>
   );
 }
