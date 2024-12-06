@@ -17,6 +17,9 @@ import obstruction from "/public/icons/obstruction.png";
 import ads from "/public/icons/ads.png";
 import privacy from "/public/icons/privacy.png";
 import { ButtonLink } from "@/components/ui/buttonlink";
+import tooltipAutoplay from "../../assets/tooltip-autoplay.png";
+import tooltipAds from "../../assets/tooltip-ads.png";
+import tooltipNotif from "../../assets/tooltip-notif.png";
 
 // import CustomizationCard from "@/components/ui/CustomizationCard";
 
@@ -131,8 +134,13 @@ export default function SettingTest() {
 
               <Tooltip
                 title={
-                  <span style={{ fontSize: "0.85rem" }}>
-                    Highlight and pause videos that play automatically.
+                  <span style={{ fontSize: "0.85rem", Width: "550px" }}>
+                    <img
+                      src={tooltipAutoplay}
+                      alt="Autoplay info"
+                      style={{ width: "100%" }}
+                    />
+                    Navigate to X website to see X-Factors in action!
                   </span>
                 }
               >
@@ -193,8 +201,13 @@ export default function SettingTest() {
               </span>
               <Tooltip
                 title={
-                  <span style={{ fontSize: "0.85rem" }}>
-                    Highlight the notification and give a reminder.
+                  <span style={{ fontSize: "0.85rem", Width: "550px" }}>
+                    <img
+                      src={tooltipNotif}
+                      alt="Notif info"
+                      style={{ width: "100%" }}
+                    />
+                    Navigate to X website to see X-Factors in action!
                   </span>
                 }
               >
@@ -224,9 +237,13 @@ export default function SettingTest() {
               <span className="text-lg font-light">Promoted Ads</span>
               <Tooltip
                 title={
-                  <span style={{ fontSize: "0.85rem" }}>
-                    Highlight embedded ads and give a reminder before user is
-                    redirected to third party website.
+                  <span style={{ fontSize: "0.85rem", Width: "550px" }}>
+                    <img
+                      src={tooltipAds}
+                      alt="Ads info"
+                      style={{ width: "100%" }}
+                    />
+                    Enable it and navigate to X website to see it in action!
                   </span>
                 }
               >
