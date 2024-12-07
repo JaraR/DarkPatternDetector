@@ -1,24 +1,24 @@
 // function to Sum Up all the counts
 function updateBadge() {
-  // Fetch both counts from storage and update the badge with the sum
-  chrome.storage.local.get(
-    [
-      "autoplayCount",
-      "promotedAdsCount",
-      "engagementNotifCount",
-      "infiniteScrollCount",
-    ],
-    (data) => {
-      const totalCount =
-        (data.autoplayCount || 0) +
-        (data.promotedAdsCount || 0) +
-        (data.engagementNotifCount || 0) +
-        (data.infiniteScrollCount || 0);
+  const keys = [
+    "autoplayCount",
+    "promotedAdsCount",
+    "engagementNotifCount",
+    "infiniteScrollCount",
+  ];
 
-      chrome.action.setBadgeText({ text: totalCount.toString() });
-      chrome.action.setBadgeBackgroundColor({ color: "#fcd400" });
-    }
-  );
+  console.log("Updating badge with keys:", keys);
+
+  chrome.storage.local.get(keys, (data) => {
+    // Calculate the total count
+    const totalCount = keys.reduce((sum, key) => sum + (data[key] || 0), 0);
+
+    console.log("Total count:", totalCount);
+
+    // Update the badge text and background color
+    chrome.action.setBadgeText({ text: totalCount.toString() });
+    chrome.action.setBadgeBackgroundColor({ color: "#Fcd400" });
+  });
 }
 
 // Autoplay update function
@@ -37,21 +37,22 @@ function updatePromotedAdsCount(count) {
   });
 }
 
+// Infinite Scroll update function
+function updateInfiniteScrollCount(count) {
+  console.log("Infinite Scroll count updated in background:", count);
+  // Store the updated infinite scroll count in local storage
+  chrome.storage.local.set({ infiniteScrollCount: count }, () => {
+    // After updating the infinite scroll count, update the badge
+    updateBadge();
+  });
+}
+
 // Updates engagement notification count
 function updateEngagementNotifCount(count) {
   console.log("Engagment notification count updated in background:", count);
   // Store the engagement notification count in local storage
   chrome.storage.local.set({ engagementNotifCount: count }, () => {
     // After updating the engagement notification count, update the badge
-    updateBadge();
-  });
-}
-
-function updateInfiniteScrollCount(count) {
-  console.log("Infinite Scroll count updated in background:", count);
-  // Store the updated infinite scroll count in local storage
-  chrome.storage.local.set({ infiniteScrollCount: count }, () => {
-    // After updating the infinite scroll count, update the badge
     updateBadge();
   });
 }
@@ -88,18 +89,6 @@ function handleMessage(message, sender, sendResponse) {
       });
       break;
 
-    case "updateEngagementNotif":
-      updateEngagementNotifCount(message.count);
-      chrome.storage.local.get(["engagementNotifCount"], (result) => {
-        const storedEngagementNotifCount = result.engagementNotifCount || 0;
-        console.log(
-          "Retrieved engagement notification count in background:",
-          storedEngagementNotifCount
-        );
-        sendResponse({ count: storedEngagementNotifCount });
-      });
-      break;
-
     case "updateInfiniteScroll":
       updateInfiniteScrollCount(message.count);
       chrome.storage.local.get(["infiniteScrollCount"], (result) => {
@@ -109,6 +98,18 @@ function handleMessage(message, sender, sendResponse) {
           storedInfiniteScrollCount
         );
         sendResponse({ count: storedInfiniteScrollCount });
+      });
+      break;
+
+    case "updateEngagementNotif":
+      updateEngagementNotifCount(message.count);
+      chrome.storage.local.get(["engagementNotifCount"], (result) => {
+        const storedEngagementNotifCount = result.engagementNotifCount || 0;
+        console.log(
+          "Retrieved engagement notification count in background:",
+          storedEngagementNotifCount
+        );
+        sendResponse({ count: storedEngagementNotifCount });
       });
       break;
 
@@ -126,23 +127,28 @@ const MESSAGE_TYPE = {
   STOP_AUTOPLAY: "stopAutoplay",
   START_PROMOTED_ADS: "startPromotedAds",
   STOP_PROMOTED_ADS: "stopPromotedAds",
-  START_ENGAGEMENT_NOTIF: "startEngagementNotif",
-  STOP_ENGAGEMENT_NOTIF: "stopEngagementNotif",
   START_INFINITE_SCROLL: "startInfiniteScroll",
   STOP_INFINITE_SCROLL: "stopInfiniteScroll",
+  START_ENGAGEMENT_NOTIF: "startEngagementNotif",
+  STOP_ENGAGEMENT_NOTIF: "stopEngagementNotif",
 };
 
 // Function to send a message to the content script in the active tab
-function sendMessageToContent(tabId, message) {
-  return new Promise((resolve, reject) => {
-    chrome.tabs.sendMessage(tabId, message, (response) => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-      } else {
-        resolve(response);
-      }
+async function sendMessageToContent(tabId, message) {
+  try {
+    const response = await new Promise((resolve, reject) => {
+      chrome.tabs.sendMessage(tabId, message, (response) => {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError.message);
+        } else {
+          resolve(response);
+        }
+      });
     });
-  });
+    console.log("Message sent and response received:", response);
+  } catch (error) {
+    console.log("Error communicating with content script:", error);
+  }
 }
 
 // Listener for changes in chrome.storage
@@ -217,6 +223,46 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
       }
     }
 
+    //Check if infiniteScroll setting changed
+    if (changes.infiniteScroll) {
+      const newInfiniteScrollValue = changes.infiniteScroll.newValue;
+      console.log("Infinite Scroll setting changed:", newInfiniteScrollValue);
+      const infiniteScrollMessageType = newInfiniteScrollValue
+        ? MESSAGE_TYPE.START_INFINITE_SCROLL
+        : MESSAGE_TYPE.STOP_INFINITE_SCROLL;
+
+      console.log(
+        "[here1: ]Infinite Scroll message type:",
+        infiniteScrollMessageType
+      );
+
+      try {
+        // Query relevant tabs (e.g., X, Bluesky, Reddit)
+        const tabs = await chrome.tabs.query({
+          active: true,
+          currentWindow: true,
+          url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+        });
+
+        if (tabs.length > 0 && tabs[0].id !== undefined) {
+          const response = await sendMessageToContent(tabs[0].id, {
+            type: infiniteScrollMessageType,
+          });
+          console.log(
+            "Response from content script for infinite scroll:",
+            response
+          );
+        } else {
+          console.warn("No relevant tab found or tab ID is undefined.");
+        }
+      } catch (error) {
+        console.error(
+          "Failed to send infinite scroll message to content script:",
+          error
+        );
+      }
+    }
+
     // Check if engagement notification setting changed
     if (changes.engagementNotif) {
       const newEngagementNotifValue = changes.engagementNotif.newValue;
@@ -256,45 +302,20 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
       }
     }
   }
-  //Check if infiniteScroll setting changed
-  if (changes.infiniteScroll) {
-    const newInfiniteScrollValue = changes.infiniteScroll.newValue;
-    console.log("Infinite Scroll setting changed:", newInfiniteScrollValue);
-    const infiniteScrollMessageType = newInfiniteScrollValue
-      ? MESSAGE_TYPE.START_INFINITE_SCROLL
-      : MESSAGE_TYPE.STOP_INFINITE_SCROLL;
-
-    console.log(
-      "[here1: ]Infinite Scroll message type:",
-      infiniteScrollMessageType
-    );
-
-    try {
-      // Query relevant tabs (e.g., X, Bluesky, Reddit)
-      const tabs = await chrome.tabs.query({
-        active: true,
-        currentWindow: true,
-        url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
-      });
-
-      if (tabs.length > 0 && tabs[0].id !== undefined) {
-        const response = await sendMessageToContent(tabs[0].id, {
-          type: infiniteScrollMessageType,
-        });
-        console.log(
-          "Response from content script for infinite scroll:",
-          response
-        );
-      } else {
-        console.warn("No relevant tab found or tab ID is undefined.");
-      }
-    } catch (error) {
-      console.error(
-        "Failed to send infinite scroll message to content script:",
-        error
-      );
-    }
-  }
 });
 
 chrome.runtime.onMessage.addListener(handleMessage);
+
+//consol log for debugging////////////////////////////////////////////////////////////
+chrome.storage.local.get(null, (items) => {
+  console.log("Local storage content:", items);
+});
+
+chrome.storage.sync.get(null, (items) => {
+  console.log("Sync storage content:", items);
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  console.log(`Changes in ${area}:`, changes);
+});
+//////////////////////////////////////////////////////////////////////////////////////
