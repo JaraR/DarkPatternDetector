@@ -14,6 +14,7 @@ export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
+  const [infiniteScrollCount, setIsInfiniteScrollCount] = useState(0);
 
   const returnTab = useLocation();
 
@@ -70,6 +71,23 @@ export function Home() {
     );
   }, []);
 
+  //update infinite scroll to pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "updateInfiniteScroll" }, (response) => {
+      console.log(
+        "infinite scroll response received from background:",
+        response
+      );
+      if (response && response.count !== undefined) {
+        setIsInfiniteScrollCount(response.count);
+      } else {
+        console.error(
+          "Error: Infinite Scroll count not received or is undefined."
+        );
+      }
+    });
+  }, [infiniteScrollCount]);
+
   return (
     <>
       <Navbar />
@@ -96,6 +114,7 @@ export function Home() {
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
               engagementNotifCount={engagementNotifCount}
+              infiniteScrollCount={infiniteScrollCount}
             />
 
             <BottomNavigation />
