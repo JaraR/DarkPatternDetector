@@ -7,10 +7,12 @@ export default function PieActiveArc({
   autoplayCount,
   promotedAdsCount,
   engagementNotifCount,
+  infiniteScrollCount,
 }) {
   console.log("Autoplay Count:", autoplayCount);
   console.log("Promoted Ads Count:", promotedAdsCount);
   console.log("Engagement Notification Count:", engagementNotifCount);
+  console.log("Infinite Scroll Count:", infiniteScrollCount);
   const darkPattern = [
     {
       label: `Engagement Notification ${engagementNotifCount}`,
@@ -29,7 +31,11 @@ export default function PieActiveArc({
       value: promotedAdsCount,
       color: "#c38ee8",
     },
-    { label: "Infinite Scrolling", value: 0, color: "#0095e1" },
+    {
+      label: `Infinite Scroll ${infiniteScrollCount}`,
+      value: infiniteScrollCount,
+      color: "#0095e1",
+    },
     { label: "Obstruction", value: 0, color: "#a1a1a8" },
     { label: "Privacy Zuckering", value: 0, color: "#374c80" },
   ];
@@ -62,16 +68,12 @@ export default function PieActiveArc({
             color: darkPattern.map((item) => item.color),
           },
         ]}
-
         height={260}
-
         margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
       />
     </>
   ) : (
-
     <div className="w-full h-[280px] flex flex-col justify-start items-center bg-gray-100 border border-gray-300 rounded-lg">
-
       <img
         src={noActivity}
         alt="No activities"
@@ -80,7 +82,6 @@ export default function PieActiveArc({
       <div className="text-gray-500 font-bold text-lg">
         No activities detected <br />
         Go to Settings tab Enable detections
-
       </div>
     </div>
   );

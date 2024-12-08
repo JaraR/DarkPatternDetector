@@ -34,6 +34,8 @@ export default function SettingTest() {
   const [isAutoplay, setIsAutoplay] = useState(false);
   const [isPromotedAds, setIsProtomotedAds] = useState(false);
   const [isEngagementNotif, setIsEngagementNotif] = useState({});
+  const [isInfiniteScroll, setIsInfiniteScroll] = useState({});
+
   // const [openSnackbar, setOpenSnackbar] = useState(false);
 
   // autoplay detection
@@ -42,7 +44,6 @@ export default function SettingTest() {
       chrome.storage.sync.set({ autoplay: e });
     }
     setIsAutoplay(e);
-
   };
 
   useEffect(() => {
@@ -59,7 +60,6 @@ export default function SettingTest() {
       chrome.storage.sync.set({ promotedAds: e });
     }
     setIsProtomotedAds(e);
-
   };
 
   useEffect(() => {
@@ -82,6 +82,22 @@ export default function SettingTest() {
     if (chrome.storage) {
       chrome.storage.sync.get(["engagementNotif"], (result) => {
         setIsEngagementNotif(result.engagementNotif);
+      });
+    }
+  });
+
+  // infinite Scroll detection
+  const startInfiniteScrollDetection = (e) => {
+    if (chrome.storage) {
+      chrome.storage.sync.set({ infiniteScroll: e });
+    }
+    setIsInfiniteScroll(e);
+  };
+
+  useEffect(() => {
+    if (chrome.storage) {
+      chrome.storage.sync.get(["infiniteScroll"], (result) => {
+        setIsInfiniteScroll(result.infiniteScroll || false); // set default value to false
       });
     }
   });
@@ -156,7 +172,11 @@ export default function SettingTest() {
                 />
               </Tooltip>
             </Label>
-            <Checkbox id="infinite-scrolling" />
+            <Checkbox
+              id="infinite-scroll"
+              checked={isInfiniteScroll}
+              onCheckedChange={startInfiniteScrollDetection}
+            />
           </div>
 
           <div className="flex items-center justify-between space-x-3">
