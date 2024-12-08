@@ -119,7 +119,22 @@ export default function SettingTest() {
         setIsEngagementNotif(result.engagementNotif);
       });
     }
-  });
+    const storageListener = (changes, areaName) => {
+      if (areaName === "sync" && changes.engagementNotif) {
+        setIsEngagementNotif(changes.engagementNotif.newValue);
+      }
+    };
+    chrome.storage.onChanged.addListener(storageListener);
+
+    const handleTabClose = () => {
+      setIsEngagementNotif(false);
+      chrome.storage.sync.set({ engagementNotif: false });
+    };
+    return () => {
+      chrome.tabs.onRemoved.removeListener(handleTabClose);
+      chrome.storage.onChanged.removeListener(storageListener);
+    };
+  }, []);
 
   return (
     <>

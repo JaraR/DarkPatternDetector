@@ -8,9 +8,12 @@ chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
 
     // Check if there are no remaining relevant tabs
     if (tabs.length === 0) {
-      chrome.storage.sync.set({ autoplay: false, promotedAds: false }, () => {
-        console.log("Autoplay setting reset to false after tab closed.");
-      });
+      chrome.storage.sync.set(
+        { autoplay: false, promotedAds: false, engagementNotif: false }
+        // () => {
+        //   console.log("Autoplay setting reset to false after tab closed.");
+        // }
+      );
 
       // Reset counts in storage
       chrome.storage.local.set(
