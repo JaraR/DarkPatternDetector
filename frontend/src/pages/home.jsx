@@ -15,6 +15,9 @@ export function Home() {
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
 
+  const [activeTab, setActiveTab] = useState("results");
+  const switchTab = (targetTab) => setActiveTab(targetTab);
+
   const returnTab = useLocation();
 
   if (returnTab.state === null) {
@@ -73,7 +76,7 @@ export function Home() {
   return (
     <>
       <Navbar />
-      <Tabs defaultValue={returnTab.state} className="w-[400px]">
+      <Tabs defaultValue={returnTab.state} value={activeTab} onValueChange={setActiveTab} className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-dp">About Dark Patterns</TabsTrigger>
@@ -96,8 +99,9 @@ export function Home() {
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
               engagementNotifCount={engagementNotifCount}
+              switchTab={switchTab}
             />
-
+            <button onClick={() => switchTab("use-guide")}>To Use Guide</button>
             <BottomNavigation />
           </div>
         </TabsContent>

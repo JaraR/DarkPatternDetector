@@ -2,30 +2,33 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import noActivity from "../../../public/icons/no-activity.png";
+import { ButtonLink } from "../ui/buttonlink";
+import { Link } from "react-router-dom";
 
 export default function PieActiveArc({
   autoplayCount,
   promotedAdsCount,
   engagementNotifCount,
+  switchTab
 }) {
   console.log("Autoplay Count:", autoplayCount);
   console.log("Promoted Ads Count:", promotedAdsCount);
   console.log("Engagement Notification Count:", engagementNotifCount);
   const darkPattern = [
     {
-      label: `Engagement Notification ${engagementNotifCount}`,
+      label: `Engagement Notification`,
       value: engagementNotifCount,
       color: "#ffa600",
     },
 
     {
-      label: `Video Autoplay ${autoplayCount}`,
+      label: `Video Autoplay`,
       value: autoplayCount,
       color: "#ff8453",
     },
     { label: "Emotional Steering", value: 0, color: "#ef5675" },
     {
-      label: `Promoted Ads ${promotedAdsCount}`,
+      label: `Promoted Ads`,
       value: promotedAdsCount,
       color: "#c38ee8",
     },
@@ -39,15 +42,23 @@ export default function PieActiveArc({
   const hasActivity = darkPattern.some((item) => item.value > 0);
 
   return hasActivity ? (
-    <>
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      // margin: 10,
+      border: "1px solid lightgrey",
+      // borderRadius: 10,
+      // padding: 5,
+    }}>
       <PieChart
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: 10,
-          border: "1px solid lightgrey",
-          borderRadius: 10,
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
+          // margin: 10,
+          // border: "1px solid lightgrey",
+          // borderRadius: 10,
           padding: 5,
         }}
         series={[
@@ -62,12 +73,30 @@ export default function PieActiveArc({
             color: darkPattern.map((item) => item.color),
           },
         ]}
+        slotProps={{legend:{hidden: true}}}
 
         height={260}
 
-        margin={{ top: 20, bottom: 20, left: 0, right: 250 }}
+        margin={{ top: 20, bottom: 20, left: 0, right: 0 }}
       />
-    </>
+      <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+      <div style={{display: "flex", justifyContent: "flex-start"}}>
+        {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
+        <ButtonLink variant="link">{darkPattern[3].label}</ButtonLink>
+        <ButtonLink to="/EMLPage" variant="link">{darkPattern[3].value}</ButtonLink>
+      </div>
+      <div style={{display: "flex", justifyContent: "flex-start"}}>
+        {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
+        <ButtonLink switchTab={switchTab} targetTab="settings" variant="link">{darkPattern[0].label}</ButtonLink>
+        <ButtonLink switchTab={switchTab} targetTab="about-dp"  variant="link">{darkPattern[0].value}</ButtonLink>
+      </div>
+      <div style={{display: "flex", justifyContent: "space-between"}}>
+        {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
+        <Link to="/">{darkPattern[1].label}</Link>
+        <Link to="EMLPage">{darkPattern[1].value}</Link>
+      </div>
+      </div>
+    </div>
   ) : (
 
     <div className="w-full h-[280px] flex flex-col justify-start items-center bg-gray-100 border border-gray-300 rounded-lg">
