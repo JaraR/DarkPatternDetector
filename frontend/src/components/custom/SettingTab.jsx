@@ -35,7 +35,7 @@ import InfoIcon from "@mui/icons-material/Info";
 // eslint-disable-next-line react/prop-types
 export default function SettingTest() {
   const [isAutoplay, setIsAutoplay] = useState(false);
-  const [isPromotedAds, setIsProtomotedAds] = useState(false);
+  const [isPromotedAds, setIsPromotedAds] = useState(false);
   const [isEngagementNotif, setIsEngagementNotif] = useState({});
   // const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -66,10 +66,8 @@ export default function SettingTest() {
       chrome.storage.sync.set({ autoplay: false });
     };
 
-    // Listen for tab close
     chrome.tabs.onRemoved.addListener(handleTabClose);
 
-    // Cleanup listeners when the component is unmounted
     return () => {
       chrome.tabs.onRemoved.removeListener(handleTabClose);
       chrome.storage.onChanged.removeListener(storageListener);
@@ -81,16 +79,31 @@ export default function SettingTest() {
     if (chrome.storage) {
       chrome.storage.sync.set({ promotedAds: e });
     }
-    setIsProtomotedAds(e);
+    setIsPromotedAds(e);
   };
 
   useEffect(() => {
     if (chrome.storage) {
       chrome.storage.sync.get(["promotedAds"], (result) => {
-        setIsProtomotedAds(result.promotedAds);
+        setIsPromotedAds(result.promotedAds);
       });
     }
-  });
+    const storageListener = (changes, areaName) => {
+      if (areaName === "sync" && changes.promotedAds) {
+        setIsPromotedAds(changes.promotedAds.newValue);
+      }
+    };
+    chrome.storage.onChanged.addListener(storageListener);
+
+    const handleTabClose = () => {
+      setIsPromotedAds(false);
+      chrome.storage.sync.set({ promotedAds: false });
+    };
+    return () => {
+      chrome.tabs.onRemoved.removeListener(handleTabClose);
+      chrome.storage.onChanged.removeListener(storageListener);
+    };
+  }, []);
 
   // Engagement notification detection
   const startEngagementNotifDetection = (e) => {
