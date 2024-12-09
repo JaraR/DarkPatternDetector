@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-let alertedVideos = [];
+let alertedVideos = new Set();
 let observer = null;
 
 function updateStorageAndNotify(type, storageKey, messageType) {
@@ -21,6 +21,26 @@ function highlightVideo(video) {
   video.parentElement.style.position = "relative";
   video.style.borderLeft = "6px dashed #ff8453";
   video.style.outlineOffset = "6px";
+
+  // Add popup label
+  const label = document.createElement("div");
+  label.innerText = "Autoplay detected and paused";
+  label.style.position = "absolute";
+  label.style.top = "10px";
+  label.style.left = "10px";
+  label.style.padding = "5px 10px";
+  label.style.backgroundColor = "#ff8453";
+  label.style.color = "#fff";
+  label.style.fontSize = "14px";
+  label.style.borderRadius = "4px";
+  label.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+  label.style.zIndex = "1000";
+  label.style.pointerEvents = "none";
+
+  video.parentElement.appendChild(label);
+  setTimeout(() => {
+    label.remove();
+  }, 5000);
 }
 
 // Function to check for autoplayed videos
@@ -28,15 +48,13 @@ function startAutoplay() {
   const videos = document.querySelectorAll("video");
   videos.forEach((video) => {
     console.log("Videos found:", videos);
-    if (!alertedVideos.includes(video)) {
+    if (!alertedVideos.has(video)) {
       if (video.autoplay || !video.paused) {
-        alertedVideos.push(video);
-
+        alertedVideos.add(video);
         // alert("Autoplay detected!");
-        console.log("Autoplay detected on video", video);
+        console.log("Autoplay detected on video", video.src);
         highlightVideo(video);
 
-        // Use a delay before pausing to ensure the video can be paused
         setTimeout(() => {
           video.pause();
           console.log("Video paused:", video);
