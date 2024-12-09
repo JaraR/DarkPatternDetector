@@ -5,25 +5,15 @@ import PieActiveArc from "@/components/custom/piechart";
 import AboutDPTab from "@/components/custom/AboutDPTab";
 import BottomNavigation from "@/components/custom/BottomNavigation";
 import Typography from "@mui/material/Typography";
-
 import SettingTab from "@/components/custom/SettingTab";
 import Guide from "@/components/custom/Guide";
-import { useLocation } from "react-router-dom";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
-
   const [activeTab, setActiveTab] = useState("results");
   const switchTab = (targetTab) => setActiveTab(targetTab);
-
-  const returnTab = useLocation();
-
-  if (returnTab.state === null) {
-    returnTab.state = "results";
-  }
-  console.log(returnTab.state);
 
   //update autoplay count to pie chart
   useEffect(() => {
@@ -76,7 +66,7 @@ export function Home() {
   return (
     <>
       <Navbar />
-      <Tabs defaultValue={returnTab.state} value={activeTab} onValueChange={setActiveTab} className="w-[400px]">
+      <Tabs defaultValue="results" value={activeTab} onValueChange={setActiveTab} className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-dp">About Dark Patterns</TabsTrigger>
@@ -101,7 +91,6 @@ export function Home() {
               engagementNotifCount={engagementNotifCount}
               switchTab={switchTab}
             />
-            <button onClick={() => switchTab("use-guide")}>To Use Guide</button>
             <BottomNavigation />
           </div>
         </TabsContent>
@@ -113,6 +102,7 @@ export function Home() {
         <TabsContent value="settings">
           <SettingTab />
         </TabsContent>
+        
         <TabsContent value="use-guide">
           <Guide />
         </TabsContent>

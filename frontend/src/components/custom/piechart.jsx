@@ -4,6 +4,7 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import noActivity from "../../../public/icons/no-activity.png";
 import { ButtonLink } from "../ui/buttonlink";
 import { Link } from "react-router-dom";
+import { CircleHelp } from "lucide-react";
 
 export default function PieActiveArc({
   autoplayCount,
@@ -84,16 +85,19 @@ export default function PieActiveArc({
         {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
         <ButtonLink variant="link">{darkPattern[3].label}</ButtonLink>
         <ButtonLink to="/EMLPage" variant="link">{darkPattern[3].value}</ButtonLink>
+        <ButtonLink switchTab={switchTab} targetTab="about-dp"  variant="link" size="icon"><CircleHelp /></ButtonLink>
       </div>
       <div style={{display: "flex", justifyContent: "flex-start"}}>
         {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
         <ButtonLink switchTab={switchTab} targetTab="settings" variant="link">{darkPattern[0].label}</ButtonLink>
         <ButtonLink switchTab={switchTab} targetTab="about-dp"  variant="link">{darkPattern[0].value}</ButtonLink>
+        <ButtonLink switchTab={switchTab} targetTab="about-dp"  variant="link" size="icon"><CircleHelp /></ButtonLink>
       </div>
       <div style={{display: "flex", justifyContent: "space-between"}}>
         {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
         <Link to="/">{darkPattern[1].label}</Link>
         <Link to="EMLPage">{darkPattern[1].value}</Link>
+        <ButtonLink switchTab={switchTab} targetTab="about-dp"  variant="link" size="icon"><CircleHelp /></ButtonLink>
       </div>
       </div>
     </div>
