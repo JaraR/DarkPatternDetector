@@ -103,7 +103,7 @@ export function Home() {
           <div className="mt-5 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
               <span className="font-bold ">
-                {promotedAdsCount + autoplayCount + engagementNotifCount}
+                {promotedAdsCount + autoplayCount + engagementNotifCount + infiniteScrollCount}
                 Times
               </span>
               <br />
