@@ -5,6 +5,7 @@ import PieActiveArc from "@/components/custom/piechart";
 import AboutDPTab from "@/components/custom/AboutDPTab";
 import BottomNavigation from "@/components/custom/BottomNavigation";
 import Typography from "@mui/material/Typography";
+import ReadingTimer from "@/components/custom/ReadingTimer.jsx";
 
 import SettingTab from "@/components/custom/SettingTab";
 import Guide from "@/components/custom/Guide";
@@ -118,6 +119,8 @@ export function Home() {
             />
 
             <BottomNavigation />
+            <ReadingTimer/>
+
           </div>
         </TabsContent>
 
