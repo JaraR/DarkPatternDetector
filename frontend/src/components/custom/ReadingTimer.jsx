@@ -3,6 +3,7 @@ import { StopwatchIcon } from "@radix-ui/react-icons";
 import Card from "@mui/material/Card";
 import { Button, CardContent } from "@mui/material";
 import CardHeader from "@mui/material/CardHeader";
+import Typography from "@mui/material/Typography";
 
 export default function ReadingTimer() {
   const [timerOn, setTimerOn] = useState(false); // Timer running state
@@ -85,9 +86,13 @@ export default function ReadingTimer() {
       >
         <CardHeader
             avatar={
-              <StopwatchIcon className="size-6" />
+              <StopwatchIcon className="size-7" />
             }
-            title="Scroll Timer"
+            title={
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#004080" }}>
+                Scroll Timer
+              </Typography>
+            }
             subheader="Keep track of your scrolling habits"
         />
 
