@@ -82,6 +82,7 @@ export default function ReadingTimer() {
           sx={{
             maxWidth: 400,
             boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.3)",
+            marginTop: 2,
           }}
       >
         <CardHeader
