@@ -5,6 +5,10 @@ import noActivity from "../../../public/icons/no-activity.png";
 import { ButtonLink } from "../ui/buttonlink";
 import { Link } from "react-router-dom";
 import { CircleHelp } from "lucide-react";
+import legendEN from "../../../public/icons/legend-square-EN.png";
+import legendAP from "../../../public/icons/legend-square-AP.png";
+import legendPA from "../../../public/icons/legend-square-PA.png";
+import legendIS from "../../../public/icons/legend-square-IS.png"
 
 export default function PieActiveArc({
   autoplayCount,
@@ -111,8 +115,7 @@ export default function PieActiveArc({
       ></img>
       <div className="text-gray-500 font-bold text-lg">
         No activities detected <br />
-        Go to Settings tab Enable detections
-
+        Go to Settings tab to enable detection
       </div>
     </div>
   );
