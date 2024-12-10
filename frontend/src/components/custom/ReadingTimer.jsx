@@ -93,23 +93,42 @@ export default function ReadingTimer() {
                 Scroll Timer
               </Typography>
             }
-            subheader="Keep track of your scrolling habits"
+            subheader={
+              <Typography variant="body2" sx={{ color: "#0177CC" }}>
+                Keep track of your scrolling habits
+              </Typography>
+            }
         />
 
         <CardContent>
-          <div className="flex items-center space-x-2 mb-4 justify-center">
+          {/*Container div for Favicon, time information, and Timer button, ensuring they display in the same row*/}
+          <div className="flex items-center space-x-4 mb-4 justify-start">
+            {/* Favicon icon */}
             {tabsParams.favIconUrl && (
                 <img
                     src={tabsParams.favIconUrl}
                     alt="Tab Favicon"
                     width={32}
                     height={32}
-                    style={{ borderRadius: "50%" }} //  Favicon
+                    style={{borderRadius: "50%"}} // Display Favicon as a circle
                 />
             )}
+
+            {/* Time information: Start Time and Elapsed Time */}
+            <div>
+              <Typography variant="body2" sx={{color: "black"}}>
+                <strong>Start Time:</strong> {startTime ? new Date(startTime).toLocaleTimeString() : "-"}
+              </Typography>
+              <Typography variant="body2" sx={{color: "black"}}>
+                <strong>Elapsed Time:</strong> {formatElapsedTime(elapsedTime)}
+              </Typography>
+            </div>
+
+            {/* Timer button with smaller size */}
             <Button
                 onClick={handleTimerToggle}
                 variant="contained"
+                size="small"  // Reduce button size
                 sx={{
                   backgroundColor: timerOn ? "#0177CC" : "#B0B0B0", // Blue when started, gray when stopped
                   color: "white",
@@ -117,22 +136,6 @@ export default function ReadingTimer() {
             >
               {timerOn ? "STOP TIMER" : "START TIMER"}
             </Button>
-          </div>
-
-
-          <div
-              className="flex items-center space-x-4 rounded-md border border-gray-300 p-2"
-              style={{ display: "flex", alignItems: "center" }}
-          >
-            <div>
-              <p className="text-sm text-gray-500">
-                <strong>Start Time:</strong>{" "}
-                {startTime ? new Date(startTime).toLocaleTimeString() : "-"}
-              </p>
-              <p className="text-sm text-gray-500">
-                <strong>Elapsed Time:</strong> {formatElapsedTime(elapsedTime)}
-              </p>
-            </div>
           </div>
         </CardContent>
       </Card>
