@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StopwatchIcon } from "@radix-ui/react-icons";
 import Card from "@mui/material/Card";
-import { Avatar, Button, CardContent } from "@mui/material";
+import { Button, CardContent } from "@mui/material";
 import CardHeader from "@mui/material/CardHeader";
 
 export default function ReadingTimer() {
@@ -77,67 +77,76 @@ export default function ReadingTimer() {
   }, []);
 
   return (
-    <Card
-      sx={{
-        maxWidth: 400,
-        boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.3)",
-      }}
-    >
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: "#0177CC" }} aria-label="Timer">
-            T
-          </Avatar>
-        }
-        title="Reading Timer"
-        subheader="Record reading time"
-      />
-      <CardContent>
-        {/* Display Chrome Tab Info (Favicon and Title) above the button */}
-        <div className="flex items-center space-x-4 mb-4 px-20">
+      <Card
+          sx={{
+            maxWidth: 400,
+            boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.3)",
+          }}
+      >
+        <CardHeader
+            avatar={
+              <StopwatchIcon className="size-6" />
+            }
+            title="Reading Timer"
+            subheader="Record reading time"
+        />
+
+        <CardContent>
+          {/* Display Chrome Tab Info (Favicon and Title) above the button */}
+          {/* <div className="flex flex-col items-center space-y-2 mb-4">
           {tabsParams.favIconUrl && (
             <img
               src={tabsParams.favIconUrl}
               alt="Tab Favicon"
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               style={{ borderRadius: "50%" }}
             />
           )}
-          <span>
+          <div className="text-center">
             <strong>Chrome Tab Title: </strong>
             <span className="text-orange-400">{tabsParams.title || "-"}</span>
-          </span>
-        </div>
-
-        <div className="flex items-center space-x-2 mb-4">
-          <StopwatchIcon className="size-6" />
-          <Button
-            onClick={handleTimerToggle}
-            variant="contained"
-            sx={{
-              backgroundColor: timerOn ? "#0177CC" : "#B0B0B0", // Blue when started, gray when stopped
-              color: "white",
-            }}
-          >
-            {timerOn ? "STOP TIMER" : "START TIMER"}
-          </Button>
-        </div>
-        <div
-          className="flex items-center space-x-4 rounded-md border border-gray-300 p-2"
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <div>
-            <p className="text-sm text-gray-500">
-              <strong>Start Time:</strong>{" "}
-              {startTime ? new Date(startTime).toLocaleTimeString() : "-"}
-            </p>
-            <p className="text-sm text-gray-500">
-              <strong>Elapsed Time:</strong> {formatElapsedTime(elapsedTime)}
-            </p>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </div> */}
+
+          <div className="flex items-center space-x-2 mb-4 justify-center">
+            {tabsParams.favIconUrl && (
+                <img
+                    src={tabsParams.favIconUrl}
+                    alt="Tab Favicon"
+                    width={32}
+                    height={32}
+                    style={{ borderRadius: "50%" }} // 圆形显示 Favicon
+                />
+            )}
+            <Button
+                onClick={handleTimerToggle}
+                variant="contained"
+                sx={{
+                  backgroundColor: timerOn ? "#0177CC" : "#B0B0B0", // Blue when started, gray when stopped
+                  color: "white",
+                }}
+            >
+              {timerOn ? "STOP TIMER" : "START TIMER"}
+            </Button>
+          </div>
+
+
+          <div
+              className="flex items-center space-x-4 rounded-md border border-gray-300 p-2"
+              style={{ display: "flex", alignItems: "center" }}
+          >
+            <div>
+              <p className="text-sm text-gray-500">
+                <strong>Start Time:</strong>{" "}
+                {startTime ? new Date(startTime).toLocaleTimeString() : "-"}
+              </p>
+              <p className="text-sm text-gray-500">
+                <strong>Elapsed Time:</strong> {formatElapsedTime(elapsedTime)}
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
   );
 }
