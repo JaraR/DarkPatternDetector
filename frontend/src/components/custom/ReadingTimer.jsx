@@ -92,23 +92,6 @@ export default function ReadingTimer() {
         />
 
         <CardContent>
-          {/* Display Chrome Tab Info (Favicon and Title) above the button */}
-          {/* <div className="flex flex-col items-center space-y-2 mb-4">
-          {tabsParams.favIconUrl && (
-            <img
-              src={tabsParams.favIconUrl}
-              alt="Tab Favicon"
-              width={32}
-              height={32}
-              style={{ borderRadius: "50%" }}
-            />
-          )}
-          <div className="text-center">
-            <strong>Chrome Tab Title: </strong>
-            <span className="text-orange-400">{tabsParams.title || "-"}</span>
-          </div>
-        </div> */}
-
           <div className="flex items-center space-x-2 mb-4 justify-center">
             {tabsParams.favIconUrl && (
                 <img
