@@ -83,6 +83,8 @@ export default function ReadingTimer() {
             maxWidth: 400,
             boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.3)",
             marginTop: 2,
+            marginBottom: 1, // Add a small bottom margin
+            padding: 0, // Optional: Remove additional padding
           }}
       >
         <CardHeader
