@@ -101,7 +101,10 @@ export default function ReadingTimer() {
             }
         />
 
-        <CardContent>
+        <CardContent sx={{
+          paddingLeft: 7, // Add left padding
+          paddingRight: 7, // Add right padding
+        }}>
           {/*Container div for Favicon, time information, and Timer button, ensuring they display in the same row*/}
           <div className="flex items-center space-x-4 mb-4 justify-start">
             {/* Favicon icon */}
