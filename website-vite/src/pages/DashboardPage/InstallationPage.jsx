@@ -4,6 +4,7 @@ import autoplayHeader from "../../assets/autoplay-header.png";
 import adsHeader from "../../assets/ad-header.png";
 import tutorial from "../../assets/tutorial.png";
 import notificationHeader from "../../assets/notification-header.png";
+import emlHeader from "../../assets/eml-header.png";
 
 export default function Installation() {
   return (
@@ -51,11 +52,11 @@ export default function Installation() {
       {/* Features Sections */}
       <div className="flex flex-wrap justify-around items-center gap-6 px-4">
         {/* Autoplay */}
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col md:flex-row items-center w-full md:w-[90%] lg:w-[80%] mx-auto py-8 md:py-12">
           <img
             src={autoplayHeader}
             alt="Autoplay Header"
-            className="w-full md:max-w-lg p-2 md:p-4 sm:pr-6"
+            className="w-[90%] md:w-[70%] lg:w-[60%] p-2 md:p-4"
           />
           <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500 text-lg md:text-2xl font-bold text-center">
             Autoplay Detection <br />
@@ -67,7 +68,7 @@ export default function Installation() {
         </div>
 
         {/* Promoted Ads */}
-        <div className="flex flex-col-reverse md:flex-row items-center">
+        <div className="flex flex-col-reverse md:flex-row items-center w-full md:w-[90%] lg:w-[80%] mx-auto py-8 md:py-12">
           <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-600 text-lg md:text-2xl font-bold text-center">
             Promoted Ads Detection <br />
             <span className="text-sm md:text-lg font-semibold">
@@ -78,20 +79,32 @@ export default function Installation() {
           <img
             src={adsHeader}
             alt="Ads Header"
-            className="w-full md:max-w-lg p-2 md:p-4"
+            className="w-[90%] md:w-[70%] lg:w-[60%] p-2 md:p-4"
           />
         </div>
 
         {/* Engagement Notification */}
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col md:flex-row items-center w-full md:w-[90%] lg:w-[80%] mx-auto py-8 md:py-12">
           <img
             src={notificationHeader}
             alt="Notification Header"
-            className="w-full md:max-w-lg p-2 md:p-4"
+            className="w-[90%] md:w-[70%] lg:w-[60%] p-2 md:p-4"
           />
           <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600 text-lg md:text-2xl font-bold text-center">
             Engagement Notification Detection
           </h2>
+        </div>
+
+        {/* EML */}
+        <div className="flex flex-col-reverse justify-center md:flex-row items-center w-full md:w-[90%] lg:w-[80%] mx-auto py-8 md:py-12">
+          <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-rose-600 text-lg md:text-2xl font-bold text-center">
+            Emotional Steering Detection
+          </h2>
+          <img
+            src={emlHeader}
+            alt="eml Header"
+            className="w-[90%] md:w-[70%] lg:w-[60%] p-2 md:p-4"
+          />
         </div>
       </div>
     </div>
