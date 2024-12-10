@@ -104,8 +104,8 @@ export default function ReadingTimer() {
         />
 
         <CardContent sx={{
-          paddingLeft: 7, // Add left padding
           paddingRight: 7, // Add right padding
+          paddingTop: 1, // Reduce top padding
         }}>
           {/*Container div for Favicon, time information, and Timer button, ensuring they display in the same row*/}
           <div className="flex items-center space-x-4 mb-4 justify-start">
@@ -116,7 +116,7 @@ export default function ReadingTimer() {
                     alt="Tab Favicon"
                     width={32}
                     height={32}
-                    style={{borderRadius: "50%"}} // Display Favicon as a circle
+                    style={{borderRadius: "50%", marginRight: "50px"}} // Display Favicon as a circle
                 />
             )}
 
