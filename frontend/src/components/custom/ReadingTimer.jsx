@@ -87,8 +87,8 @@ export default function ReadingTimer() {
             avatar={
               <StopwatchIcon className="size-6" />
             }
-            title="Reading Timer"
-            subheader="Record reading time"
+            title="Scroll Timer"
+            subheader="Keep track of your scrolling habits"
         />
 
         <CardContent>
@@ -99,7 +99,7 @@ export default function ReadingTimer() {
                     alt="Tab Favicon"
                     width={32}
                     height={32}
-                    style={{ borderRadius: "50%" }} // 圆形显示 Favicon
+                    style={{ borderRadius: "50%" }} //  Favicon
                 />
             )}
             <Button
