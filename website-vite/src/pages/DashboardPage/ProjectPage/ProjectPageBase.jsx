@@ -73,25 +73,31 @@ export default function ProjectPage() {
         <h2 className="text-4xl font-bold mb-4">X-Factors</h2>
         <h3 className="text-2xl mb-4">Project Brief</h3>
         <p className="text-base mb-4">
-          body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.
+          Dark patterns refer to deceptive design practices that subtly
+          manipulate users into actions they may not intend or desire. According
+          to the research, most prior studies on dark patterns have focused on
+          e-commerce, where these patterns often influence purchasing decisions.
+          However, recent studies indicate that dark patterns are also prevalent
+          on social media, though they are often overlooked or underestimated.
         </p>
         <p className="text-base mb-4">
-          body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.
+          Dark patterns on social media are particularly concerning because they
+          can pressure users into unwanted actions, such as excessive
+          engagement, oversharing, or viewing content against their will.
+          Furthermore, these manipulative practices have a substantial impact on
+          users' mental health (Fig.2), as they can foster feelings of stress,
+          anxiety, or loss of control (Gray et al., 2021).
         </p>
         <hr className="my-4" />
         <h3 className="text-2xl mb-4">Final Report</h3>
         <p className="text-xl mb-4">December 2024</p>
         <p className="text-base mb-4">
-          Report. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.
+          To address these issues, we initiated the development of an extension
+          to detect dark patterns on social media platforms. As a starting
+          point, we chose to focus on X.com (formerly Twitter.com), given its
+          popularity and the range of interactions that can be influenced by
+          dark patterns. By providing users with real-time alerts, our extension
+          aims to empower them to make informed choices and avoid manipulation.
         </p>
         <hr className="my-4" />
       </div>

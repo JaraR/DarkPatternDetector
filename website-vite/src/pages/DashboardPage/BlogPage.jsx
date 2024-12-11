@@ -1,4 +1,3 @@
-import React from "react";
 import amazon from "../../assets/amazon.png";
 import FOMO from "../../assets/FOMO.png";
 import mental from "../../assets/mental.png";
@@ -30,7 +29,7 @@ export default function Types() {
       image: mental,
       description:
         "Over time, these patterns can contribute to increased stress, depression, and even addictive behavior, as users feel compelled to stay online, sacrificing their real-world connections and emotional well-being",
-      borderColor: "border-blue-600",
+      borderColor: "border-yellow-600",
     },
   ];
 
@@ -47,7 +46,10 @@ export default function Types() {
             <span>RSS FEED</span>
           </button>
         </div>
-        <span>Raising Awareness About Dark Patterns in Digital Design</span>
+        <span>
+          Raising Awareness About Dark Patterns in Digital Design on Social
+          Media
+        </span>
       </div>
 
       {/* Cards */}

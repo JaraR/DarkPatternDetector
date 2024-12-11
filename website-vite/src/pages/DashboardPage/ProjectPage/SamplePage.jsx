@@ -2,7 +2,7 @@ import Footer from "../../../components/Footer";
 import Banner from "../../../components/Banner";
 import Support from "../../../components/Support";
 
-export default function Card4Page() {
+export default function SamplePage() {
   return (
     <>
       <main className="bg-gray-700 w-screen min-h-screen">
