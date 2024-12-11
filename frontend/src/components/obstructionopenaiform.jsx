@@ -75,7 +75,7 @@ async function onSubmit(data) {
 
                 <FormControl>
                   <Textarea
-                    placeholder=""
+                    placeholder="Enter question here"
                     className=" placeholder:text-sm"
                     {...field}
                   />
