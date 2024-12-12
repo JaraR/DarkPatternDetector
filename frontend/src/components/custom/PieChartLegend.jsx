@@ -4,7 +4,7 @@ import { ButtonLink } from "../ui/buttonlink";
 
 export function PieChartLegendItem({  switchTab, legendIcon, dpName, dpCount, accordionVal }) {
     return (
-        <div style={{display: "flex", justifyContent: "space-between"}}>
+        <div style={{display: "flex", justifyContent: "space-between", width: "220px"}}>
             <img src={legendIcon} alt="Legend Label Icon" className="h-[20px] w-[20px] self-center" />
             <ButtonLink switchTab={switchTab} targetTab="settings" variant="link" size="legendItems">
                 {dpName}

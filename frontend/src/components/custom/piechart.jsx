@@ -21,7 +21,7 @@ export default function PieActiveArc({
   console.log("Infinite Scroll Count:", infiniteScrollCount);
   const darkPattern = [
     {
-      label: `Engagement Notification`,
+      label: `Engagement Notifs`,
       value: engagementNotifCount,
       color: "#ffa600",
       legendIcon: legendEN,

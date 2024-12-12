@@ -16,7 +16,7 @@ import InfoIcon from "@mui/icons-material/Info";
 
 export function UndetectableDP() {
     return(
-        <Card className="border border-gray-300 m-3">
+        <Card className="border border-gray-300 m-1">
             <CardHeader className="pt-2 pb-1">
                 <CardTitle className="flex items-center">
                     <img src={FilterIcon} alt="Filter Icon" className="h-6 w-6 mr-3" />

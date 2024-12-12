@@ -1,4 +1,3 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
@@ -11,7 +10,9 @@ export default function BottomNavigation() {
       sx={{
         maxWidth: 400,
         boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.3)",
-        marginTop: 2,
+        marginTop: 1,
+        marginLeft: 2,
+        marginRight: 2,
       }}
     >
       <CardHeader
@@ -23,8 +24,7 @@ export default function BottomNavigation() {
         title={
           <div style={{ textAlign: "left" }}>
             {" "}
-            Hi :) Do you enjoy our detection tool and want to learn more about
-            Dark Patterns?
+            Learn more about Dark Patterns?
             <a
               href="https://x-factors.netlify.app/"
               target="_blank"
@@ -32,7 +32,7 @@ export default function BottomNavigation() {
               style={{
                 textDecoration: "none",
                 display: "block",
-                marginTop: "8px",
+                marginTop: "4px",
               }}
             >
               <Typography
@@ -52,7 +52,7 @@ export default function BottomNavigation() {
             </a>
           </div>
         }
-        sx={{ padding: "16px" }}
+        sx={{ padding: "10px" }}
       />
     </Card>
   );
