@@ -5,7 +5,7 @@ import noActivity from "../../../public/icons/no-activity.png";
 import legendEN from "../../../public/icons/legend-square-EN.png";
 import legendAP from "../../../public/icons/legend-square-AP.png";
 import legendPA from "../../../public/icons/legend-square-PA.png";
-import legendIS from "../../../public/icons/legend-square-IS.png"
+import legendIS from "../../../public/icons/legend-square-IS.png";
 import { PieChartLegendItem } from "./PieChartLegend";
 
 export default function PieActiveArc({
@@ -13,7 +13,7 @@ export default function PieActiveArc({
   promotedAdsCount,
   engagementNotifCount,
   infiniteScrollCount,
-  switchTab
+  switchTab,
 }) {
   console.log("Autoplay Count:", autoplayCount);
   console.log("Promoted Ads Count:", promotedAdsCount);
@@ -25,14 +25,14 @@ export default function PieActiveArc({
       value: engagementNotifCount,
       color: "#ffa600",
       legendIcon: legendEN,
-      accordionVal: "5"
+      accordionVal: "5",
     },
     {
       label: `Video Autoplay`,
       value: autoplayCount,
       color: "#ff8453",
       legendIcon: legendAP,
-      accordionVal: "3"
+      accordionVal: "3",
     },
     // { label: "Emotional Steering", value: 0, color: "#ef5675" },
     {
@@ -40,42 +40,40 @@ export default function PieActiveArc({
       value: promotedAdsCount,
       color: "#c38ee8",
       legendIcon: legendPA,
-      accordionVal: "2"
+      accordionVal: "2",
     },
     {
       label: `Infinite Scrolling`,
       value: infiniteScrollCount,
       color: "#0095e1",
       legendIcon: legendIS,
-      accordionVal: "4"
-   ,
+      accordionVal: "4",
     },
     // { label: "Obstruction", value: 0, color: "#a1a1a8" },
     // { label: "Privacy Zuckering", value: 0, color: "#374c80" },
   ];
 
-  // bugs here:
   const valueFormatter = (value) => `${value} times`;
   const hasActivity = darkPattern.some((item) => item.value > 0);
 
   return hasActivity ? (
-    <div style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      // margin: 10,
-      // border: "1px solid lightgrey",
-      // borderRadius: 10,
-      // padding: 5,
-    }}>
+    <div
+      style={{
+        border: "1px solid #e5e5e5",
+        borderRadius: 10,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 5,
+        padding: 8,
+      }}
+    >
       <PieChart
         style={{
-          // display: "flex",
-          // justifyContent: "center",
-          // alignItems: "center",
-          // margin: 10,
-          // border: "1px solid lightgrey",
-          // borderRadius: 10,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: 5,
           padding: 5,
         }}
         series={[
@@ -90,14 +88,18 @@ export default function PieActiveArc({
             color: darkPattern.map((item) => item.color),
           },
         ]}
-        slotProps={{legend:{hidden: true}}}
-
-        height={260}
-
-        margin={{ top: 20, bottom: 20, left: 0, right: 0 }}
+        slotProps={{ legend: { hidden: true } }}
+        height={200}
+        margin={{ top: 0, bottom: 0, left: 0, right: 0 }}
       />
-      <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
-        {darkPattern.map(individualDP => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        {darkPattern.map((individualDP) => (
           <PieChartLegendItem
             key={individualDP.label}
             switchTab={switchTab}
