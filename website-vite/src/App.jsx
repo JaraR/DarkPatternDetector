@@ -15,6 +15,7 @@ function App() {
           <Route path="/project" element={<ProjectPageBase />} />
           <Route path="/card/1" element={<SamplePage />} />
           <Route path="/card/2" element={<SamplePage />} />
+          <Route path="/card/3" element={<SamplePage />} />
           <Route path="/card/4" element={<SamplePage />} />
           <Route path="/card/5" element={<SamplePage />} />
           <Route path="/card/6" element={<SamplePage />} />
