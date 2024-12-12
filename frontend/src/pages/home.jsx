@@ -85,7 +85,12 @@ export function Home() {
   return (
     <>
       <Navbar />
-      <Tabs defaultValue="results" value={activeTab} onValueChange={setActiveTab} className="w-[400px]">
+      <Tabs
+        defaultValue="results"
+        value={activeTab}
+        onValueChange={setActiveTab}
+        className="w-[400px]"
+      >
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-dp">About Dark Patterns</TabsTrigger>
@@ -94,10 +99,14 @@ export function Home() {
         </TabsList>
 
         <TabsContent value="results">
-          <div className="mt-5 mx-3 flex flex-col items-center text-center">
+          <div className="mt-5 mb-0 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
               <span className="font-bold ">
-                {promotedAdsCount + autoplayCount + engagementNotifCount + infiniteScrollCount} Times
+                {promotedAdsCount +
+                  autoplayCount +
+                  engagementNotifCount +
+                  infiniteScrollCount}{" "}
+                Times
               </span>
               <br />
               Dark Pattern Activities Detected in Total
@@ -111,7 +120,7 @@ export function Home() {
               switchTab={switchTab}
             />
             <UndetectableDP />
-            <ReadingTimer/>
+            <ReadingTimer />
           </div>
         </TabsContent>
 
@@ -122,7 +131,7 @@ export function Home() {
         <TabsContent value="settings">
           <SettingTab />
         </TabsContent>
-        
+
         <TabsContent value="use-guide">
           <Guide />
         </TabsContent>
