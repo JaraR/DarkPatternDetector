@@ -75,7 +75,7 @@ async function onSubmit(data) {
 
                 <FormControl>
                   <Textarea
-                    placeholder="Enter question here"
+                    placeholder='Enter a question related to tasks that are either difficult to complete or hidden on X/Twitter, e.g.: "How do I cancel my X API subscription?" and click Analyze to generate a report'
                     className=" placeholder:text-sm"
                     {...field}
                   />
@@ -91,7 +91,7 @@ async function onSubmit(data) {
               disabled={loading}
               className="bg-[#A1A1A8] text-white font-bold rounded-full px-1.5 py-0.5 text-sm hover:bg-[#7f7f85]"
             >
-              {loading ? "Analyzing..." : "Start Analyze"}
+              {loading ? "Analyzing..." : "Analyze"}
             </Button>
           </div>
 

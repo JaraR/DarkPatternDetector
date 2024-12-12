@@ -26,36 +26,7 @@ export function UndetectableDP() {
                 <CardDescription>Generate dark pattern report</CardDescription>
             </CardHeader>
             <CardContent className="space-y-1">
-                <div className="flex items-center justify-between space-x-3">
-                    <Label
-                    htmlFor="obstruction"
-                    className="flex items-center space-x-3"
-                    >
-                        <img
-                            src={obstruction}
-                            alt="Obstruction Filter Icon"
-                            className="h-6 w-6 mr-2"
-                        />
-                        <span className="text-lg font-light">Obstruction</span>
-                        <Tooltip
-                            title={
-                            <span style={{ fontSize: "0.85rem" }}>
-                                Give a reminder popup when the website is obstructing user
-                                to complete a task.
-                            </span>
-                            }
-                        >
-                            <InfoIcon
-                            className="text-gray-300 cursor-pointer"
-                            fontSize="small"
-                            />
-                        </Tooltip>
-                    </Label>
-                    {/* <Checkbox id="obstruction" /> */}
-                    <ButtonLink to="/EMLPage" variant="border" size="sm">
-                    Go
-                    </ButtonLink>
-                </div>
+
                 <div className="flex items-center justify-between space-x-3">
                     <Label
                     htmlFor="emotional-steering"
@@ -88,6 +59,36 @@ export function UndetectableDP() {
                 </div>
                 <div className="flex items-center justify-between space-x-3">
                     <Label
+                    htmlFor="obstruction"
+                    className="flex items-center space-x-3"
+                    >
+                        <img
+                            src={obstruction}
+                            alt="Obstruction Filter Icon"
+                            className="h-6 w-6 mr-2"
+                        />
+                        <span className="text-lg font-light">Obstruction</span>
+                        <Tooltip
+                            title={
+                            <span style={{ fontSize: "0.85rem" }}>
+                                Give a reminder popup when the website is obstructing user
+                                to complete a task.
+                            </span>
+                            }
+                        >
+                            <InfoIcon
+                            className="text-gray-300 cursor-pointer"
+                            fontSize="small"
+                            />
+                        </Tooltip>
+                    </Label>
+                    {/* <Checkbox id="obstruction" /> */}
+                    <ButtonLink to="/ObstructionPage" variant="border" size="sm">
+                    Go
+                    </ButtonLink>
+                </div>
+                <div className="flex items-center justify-between space-x-3">
+                    <Label
                     htmlFor="privacy-zuckering"
                     className="flex items-center space-x-3"
                     >
@@ -113,7 +114,7 @@ export function UndetectableDP() {
                         </Tooltip>
                     </Label>
                     {/* <Checkbox id="privacy-zuckering" /> */}
-                    <ButtonLink to="/EMLPage" variant="border" size="sm">
+                    <ButtonLink to="/ObstructionPage" variant="border" size="sm">
                     Go
                     </ButtonLink>
                 </div>
