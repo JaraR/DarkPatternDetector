@@ -9,6 +9,7 @@ import legendEN from "../../../public/icons/legend-square-EN.png";
 import legendAP from "../../../public/icons/legend-square-AP.png";
 import legendPA from "../../../public/icons/legend-square-PA.png";
 import legendIS from "../../../public/icons/legend-square-IS.png"
+import { PieChartLegendItem } from "./PieChartLegend";
 
 export default function PieActiveArc({
   autoplayCount,
@@ -24,19 +25,30 @@ export default function PieActiveArc({
       label: `Engagement Notification`,
       value: engagementNotifCount,
       color: "#ffa600",
+      legendIcon: legendEN,
+      accordionVal: "5"
     },
     {
       label: `Video Autoplay`,
       value: autoplayCount,
       color: "#ff8453",
+      legendIcon: legendAP,
+      accordionVal: "3"
     },
     { label: "Emotional Steering", value: 0, color: "#ef5675" },
     {
       label: `Promoted Ads`,
       value: promotedAdsCount,
       color: "#c38ee8",
+      legendIcon: legendPA,
+      accordionVal: "2"
     },
-    { label: "Infinite Scrolling", value: 0, color: "#0095e1" },
+    { label: "Infinite Scrolling",
+      value: 0,
+      color: "#0095e1",
+      legendIcon: legendIS,
+      accordionVal: "4"
+    },
     { label: "Obstruction", value: 0, color: "#a1a1a8" },
     { label: "Privacy Zuckering", value: 0, color: "#374c80" },
   ];
@@ -84,24 +96,16 @@ export default function PieActiveArc({
         margin={{ top: 20, bottom: 20, left: 0, right: 0 }}
       />
       <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
-      <div style={{display: "flex", justifyContent: "flex-start"}}>
-        {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
-        <ButtonLink variant="link">{darkPattern[3].label}</ButtonLink>
-        <ButtonLink to="/EMLPage" variant="link">{darkPattern[3].value}</ButtonLink>
-        <ButtonLink switchTab={switchTab} targetTab="about-dp" defaultAccordion="2" variant="link" size="icon"><CircleHelp /></ButtonLink>
-      </div>
-      <div style={{display: "flex", justifyContent: "flex-start"}}>
-        {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
-        <ButtonLink switchTab={switchTab} targetTab="settings" variant="link">{darkPattern[0].label}</ButtonLink>
-        <ButtonLink switchTab={switchTab} targetTab="about-dp" variant="link">{darkPattern[0].value}</ButtonLink>
-        <ButtonLink switchTab={switchTab} targetTab="about-dp" defaultAccordion="5" variant="link" size="icon"><CircleHelp /></ButtonLink>
-      </div>
-      <div style={{display: "flex", justifyContent: "space-between"}}>
-        {/* <svg xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#ff8453"></rect></svg> */}
-        <Link to="/">{darkPattern[1].label}</Link>
-        <Link to="EMLPage">{darkPattern[1].value}</Link>
-        <ButtonLink switchTab={switchTab} targetTab="about-dp" defaultAccordion="3" variant="link" size="icon"><CircleHelp /></ButtonLink>
-      </div>
+        {darkPattern.map(individualDP => (
+          <PieChartLegendItem
+            key={individualDP.label}
+            switchTab={switchTab}
+            dpName={individualDP.label}
+            legendIcon={individualDP.legendIcon}
+            dpCount={individualDP.value}
+            accordionVal={individualDP.accordionVal}
+          />
+        ))}
       </div>
     </div>
   ) : (
