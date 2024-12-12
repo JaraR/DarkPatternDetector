@@ -71,13 +71,13 @@ export function TipCarousel() {
   ];
 
   return (
-    <Carousel className="w-full max-w-md mx-auto">
+    <Carousel className="w-full max-w-xs" plugins={[Autoplay({delay: 5000})]}>
       <CarouselContent>
         {tips.map((tip) => (
           <CarouselItem key={tip.id}>
             <div className="p-1">
               <Card>
-                <CardContent className="flex flex-col items-start justify-center p-6 space-y-4">
+                <CardContent className="flex flex-col items-center justify-center p-6 space-y-4">
                   <h2 className="text-lg font-bold">{tip.title}</h2>
                   <p className="text-sm">{tip.text}</p>
                   <ol className="list-decimal list-inside space-y-1 text-sm">
