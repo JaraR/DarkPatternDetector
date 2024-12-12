@@ -16,6 +16,7 @@ import ads from "/public/icons/ads.png";
 import tooltipAutoplay from "../../assets/tooltip-autoplay.png";
 import tooltipAds from "../../assets/tooltip-ads.png";
 import tooltipNotif from "../../assets/tooltip-notif.png";
+import ReadingTimer from "@/components/custom/ReadingTimer";
 
 // import CustomizationCard from "@/components/ui/CustomizationCard";
 
@@ -308,6 +309,7 @@ export default function SettingTest() {
           </div>
         </CardContent>
       </Card>
+      <ReadingTimer />
       <BottomNavigation />
       {/* <CustomizationCard /> */}
 

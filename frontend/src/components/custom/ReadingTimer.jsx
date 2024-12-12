@@ -78,72 +78,79 @@ export default function ReadingTimer() {
   }, []);
 
   return (
-      <Card
-          sx={{
-            maxWidth: 400,
-            boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.3)",
-            marginTop: 2,
-            marginBottom: 1, // Add a small bottom margin
-            padding: 0, // Optional: Remove additional padding
-          }}
-      >
-        <CardHeader
-            avatar={
-              <StopwatchIcon className="size-7" />
-            }
-            title={
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "#004080" }}>
-                Scroll Timer
-              </Typography>
-            }
-            subheader={
-              <Typography variant="body2" sx={{ color: "#0177CC" }}>
-                Keep track of your scrolling habits
-              </Typography>
-            }
-        />
+    <Card
+      sx={{
+        maxWidth: 400,
+        boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.3)",
+        marginTop: 1,
+        marginBottom: 1, // Add a small bottom margin
+        padding: 0, // Optional: Remove additional padding
+        marginLeft: 2,
+        marginRight: 2,
+      }}
+    >
+      <CardHeader
+        avatar={<StopwatchIcon className="size-7" />}
+        title={
+          <Typography
+            variant="subtitle1"
+            sx={{ fontWeight: "bold", color: "#004080" }}
+          >
+            Scroll Timer
+          </Typography>
+        }
+        subheader={
+          <Typography variant="body2" sx={{ color: "#0177CC" }}>
+            Keep track of your scrolling habits
+          </Typography>
+        }
+      />
 
-        <CardContent sx={{
-          paddingRight: 7, // Add right padding
+      <CardContent
+        sx={{
           paddingTop: 1, // Reduce top padding
-        }}>
-          {/*Container div for Favicon, time information, and Timer button, ensuring they display in the same row*/}
-          <div className="flex items-center space-x-4 mb-4 justify-start">
-            {/* Favicon icon */}
-            {tabsParams.favIconUrl && (
-                <img
-                    src={tabsParams.favIconUrl}
-                    alt="Tab Favicon"
-                    width={32}
-                    height={32}
-                    style={{borderRadius: "50%", marginRight: "50px"}} // Display Favicon as a circle
-                />
-            )}
+          paddingRight: 3,
+          paddingLeft: 3,
+        }}
+      >
+        {/*Container div for Favicon, time information, and Timer button, ensuring they display in the same row*/}
+        <div className="flex items-center space-x-4 mb-4 justify-start">
+          {/* Favicon icon */}
+          {tabsParams.favIconUrl && (
+            <img
+              src={tabsParams.favIconUrl}
+              alt="Tab Favicon"
+              width={32}
+              height={32}
+              style={{ borderRadius: "50%", marginRight: "20px" }} // Display Favicon as a circle
+            />
+          )}
 
-            {/* Time information: Start Time and Elapsed Time */}
-            <div>
-              <Typography variant="body2" sx={{color: "black"}}>
-                <strong>Start Time:</strong> {startTime ? new Date(startTime).toLocaleTimeString() : "-"}
-              </Typography>
-              <Typography variant="body2" sx={{color: "black"}}>
-                <strong>Elapsed Time:</strong> {formatElapsedTime(elapsedTime)}
-              </Typography>
-            </div>
-
-            {/* Timer button with smaller size */}
-            <Button
-                onClick={handleTimerToggle}
-                variant="contained"
-                size="small"  // Reduce button size
-                sx={{
-                  backgroundColor: timerOn ? "#0177CC" : "#B0B0B0", // Blue when started, gray when stopped
-                  color: "white",
-                }}
-            >
-              {timerOn ? "STOP TIMER" : "START TIMER"}
-            </Button>
+          {/* Time information: Start Time and Elapsed Time */}
+          <div>
+            <Typography variant="body2" sx={{ color: "black" }}>
+              <strong>Start Time:</strong>{" "}
+              {startTime ? new Date(startTime).toLocaleTimeString() : "-"}
+            </Typography>
+            <Typography variant="body2" sx={{ color: "black" }}>
+              <strong>Elapsed Time:</strong> {formatElapsedTime(elapsedTime)}
+            </Typography>
           </div>
-        </CardContent>
-      </Card>
+
+          {/* Timer button with smaller size */}
+          <Button
+            onClick={handleTimerToggle}
+            variant="contained"
+            size="small" // Reduce button size
+            sx={{
+              backgroundColor: timerOn ? "#0177CC" : "#B0B0B0", // Blue when started, gray when stopped
+              color: "white",
+            }}
+          >
+            {timerOn ? "STOP TIMER" : "START TIMER"}
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
