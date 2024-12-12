@@ -3,26 +3,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/custom/Navbar";
 import PieActiveArc from "@/components/custom/piechart";
 import AboutDPTab from "@/components/custom/AboutDPTab";
-import BottomNavigation from "@/components/custom/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import ReadingTimer from "@/components/custom/ReadingTimer.jsx";
-
 import SettingTab from "@/components/custom/SettingTab";
 import Guide from "@/components/custom/Guide";
-import { useLocation } from "react-router-dom";
+import { UndetectableDP } from "@/components/custom/UndetectableDP";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
   const [infiniteScrollCount, setIsInfiniteScrollCount] = useState(0);
-
-  const returnTab = useLocation();
-
-  if (returnTab.state === null) {
-    returnTab.state = "results";
-  }
-  console.log(returnTab.state);
+  const [activeTab, setActiveTab] = useState("results");
+  const switchTab = (targetTab) => setActiveTab(targetTab);
 
   //update autoplay count to pie chart
   useEffect(() => {
@@ -92,7 +85,7 @@ export function Home() {
   return (
     <>
       <Navbar />
-      <Tabs defaultValue={returnTab.state} className="w-[400px]">
+      <Tabs defaultValue="results" value={activeTab} onValueChange={setActiveTab} className="w-[400px]">
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
           <TabsTrigger value="about-dp">About Dark Patterns</TabsTrigger>
@@ -104,8 +97,7 @@ export function Home() {
           <div className="mt-5 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
               <span className="font-bold ">
-                {promotedAdsCount + autoplayCount + engagementNotifCount + infiniteScrollCount}
-                Times
+                {promotedAdsCount + autoplayCount + engagementNotifCount + infiniteScrollCount} Times
               </span>
               <br />
               Dark Pattern Activities Detected in Total
@@ -116,11 +108,10 @@ export function Home() {
               promotedAdsCount={promotedAdsCount}
               engagementNotifCount={engagementNotifCount}
               infiniteScrollCount={infiniteScrollCount}
+              switchTab={switchTab}
             />
-
-            <BottomNavigation />
+            <UndetectableDP />
             <ReadingTimer/>
-
           </div>
         </TabsContent>
 
@@ -131,6 +122,7 @@ export function Home() {
         <TabsContent value="settings">
           <SettingTab />
         </TabsContent>
+        
         <TabsContent value="use-guide">
           <Guide />
         </TabsContent>

@@ -12,8 +12,12 @@ import adsIcon from "/public/icons/ads.png";
 import infiniteIcon from "/public/icons/infinite.png";
 import notificationIcon from "/public/icons/notification.png";
 import privacyIcon from "/public/icons/privacy.png";
+import { useLocation } from "react-router-dom";
 
 export default function AboutDPTab() {
+  const defaultAccordion = useLocation();
+  console.log(defaultAccordion.state);
+
   return (
     <section className="m-5">
       <div>
@@ -28,7 +32,7 @@ export default function AboutDPTab() {
           7 dark patterns X-Factors can detect
         </p>
       </div>
-      <Accordion type="single" collapsible>
+      <Accordion type="single" defaultValue={defaultAccordion.state} collapsible>
         <AccordionItem value="1">
           <AccordionTrigger style={{ fontSize: "14px" }}>
             <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
