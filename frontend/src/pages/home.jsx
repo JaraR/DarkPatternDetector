@@ -3,10 +3,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/custom/Navbar";
 import PieActiveArc from "@/components/custom/piechart";
 import AboutDPTab from "@/components/custom/AboutDPTab";
-import BottomNavigation from "@/components/custom/BottomNavigation";
 import Typography from "@mui/material/Typography";
 import SettingTab from "@/components/custom/SettingTab";
 import Guide from "@/components/custom/Guide";
+import { UndetectableDP } from "@/components/custom/UndetectableDP";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
@@ -90,7 +90,7 @@ export function Home() {
               engagementNotifCount={engagementNotifCount}
               switchTab={switchTab}
             />
-            <BottomNavigation />
+            <UndetectableDP />
           </div>
         </TabsContent>
 

@@ -2,9 +2,6 @@
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import noActivity from "../../../public/icons/no-activity.png";
-import { ButtonLink } from "../ui/buttonlink";
-import { Link } from "react-router-dom";
-import { CircleHelp } from "lucide-react";
 import legendEN from "../../../public/icons/legend-square-EN.png";
 import legendAP from "../../../public/icons/legend-square-AP.png";
 import legendPA from "../../../public/icons/legend-square-PA.png";
@@ -35,7 +32,7 @@ export default function PieActiveArc({
       legendIcon: legendAP,
       accordionVal: "3"
     },
-    { label: "Emotional Steering", value: 0, color: "#ef5675" },
+    // { label: "Emotional Steering", value: 0, color: "#ef5675" },
     {
       label: `Promoted Ads`,
       value: promotedAdsCount,
@@ -49,8 +46,8 @@ export default function PieActiveArc({
       legendIcon: legendIS,
       accordionVal: "4"
     },
-    { label: "Obstruction", value: 0, color: "#a1a1a8" },
-    { label: "Privacy Zuckering", value: 0, color: "#374c80" },
+    // { label: "Obstruction", value: 0, color: "#a1a1a8" },
+    // { label: "Privacy Zuckering", value: 0, color: "#374c80" },
   ];
 
   // bugs here:

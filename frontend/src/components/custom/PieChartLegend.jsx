@@ -13,7 +13,7 @@ export function PieChartLegendItem({  switchTab, legendIcon, dpName, dpCount, ac
                 {dpCount}
             </ButtonLink>
             <ButtonLink switchTab={switchTab} targetTab="about-dp" defaultAccordion={accordionVal} variant="link" size="icon">
-                <CircleHelp />
+                <CircleHelp className="w-[20px]" />
             </ButtonLink>
         </div>
     )
