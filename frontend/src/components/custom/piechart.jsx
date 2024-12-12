@@ -60,7 +60,7 @@ export default function PieActiveArc({
       justifyContent: "center",
       alignItems: "center",
       // margin: 10,
-      border: "1px solid lightgrey",
+      // border: "1px solid lightgrey",
       // borderRadius: 10,
       // padding: 5,
     }}>
