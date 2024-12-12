@@ -8,22 +8,20 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import gitIcon from "../../assets/git-icon.png";
 
 export default function TeamList() {
   const asdMembers = [
     {
       name: "Jara Rodriguez",
-      role: "Jedi Knight",
       avatar: "/static/images/avatar/1.jpg",
     },
     {
       name: "Ling Jiang",
-      role: "Pilot",
       avatar: "/static/images/avatar/2.jpg",
     },
     {
       name: "Jiaxin Liu",
-      role: "Rebel Leader",
       avatar: "/static/images/avatar/3.jpg",
     },
   ];
@@ -31,35 +29,29 @@ export default function TeamList() {
   const dsMembers = [
     {
       name: "Ashus Zahid",
-      role: "Jedi Knight",
       avatar: "/static/images/avatar/4.jpg",
     },
     {
       name: "Habib Abdulhamid",
-      role: "Senator",
       avatar: "/static/images/avatar/5.jpg",
     },
     {
-      name: "Obi-Wan Kenobi",
-      role: "Jedi Master",
+      name: "Abdullah Shah",
       avatar: "/static/images/avatar/6.jpg",
     },
   ];
 
   const mentors = [
     {
-      name: "Andrea Curley ",
-      role: "Jedi Master",
+      name: "Andrea Curley",
       avatar: "/static/images/avatar/4.jpg",
     },
     {
       name: "Brendan Tierney",
-      role: "Jedi Master",
       avatar: "/static/images/avatar/6.jpg",
     },
     {
       name: "Damian Gordon",
-      role: "Jedi Master",
       avatar: "/static/images/avatar/10.jpg",
     },
   ];
@@ -81,18 +73,7 @@ export default function TeamList() {
             <ListItemAvatar>
               <Avatar alt={member.name} src={member.avatar} />
             </ListItemAvatar>
-            <ListItemText
-              primary={member.name}
-              secondary={
-                <Typography
-                  component="span"
-                  variant="body2"
-                  sx={{ color: "text.primary", display: "inline" }}
-                >
-                  {member.role}
-                </Typography>
-              }
-            />
+            <ListItemText primary={member.name} />
           </ListItem>
           {index < members.length - 1 && (
             <Divider variant="inset" component="li" />
@@ -107,29 +88,48 @@ export default function TeamList() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" }, // Stack vertically on mobile, horizontally on larger screens
           justifyContent: "space-around",
           padding: 2,
           width: "100%",
+          gap: 2,
         }}
       >
         {renderGroup("ASD Members", asdMembers)}
         {renderGroup("DS Members", dsMembers)}
         {renderGroup("Mentors", mentors)}
       </Box>
+
       <Box
         sx={{
           display: "flex",
-          justifyContent: "left",
-          padding: 2,
+          flexDirection: "column", // Stack elements on mobile
+          justifyContent: "flex-start",
+          padding: 4,
           gap: 2,
           width: "100%",
         }}
       >
         <Typography variant="h6" gutterBottom>
-          Our Github
+          <img
+            src={gitIcon}
+            className="w-8 h-8 inline-block m-2"
+            alt="Github"
+          ></img>
+          X-Factors' Github
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
-          <Button variant="contained">Github</Button>
+          <Button
+            variant="contained"
+            href="https://github.com/JaraR/DarkPatternDetector.git"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              alignSelf: "flex-start",
+            }}
+          >
+            Github
+          </Button>
         </Typography>
       </Box>
     </>
