@@ -1,35 +1,65 @@
-// // Function to update the badge text and background color
-// function updateBadge(count) {
-//   chrome.action.setBadgeText({ text: count.toString() });
-//   chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
-// }
-// //autoplay
-// function updateAutoplayCount(count) {
-//   console.log("Autoplay count updated in background:", count);
-//   chrome.storage.local.set({ autoplayCount: count });
-// }
-// //promoted ads
-// function updatePromotedAdsCount(count) {
-//   console.log("Promoted Ads count updated in background:", count);
-//   chrome.storage.local.set({ promotedAdsCount: count });
-// }
+// This is new feature: to Reset badge count when tabs are closed
+chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
+  try {
+    // Get information about the closed tab
+    const tabs = await chrome.tabs.query({
+      url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+    });
 
-// Function to update the badge text and background color
+    // Check if there are no remaining relevant tabs
+    if (tabs.length === 0) {
+      chrome.storage.sync.set(
+        { autoplay: false, promotedAds: false, engagementNotif: false }
+        // () => {
+        //   console.log("Autoplay setting reset to false after tab closed.");
+        // }
+      );
+
+      // Reset counts in storage
+      chrome.storage.local.set(
+        {
+          autoplayCount: 0,
+          promotedAdsCount: 0,
+          engagementNotifCount: 0,
+        },
+        () => {
+          chrome.action.setBadgeText({ text: "" });
+          console.log("Badge count reset.");
+        }
+      );
+    }
+  } catch (error) {
+    console.error("Error while checking tabs or resetting badge:", error);
+  }
+});
+
+// function to Sum Up all the counts
 function updateBadge() {
   // Fetch both counts from storage and update the badge with the sum
-  chrome.storage.local.get(["autoplayCount", "promotedAdsCount"], (data) => {
-    const totalCount = (data.autoplayCount || 0) + (data.promotedAdsCount || 0);
-    chrome.action.setBadgeText({ text: totalCount.toString() });
-    chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
-  });
+  chrome.storage.local.get(
+    [
+      "autoplayCount",
+      "promotedAdsCount",
+      "engagementNotifCount",
+      "infiniteScrollCount",
+    ],
+    (data) => {
+      const totalCount =
+        (data.autoplayCount || 0) +
+        (data.promotedAdsCount || 0) +
+        (data.engagementNotifCount || 0) +
+        (data.infiniteScrollCount || 0);
+
+      chrome.action.setBadgeText({ text: totalCount.toString() });
+      chrome.action.setBadgeBackgroundColor({ color: "#fcd400" });
+    }
+  );
 }
 
 // Autoplay update function
 function updateAutoplayCount(count) {
   console.log("Autoplay count updated in background:", count);
-  // Store the updated autoplay count in local storage
   chrome.storage.local.set({ autoplayCount: count }, () => {
-    // After updating the autoplay count, update the badge
     updateBadge();
   });
 }
@@ -37,9 +67,26 @@ function updateAutoplayCount(count) {
 // Promoted ads update function
 function updatePromotedAdsCount(count) {
   console.log("Promoted Ads count updated in background:", count);
-  // Store the updated promoted ads count in local storage
   chrome.storage.local.set({ promotedAdsCount: count }, () => {
-    // After updating the promoted ads count, update the badge
+    updateBadge();
+  });
+}
+
+// Updates engagement notification count
+function updateEngagementNotifCount(count) {
+  console.log("Engagment notification count updated in background:", count);
+  // Store the engagement notification count in local storage
+  chrome.storage.local.set({ engagementNotifCount: count }, () => {
+    // After updating the engagement notification count, update the badge
+    updateBadge();
+  });
+}
+
+function updateInfiniteScrollCount(count) {
+  console.log("Infinite Scroll count updated in background:", count);
+  // Store the updated infinite scroll count in local storage
+  chrome.storage.local.set({ infiniteScrollCount: count }, () => {
+    // After updating the infinite scroll count, update the badge
     updateBadge();
   });
 }
@@ -76,6 +123,30 @@ function handleMessage(message, sender, sendResponse) {
       });
       break;
 
+    case "updateEngagementNotif":
+      updateEngagementNotifCount(message.count);
+      chrome.storage.local.get(["engagementNotifCount"], (result) => {
+        const storedEngagementNotifCount = result.engagementNotifCount || 0;
+        console.log(
+          "Retrieved engagement notification count in background:",
+          storedEngagementNotifCount
+        );
+        sendResponse({ count: storedEngagementNotifCount });
+      });
+      break;
+
+    case "updateInfiniteScroll":
+      updateInfiniteScrollCount(message.count);
+      chrome.storage.local.get(["infiniteScrollCount"], (result) => {
+        const storedInfiniteScrollCount = result.infiniteScrollCount || 0;
+        console.log(
+          "Retrieved infinite scroll count in background:",
+          storedInfiniteScrollCount
+        );
+        sendResponse({ count: storedInfiniteScrollCount });
+      });
+      break;
+
     default:
       sendResponse({ status: "Unknown message type" });
       break;
@@ -90,6 +161,10 @@ const MESSAGE_TYPE = {
   STOP_AUTOPLAY: "stopAutoplay",
   START_PROMOTED_ADS: "startPromotedAds",
   STOP_PROMOTED_ADS: "stopPromotedAds",
+  START_ENGAGEMENT_NOTIF: "startEngagementNotif",
+  STOP_ENGAGEMENT_NOTIF: "stopEngagementNotif",
+  START_INFINITE_SCROLL: "startInfiniteScroll",
+  STOP_INFINITE_SCROLL: "stopInfiniteScroll",
 };
 
 // Function to send a message to the content script in the active tab
@@ -122,7 +197,7 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
         const tabs = await chrome.tabs.query({
           active: true,
           currentWindow: true,
-          url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+          url: ["*://*.x.com/*", "*://*.bsky.app/*"],
         });
 
         if (tabs.length > 0 && tabs[0].id !== undefined) {
@@ -175,6 +250,84 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
           error
         );
       }
+    }
+
+    // Check if engagement notification setting changed
+    if (changes.engagementNotif) {
+      const newEngagementNotifValue = changes.engagementNotif.newValue;
+      console.log(
+        "Engagement Notification setting changed:",
+        newEngagementNotifValue
+      );
+
+      const engagementNotifMessageType = newEngagementNotifValue
+        ? MESSAGE_TYPE.START_ENGAGEMENT_NOTIF
+        : MESSAGE_TYPE.STOP_ENGAGEMENT_NOTIF;
+
+      try {
+        // Query relevant tabs (e.g.: X, Bluesky, Reddit)
+        const tabs = await chrome.tabs.query({
+          active: true,
+          currentWindow: true,
+          url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+        });
+
+        if (tabs.length > 0 && tabs[0].id !== undefined) {
+          const response = await sendMessageToContent(tabs[0].id, {
+            type: engagementNotifMessageType,
+          });
+          console.log(
+            "Response from content script for engagement notifications:",
+            response
+          );
+        } else {
+          console.warn("No relevant tab found or tab ID is undefined.");
+        }
+      } catch (error) {
+        console.error(
+          "Failed to send engagement notification message to content script:",
+          error
+        );
+      }
+    }
+  }
+  //Check if infiniteScroll setting changed
+  if (changes.infiniteScroll) {
+    const newInfiniteScrollValue = changes.infiniteScroll.newValue;
+    console.log("Infinite Scroll setting changed:", newInfiniteScrollValue);
+    const infiniteScrollMessageType = newInfiniteScrollValue
+      ? MESSAGE_TYPE.START_INFINITE_SCROLL
+      : MESSAGE_TYPE.STOP_INFINITE_SCROLL;
+
+    console.log(
+      "[here1: ]Infinite Scroll message type:",
+      infiniteScrollMessageType
+    );
+
+    try {
+      // Query relevant tabs (e.g., X, Bluesky, Reddit)
+      const tabs = await chrome.tabs.query({
+        active: true,
+        currentWindow: true,
+        url: ["*://*.x.com/*", "*://*.bsky.app/*", "*://*.reddit.com/*"],
+      });
+
+      if (tabs.length > 0 && tabs[0].id !== undefined) {
+        const response = await sendMessageToContent(tabs[0].id, {
+          type: infiniteScrollMessageType,
+        });
+        console.log(
+          "Response from content script for infinite scroll:",
+          response
+        );
+      } else {
+        console.warn("No relevant tab found or tab ID is undefined.");
+      }
+    } catch (error) {
+      console.error(
+        "Failed to send infinite scroll message to content script:",
+        error
+      );
     }
   }
 });
