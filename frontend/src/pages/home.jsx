@@ -5,6 +5,7 @@ import PieActiveArc from "@/components/custom/piechart";
 import AboutDPTab from "@/components/custom/AboutDPTab";
 import BottomNavigation from "@/components/custom/BottomNavigation";
 import Typography from "@mui/material/Typography";
+import ReadingTimer from "@/components/custom/ReadingTimer.jsx";
 
 import SettingTab from "@/components/custom/SettingTab";
 import Guide from "@/components/custom/Guide";
@@ -103,7 +104,7 @@ export function Home() {
           <div className="mt-5 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
               <span className="font-bold ">
-                {promotedAdsCount + autoplayCount + engagementNotifCount}
+                {promotedAdsCount + autoplayCount + engagementNotifCount + infiniteScrollCount}
                 Times
               </span>
               <br />
@@ -118,6 +119,8 @@ export function Home() {
             />
 
             <BottomNavigation />
+            <ReadingTimer/>
+
           </div>
         </TabsContent>
 
