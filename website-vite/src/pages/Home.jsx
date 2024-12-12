@@ -1,23 +1,19 @@
-import * as React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 
 import { createTheme } from "@mui/material/styles";
-
 import { AppProvider } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { useDemoRouter } from "@toolpad/core/internal";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
-import PatternCard from "../components/PatternCard";
-import TeamList from "../components/TeamList";
+import Installation from "./DashboardPage/InstallationPage";
+import TeamList from "./DashboardPage/TeamListPage";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import HomeIcon from "@mui/icons-material/Home";
-import Project from "../components/Project";
+import Project from "./DashboardPage/ProjectPage/ProjectPageBase";
 import logo from "../assets/badgeicon-transparrent.png";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
-
-// import Footer from "../components/Footer";
-import Blog from "../components/Blog";
+import Blog from "./DashboardPage/BlogPage";
 
 const NAVIGATION = [
   {
@@ -42,12 +38,28 @@ const NAVIGATION = [
   },
 ];
 
-const demoTheme = createTheme({
+const customTheme = createTheme({
   cssVariables: {
     colorSchemeSelector: "data-toolpad-color-scheme",
   },
-  colorSchemes: { dark: true },
-
+  colorSchemes: {
+    light: {
+      palette: {
+        background: {
+          default: "#f7f7f7",
+          paper: "#ffffff",
+        },
+      },
+    },
+    dark: {
+      palette: {
+        background: {
+          default: "#292b2d",
+          paper: "#3a4047",
+        },
+      },
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,
@@ -73,7 +85,7 @@ function DemoPageContent({ pathname }) {
         mt: 2,
       }}
     >
-      {pathname === "/installation" && <PatternCard />}
+      {pathname === "/installation" && <Installation />}
       {pathname === "/team" && <TeamList />}
       {pathname === "/blog" && <Blog />}
       {pathname === "/project" && <Project />}
@@ -88,30 +100,25 @@ DemoPageContent.propTypes = {
 
 function Home(props) {
   const { window } = props;
-  //this is default router
   const router = useDemoRouter("/installation");
-
   const demoWindow = window !== undefined ? window() : undefined;
 
   return (
-    // preview-start
     <AppProvider
       navigation={NAVIGATION.map((nav) => ({
         ...nav,
       }))}
       branding={{
         title: "X-Factors",
-        logo: <img src={logo} alt="X-Factors Logo" style={{ height: 40 }} />,
+        logo: <img src={logo} alt="X-Factors Logo" style={{ height: 30 }} />,
       }}
       router={router}
-      theme={demoTheme}
+      theme={customTheme}
       window={demoWindow}
     >
       <DashboardLayout>
         <DemoPageContent pathname={router.pathname} />
       </DashboardLayout>
-
-      {/* <Footer /> */}
     </AppProvider>
   );
 }

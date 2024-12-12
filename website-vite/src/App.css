@@ -1,26 +1,3 @@
-/* body {
-  background: linear-gradient(
-    to right,
-    rgba(147, 112, 219, 0.5),
-    white 50%,
-    rgba(70, 130, 180, 0.5)
-  ) !important;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  width: 100vw;
-} */
-
-body {
-  /* background: rgb(29, 29, 29) !important; */
-  background: linear-gradient(
-    135deg,
-    rgb(107, 107, 107),
-    rgb(36, 36, 36),
-    rgb(23, 23, 23)
-  ) !important;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  width: 100vw;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
