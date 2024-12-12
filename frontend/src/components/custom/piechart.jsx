@@ -12,11 +12,13 @@ export default function PieActiveArc({
   autoplayCount,
   promotedAdsCount,
   engagementNotifCount,
+  infiniteScrollCount,
   switchTab
 }) {
   console.log("Autoplay Count:", autoplayCount);
   console.log("Promoted Ads Count:", promotedAdsCount);
   console.log("Engagement Notification Count:", engagementNotifCount);
+  console.log("Infinite Scroll Count:", infiniteScrollCount);
   const darkPattern = [
     {
       label: `Engagement Notification`,
@@ -40,11 +42,13 @@ export default function PieActiveArc({
       legendIcon: legendPA,
       accordionVal: "2"
     },
-    { label: "Infinite Scrolling",
-      value: 0,
+    {
+      label: `Infinite Scrolling`,
+      value: infiniteScrollCount,
       color: "#0095e1",
       legendIcon: legendIS,
       accordionVal: "4"
+   ,
     },
     // { label: "Obstruction", value: 0, color: "#a1a1a8" },
     // { label: "Privacy Zuckering", value: 0, color: "#374c80" },
@@ -106,9 +110,7 @@ export default function PieActiveArc({
       </div>
     </div>
   ) : (
-
     <div className="w-full h-[280px] flex flex-col justify-start items-center bg-gray-100 border border-gray-300 rounded-lg">
-
       <img
         src={noActivity}
         alt="No activities"

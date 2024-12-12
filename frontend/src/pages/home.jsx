@@ -4,6 +4,7 @@ import Navbar from "@/components/custom/Navbar";
 import PieActiveArc from "@/components/custom/piechart";
 import AboutDPTab from "@/components/custom/AboutDPTab";
 import Typography from "@mui/material/Typography";
+import ReadingTimer from "@/components/custom/ReadingTimer.jsx";
 import SettingTab from "@/components/custom/SettingTab";
 import Guide from "@/components/custom/Guide";
 import { UndetectableDP } from "@/components/custom/UndetectableDP";
@@ -12,6 +13,7 @@ export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
   const [engagementNotifCount, setEngagementNotifCount] = useState(0);
+  const [infiniteScrollCount, setIsInfiniteScrollCount] = useState(0);
   const [activeTab, setActiveTab] = useState("results");
   const switchTab = (targetTab) => setActiveTab(targetTab);
 
@@ -63,6 +65,23 @@ export function Home() {
     );
   }, []);
 
+  //update infinite scroll to pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "updateInfiniteScroll" }, (response) => {
+      console.log(
+        "infinite scroll response received from background:",
+        response
+      );
+      if (response && response.count !== undefined) {
+        setIsInfiniteScrollCount(response.count);
+      } else {
+        console.error(
+          "Error: Infinite Scroll count not received or is undefined."
+        );
+      }
+    });
+  }, [infiniteScrollCount]);
+
   return (
     <>
       <Navbar />
@@ -78,7 +97,7 @@ export function Home() {
           <div className="mt-5 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
               <span className="font-bold ">
-                {promotedAdsCount + autoplayCount + engagementNotifCount} Times
+                {promotedAdsCount + autoplayCount + engagementNotifCount + infiniteScrollCount} Times
               </span>
               <br />
               Dark Pattern Activities Detected in Total
@@ -88,9 +107,11 @@ export function Home() {
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
               engagementNotifCount={engagementNotifCount}
+              infiniteScrollCount={infiniteScrollCount}
               switchTab={switchTab}
             />
             <UndetectableDP />
+            <ReadingTimer/>
           </div>
         </TabsContent>
 
