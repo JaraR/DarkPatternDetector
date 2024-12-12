@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { EMLPage } from "./pages/EMLPage";
+import { ObstructionPage } from "./pages/ObstructionPage";
 
 // ESLint tests (note: have not gotten it to work, rolled back library installations)
 // eslint-config-react-app linting configuration requires ver 8.x, we are running ver 9.11.1-9.12,
@@ -30,6 +31,7 @@ const router = createHashRouter(
     <>
       <Route path="/" element={<Home />} />
       <Route path="/EMLPage" element={<EMLPage />} />
+      <Route path="/ObstructionPage" element={<ObstructionPage />} />
     </>
   )
 );
