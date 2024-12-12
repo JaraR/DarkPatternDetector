@@ -16,6 +16,7 @@ import ads from "/public/icons/ads.png";
 import tooltipAutoplay from "../../assets/tooltip-autoplay.png";
 import tooltipAds from "../../assets/tooltip-ads.png";
 import tooltipNotif from "../../assets/tooltip-notif.png";
+import ReadingTimer from "@/components/custom/ReadingTimer.jsx";
 
 // import CustomizationCard from "@/components/ui/CustomizationCard";
 
@@ -24,6 +25,7 @@ import MuiAlert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
 import BottomNavigation from "./BottomNavigation";
+
 
 // "const Alert = React.forwardRef(function Alert(props, ref) {
 //   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -308,6 +310,7 @@ export default function SettingTest() {
           </div>
         </CardContent>
       </Card>
+      <ReadingTimer/>
       <BottomNavigation />
       {/* <CustomizationCard /> */}
 

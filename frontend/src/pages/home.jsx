@@ -4,7 +4,7 @@ import Navbar from "@/components/custom/Navbar";
 import PieActiveArc from "@/components/custom/piechart";
 import AboutDPTab from "@/components/custom/AboutDPTab";
 import Typography from "@mui/material/Typography";
-import ReadingTimer from "@/components/custom/ReadingTimer.jsx";
+// import ReadingTimer from "@/components/custom/ReadingTimer.jsx";
 import SettingTab from "@/components/custom/SettingTab";
 import Guide from "@/components/custom/Guide";
 import { UndetectableDP } from "@/components/custom/UndetectableDP";
@@ -111,7 +111,7 @@ export function Home() {
               switchTab={switchTab}
             />
             <UndetectableDP />
-            <ReadingTimer/>
+            {/*<ReadingTimer/>*/}
           </div>
         </TabsContent>
 
