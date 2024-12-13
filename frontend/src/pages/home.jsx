@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Navbar from "@/components/ui/navbar";
-import PieActiveArc from "@/components/ui/piechart";
-import AboutUsTab from "@/components/ui/AboutUsTab";
-
-import BottomNavigation from "@/components/ui/BottomNavigation";
+import Navbar from "@/components/custom/Navbar";
+import PieActiveArc from "@/components/custom/piechart";
+import AboutDPTab from "@/components/custom/AboutDPTab";
 import Typography from "@mui/material/Typography";
-import SettingTab from "@/components/ui/SettingTab";
-import { ButtonLink } from "@/components/ui/buttonlink";
-import { TipCarousel } from "@/components/TipCarousel";
+import SettingTab from "@/components/custom/SettingTab";
+import Guide from "@/components/custom/Guide";
+import { UndetectableDP } from "@/components/custom/UndetectableDP";
 
 export function Home() {
   const [autoplayCount, setAutoplayCount] = useState(0);
   const [promotedAdsCount, setPromotedAdsCount] = useState(0);
+  const [engagementNotifCount, setEngagementNotifCount] = useState(0);
+  const [infiniteScrollCount, setIsInfiniteScrollCount] = useState(0);
+  const [activeTab, setActiveTab] = useState("results");
+  const switchTab = (targetTab) => setActiveTab(targetTab);
+
   //update autoplay count to pie chart
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "updateAutoplay" }, (response) => {
@@ -41,41 +44,94 @@ export function Home() {
     });
   }, []);
 
+  // Updates engagement notification count on pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage(
+      { type: "updateEngagementNotif" },
+      (response) => {
+        console.log(
+          "Engagement notification response received from background: ",
+          response
+        );
+        if (response && response.count !== undefined) {
+          setEngagementNotifCount(response.count);
+        } else {
+          console.error(
+            "Error: Engagement notification count not received or is undefined."
+          );
+        }
+      }
+    );
+  }, []);
+
+  //update infinite scroll to pie chart
+  useEffect(() => {
+    chrome.runtime.sendMessage({ type: "updateInfiniteScroll" }, (response) => {
+      console.log(
+        "infinite scroll response received from background:",
+        response
+      );
+      if (response && response.count !== undefined) {
+        setIsInfiniteScrollCount(response.count);
+      } else {
+        console.error(
+          "Error: Infinite Scroll count not received or is undefined."
+        );
+      }
+    });
+  }, [infiniteScrollCount]);
+
   return (
     <>
       <Navbar />
-
-      <Tabs defaultValue="results" className="w-[400px]">
+      <Tabs
+        defaultValue="results"
+        value={activeTab}
+        onValueChange={setActiveTab}
+        className="w-[400px]"
+      >
         <TabsList className="flex justify-around">
           <TabsTrigger value="results">Results</TabsTrigger>
-          <TabsTrigger value="about-us">About Us</TabsTrigger>
+          <TabsTrigger value="about-dp">About Dark Patterns</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="use-guide">Use Guide</TabsTrigger>
         </TabsList>
 
         <TabsContent value="results">
-          <div className="mt-8 mx-3 flex flex-col items-center text-center">
+          <div className="mt-5 mx-3 flex flex-col items-center text-center">
             <Typography variant="h6" component="div" gutterBottom>
-              Total # detected dark pattern {promotedAdsCount + autoplayCount}
+              <span className="font-bold ">
+                {promotedAdsCount +
+                  autoplayCount +
+                  engagementNotifCount +
+                  infiniteScrollCount}{" "}
+                Times
+              </span>
+              <br />
+              Dark Pattern Activities Detected in Total
             </Typography>
-            <Typography variant="subtitle1" component="div" gutterBottom>
-              Detected Dark Patterns
-            </Typography>
+
             <PieActiveArc
               autoplayCount={autoplayCount}
               promotedAdsCount={promotedAdsCount}
+              engagementNotifCount={engagementNotifCount}
+              infiniteScrollCount={infiniteScrollCount}
+              switchTab={switchTab}
             />
-            <ButtonLink to="/EMLSettings">Emotional Steering</ButtonLink>
-            <TipCarousel />
-            <BottomNavigation />
+            <UndetectableDP />
           </div>
         </TabsContent>
 
-        <TabsContent value="about-us">
-          <AboutUsTab />
+        <TabsContent value="about-dp">
+          <AboutDPTab />
         </TabsContent>
 
         <TabsContent value="settings">
           <SettingTab />
+        </TabsContent>
+
+        <TabsContent value="use-guide">
+          <Guide />
         </TabsContent>
       </Tabs>
     </>
