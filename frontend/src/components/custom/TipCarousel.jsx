@@ -69,7 +69,7 @@ export function TipCarousel() {
               <Card>
                 <CardContent className="flex flex-col items-center justify-center p-6 space-y-4">
                   <h2 className="text-lg font-bold">{tip.title}</h2>
-                  <p className="text-sm">{tip.text}</p>
+                  {/* <p className="text-sm">{tip.text}</p> */}
                   <ol className="list-inside space-y-1 text-sm">
                     {tip.steps.map((step, index) => (
                       <li key={index}>{step}</li>
