@@ -150,7 +150,26 @@ export default function SettingTest() {
         setIsInfiniteScroll(result.infiniteScroll || false); // set default value to false
       });
     }
-  });
+    const storageListener = (changes, areaName) => {
+      if (areaName === "sync" && changes.infiniteScroll) {
+        setIsInfiniteScroll(changes.infiniteScroll.newValue);
+      }
+    };
+
+    chrome.storage.onChanged.addListener(storageListener);
+
+    const handleTabClose = () => {
+      setIsInfiniteScroll(false);
+      chrome.storage.sync.set({ infiniteScroll: false });
+    };
+
+    chrome.tabs.onRemoved.addListener(handleTabClose);
+
+    return () => {
+      chrome.tabs.onRemoved.removeListener(handleTabClose);
+      chrome.storage.onChanged.removeListener(storageListener);
+    };
+  }, []);
 
   return (
     <>

@@ -9,7 +9,12 @@ chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
     // Check if there are no remaining relevant tabs
     if (tabs.length === 0) {
       chrome.storage.sync.set(
-        { autoplay: false, promotedAds: false, engagementNotif: false }
+        {
+          autoplay: false,
+          promotedAds: false,
+          engagementNotif: false,
+          infiniteScroll: false,
+        }
         // () => {
         //   console.log("Autoplay setting reset to false after tab closed.");
         // }
@@ -21,6 +26,7 @@ chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
           autoplayCount: 0,
           promotedAdsCount: 0,
           engagementNotifCount: 0,
+          infiniteScrollCount: 0,
         },
         () => {
           chrome.action.setBadgeText({ text: "" });
