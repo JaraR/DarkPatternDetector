@@ -1,6 +1,7 @@
 import { TextareaForm } from "@/components/custom/obstructionopenaiform";
 import { ButtonLink } from "@/components/ui/buttonlink";
 import Navbar from "@/components/custom/Navbar";
+import { TipCarousel } from "@/components/custom/TipCarousel";
 
 export function ObstructionPage() {
   return (
@@ -10,6 +11,7 @@ export function ObstructionPage() {
         ↖ Back
       </ButtonLink>
       <TextareaForm />
+      <TipCarousel />
     </>
   );
 }
