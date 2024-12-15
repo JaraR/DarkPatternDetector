@@ -9,7 +9,7 @@ export function PieChartLegendItem({  switchTab, legendIcon, dpName, dpCount, ac
             <ButtonLink switchTab={switchTab} targetTab="settings" variant="link" size="legendItems">
                 {dpName}
             </ButtonLink>
-            <ButtonLink switchTab={switchTab} targetTab="about-dp" variant="link" size="legendItems">
+            <ButtonLink switchTab={switchTab} targetTab="settings" variant="link" size="legendItems">
                 {dpCount}
             </ButtonLink>
             <ButtonLink switchTab={switchTab} targetTab="about-dp" defaultAccordion={accordionVal} variant="link" size="icon">

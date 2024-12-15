@@ -11,22 +11,22 @@ import MenuItem from "@mui/material/MenuItem";
 
 export default function NavBar() {
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const openMenu = Boolean(anchorEl);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  // const openMenu = Boolean(anchorEl);
 
 
-  const handleMenuClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleMenuClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleMenuClose = () => {
+  //   setAnchorEl(null);
+  // };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "white", color: "black" }}>
-        <Toolbar variant="dense">
-          <IconButton
+        <Toolbar variant="dense" sx={{ paddingLeft: "0px"}}>
+          {/* <IconButton
             edge="start"
             color="inherit"
             aria-label="menu"
@@ -34,22 +34,32 @@ export default function NavBar() {
             onClick={handleMenuClick}
           >
             <MenuIcon />
-          </IconButton>
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ width: 40, height: 40, marginLeft: 0 }}
-          />
-          <Typography
-            variant="h6"
-            color="inherit"
-            component="div"
-            fontWeight="bold"
-            style={{ color: "#424242" }}
-          >
-            X-Factors
-          </Typography>
-          <Box
+          </IconButton> */}
+          <a href="https://x-factors.netlify.app/" target="_blank" rel="noopener noreferrer">
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ width: 40, height: 40, marginLeft: 6 }}
+            />
+          </a>
+          <a href="https://x-factors.netlify.app/" target="_blank" rel="noopener noreferrer">
+            <Typography
+              variant="h6"
+              color="inherit"
+              component="div"
+              fontWeight="bold"
+              sx={{ 
+                color: "#424242",
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline"
+                }
+              }}
+            >
+              X-Factors
+            </Typography>
+          </a>
+          {/* <Box
             sx={{
               ml: "auto",
               display: "flex",
@@ -57,11 +67,11 @@ export default function NavBar() {
               alignItems: "center",
             }}
 
-          ></Box>
+          ></Box> */}
 
         </Toolbar>
       </AppBar>
-      <Menu
+      {/* <Menu
         anchorEl={anchorEl}
         open={openMenu}
         onClose={handleMenuClose}
@@ -72,7 +82,7 @@ export default function NavBar() {
         <MenuItem onClick={handleMenuClose}>Contact Us</MenuItem>
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
         <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-      </Menu>
+      </Menu> */}
     </Box>
   );
 }
