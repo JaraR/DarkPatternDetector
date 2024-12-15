@@ -5,7 +5,7 @@ import { OpenAI } from "openai";
 const API_KEY = ""
 const openai = new OpenAI({
     apiKey: API_KEY,
-    //dangerouslyAllowBrowser: true
+    dangerouslyAllowBrowser: true
 });
 
 export async function OpenAIapi(userInput) {

@@ -203,7 +203,7 @@ export default function SettingTest() {
                       alt="Autoplay info"
                       style={{ width: "100%" }}
                     />
-                    Navigate to X website to see X-Factors in action!
+                    Navigate to X.com to see X-Factors in action!
                   </span>
                 }
               >
@@ -235,8 +235,8 @@ export default function SettingTest() {
               <Tooltip
                 title={
                   <span style={{ fontSize: "0.85rem" }}>
-                    Notifify user when infinite scrolling is detected and shows
-                    a timer
+                    Notify user when infinite scrolling is detected and has
+                    a timer to track time spent scrolling.
                   </span>
                 }
               >
@@ -274,7 +274,7 @@ export default function SettingTest() {
                       alt="Notif info"
                       style={{ width: "100%" }}
                     />
-                    Navigate to X website to see X-Factors in action!
+                    Navigate to X.com's notification page to see X-Factors in action!
                   </span>
                 }
               >
@@ -310,7 +310,7 @@ export default function SettingTest() {
                       alt="Ads info"
                       style={{ width: "100%" }}
                     />
-                    Navigate to X website to see it in action!
+                    Navigate to X.com to see X-Factors in action!
                   </span>
                 }
               >

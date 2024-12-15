@@ -41,7 +41,7 @@ export function UndetectableDP() {
                         <Tooltip
                             title={
                             <span style={{ fontSize: "0.85rem" }}>
-                                Analyze the content on X website and get the sentiment
+                                Analyze posts/tweets on X.com and get a sentiment 
                                 analysis report.
                             </span>
                             }
@@ -71,8 +71,8 @@ export function UndetectableDP() {
                         <Tooltip
                             title={
                             <span style={{ fontSize: "0.85rem" }}>
-                                Give a reminder popup when the website is obstructing user
-                                to complete a task.
+                                Ask a question when X.com is obstructing user attempts to 
+                                complete a task and receive step-by-step instructions.
                             </span>
                             }
                         >
@@ -102,8 +102,8 @@ export function UndetectableDP() {
                         <Tooltip
                             title={
                             <span style={{ fontSize: "0.85rem" }}>
-                                Give a reminder popup when user is about to share personal
-                                information.
+                                Provides tips and information regarding what X.com's 
+                                privacy settings actually do.
                             </span>
                             }
                         >
