@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Dark Pattern Detection on X",
   "version": "0.1.0",
-  "description": "To detect dark patterns on X.",
+  "description": "Detects and alerts users of dark patterns on X.",
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "action": {
     "default_title": "Click to show an alert",
@@ -11,7 +11,12 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content-scripts/autoplay.js", "content-scripts/promoted-ads.js", "content-scripts/engagement-notifs.js"],
+      "js": [
+        "content-scripts/autoplay.js",
+        "content-scripts/promoted-ads.js",
+        "content-scripts/engagement-notifs.js",
+        "content-scripts/infinite-scroll.js"
+      ],
       "run_at": "document_end"
     }
   ],

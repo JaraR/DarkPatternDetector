@@ -142,12 +142,12 @@ export function TextareaForm() {
 
               {/* <p className="mt-2">{apiResponse}</p> */}
               <div className="mt-4">
-                <span className="ring-2 mr-3  inline-block w-[82px] ring-green-400 text-green-600 rounded-lg p-1 text-center font-bold">
+                <span className="ring-2 mr-3 inline-block w-[82px] ring-green-400 text-green-600 rounded-lg p-1 text-center font-bold">
                   Sentiment
                 </span>
 
                 <span
-                  className={`px-4 py-2 font-bold text-black rounded-full ${
+                  className={`font-bold text-black rounded-full ${
                     sentiment === "Positive"
                       ? "text-green-500"
                       : sentiment === "Negative"
