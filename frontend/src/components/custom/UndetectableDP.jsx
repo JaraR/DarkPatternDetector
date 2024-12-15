@@ -102,8 +102,8 @@ export function UndetectableDP() {
                         <Tooltip
                             title={
                             <span style={{ fontSize: "0.85rem" }}>
-                                Provides tips and information regarding what X.com's 
-                                privacy settings actually do.
+                                Provides tips and information regarding X.com's 
+                                privacy settings and what they <b>actually</b> do.
                             </span>
                             }
                         >

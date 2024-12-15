@@ -181,7 +181,7 @@ export default function SettingTest() {
           </CardTitle>
 
           <CardDescription>
-            Navigate to X and see X-Factors in action
+            Tick boxes and see X-Factors in action on X
           </CardDescription>
         </CardHeader>
 
@@ -274,7 +274,7 @@ export default function SettingTest() {
                       alt="Notif info"
                       style={{ width: "100%" }}
                     />
-                    Navigate to X.com's notification page to see X-Factors in action!
+                    Navigate to X's notification page to see X-Factors in action!
                   </span>
                 }
               >
