@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Dark Pattern Detection on X",
   "version": "0.1.0",
-  "description": "To detect dark patterns on X.",
+  "description": "Detects and alerts users of dark patterns on X.",
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "action": {
     "default_title": "Click to show an alert",
