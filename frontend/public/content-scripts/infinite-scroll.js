@@ -88,18 +88,13 @@ function checkForInfiniteScroll() {
  * Notify the backend script of an infinite scroll event.
  */
 function notifyBackendOfInfiniteScrollEvent() {
-    console.log(
-        "[Content Script] Notifying backend about infinite scroll event."
-    );
+    console.log("[Content Script] Notifying backend about infinite scroll event.");
 
     chrome.runtime.sendMessage(
         { type: "infiniteScrollEvent", timestamp: Date.now() },
         (response) => {
             if (chrome.runtime.lastError) {
-                console.log(
-                    "[Content Script] Error sending message to backend:",
-                    chrome.runtime.lastError.message
-                );
+                console.log("[Content Script] Error sending message to backend:", chrome.runtime.lastError.message);
             } else {
                 console.log("[Content Script] Response from backend:", response);
             }
@@ -144,13 +139,71 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         stopInfiniteScrollFeature();
         sendResponse({ status: "Infinite scroll stopped." });
     } else {
-        console.warn(
-            "[Content Script] Unknown message type received:",
-            message.type
-        );
+        console.warn("[Content Script] Unknown message type received:", message.type);
         sendResponse({ status: "Unknown command." });
     }
 
     // Ensure async responses work
     return true;
 });
+
+/**
+ *@2024/12/06
+ *@name qzlei
+ *@description Sync storage
+ */
+let originBodyScrollHeight = document.body.scrollHeight;
+function observerScroll() {
+    const bodyScrollHeight = document.body.scrollHeight;
+    const scrollPosition = window.scrollY + window.innerHeight;
+    // Check if the user is near the bottom of the page
+    if (scrollPosition >= bodyScrollHeight - 50) {
+        popup({ message: 'you have reached the bottom of the page', scrollY: window.scrollY });
+        // Check if the page height has increased, indicating new content has been loaded
+        if (bodyScrollHeight > originBodyScrollHeight) {
+            originBodyScrollHeight = bodyScrollHeight;
+            popup({ message: 'Infinite Scrolling detected - new content loaded automatically', scrollY: window.scrollY });
+        }
+    }
+}
+
+// Popup
+var timeId
+function popup(...args) {
+    const popup = document.getElementById("popup")
+    if (popup) popup.remove();
+    const div = document.createElement("div");
+    div.id = "popup";
+    div.style.position = "fixed";
+    div.style.top = "30px";
+    div.style.left = "40%";
+    div.style.backgroundColor = "rgba(120, 131, 155, .6)";
+    div.style.padding = "15px";
+    div.style.boxShadow = '0px 0px 12px rgba(0, 0, 0, .12);'
+    div.style.borderRadius = "6px";
+    div.style.color = "white";
+    div.style.zIndex = "9999";
+
+    const message = document.createElement("h4");
+    message.textContent = args[0].message;
+    div.appendChild(message);
+
+    const scrollY = document.createElement("p");
+    scrollY.textContent = "Scroll Position: " + args[0].scrollY;
+    div.appendChild(scrollY);
+    document.body.appendChild(div);
+    clearTimeout(timeId);
+    timeId = setTimeout(() => {
+        div.remove();
+    }, 3000);
+}
+
+// Set scroll handler
+function setScrollHandler(state) {
+    if (!state) window.removeEventListener('scroll', observerScroll);
+    if (state) window.addEventListener('scroll', observerScroll);
+}
+
+// Sync storage
+chrome.storage.sync.get(['infiniteScroll'], (result) => setScrollHandler(result.infiniteScroll));
+chrome.storage.onChanged.addListener((changes) => setScrollHandler(changes.infiniteScroll.newValue));
