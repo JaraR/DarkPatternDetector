@@ -6,6 +6,7 @@ import autoplay from "../../../assets/autoplay.png";
 import ads from "../../../assets/ads.png";
 import notification from "../../../assets/notification.png";
 import obstruction from "../../../assets/obstruction.png";
+import Subscription from "../../../components/Subscription";
 
 export default function ProjectPage() {
   const cardsData = [
@@ -124,6 +125,7 @@ export default function ProjectPage() {
           </Link>
         ))}
       </div>
+      <Subscription />
     </div>
   );
 }
